@@ -1,6 +1,7 @@
 /**
  * User model
  */
+//änderig
 class User {
   constructor(data = {}) {
     this.id = null;
