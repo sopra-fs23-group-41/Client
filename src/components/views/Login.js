@@ -81,6 +81,20 @@ const Login = props => {
               Login
             </Button>
           </div>
+          <div className="Forgot-Password container">
+            <p
+                onClick={()=> doLogin()}
+            >
+              Forgot Password
+            </p>
+          </div>
+          <div className="Forgot-Password container">
+            <p
+                onClick={()=> doLogin()}
+            >
+              Register a new account!
+            </p>
+          </div>
         </div>
       </div>
     </BaseContainer>
