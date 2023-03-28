@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import "styles/views/Landing.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
+
 const Player = ({user}) => (
     <div className="player container">
         <div className="player username">{user.username}</div>
@@ -28,7 +29,7 @@ const LeaderBoard = () => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
-
+    console.log(users)
     const logout = () => {
         localStorage.removeItem('token');
         history.push('/login');

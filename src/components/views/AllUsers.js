@@ -28,7 +28,7 @@ const AllUsers = () => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
-
+    console.log(users)
     const logout = () => {
         localStorage.removeItem('token');
         history.push('/login');
