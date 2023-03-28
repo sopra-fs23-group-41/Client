@@ -6,6 +6,11 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/Login.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import '../pictures/img1.jpg'
+
+
+
+
 
 /*
 It is possible to add multiple components inside a single file,
@@ -35,6 +40,8 @@ FormField.propTypes = {
   onChange: PropTypes.func
 };
 
+
+
 const Login = props => {
   const history = useHistory();
   const [name, setName] = useState(null);
@@ -52,13 +59,22 @@ const Login = props => {
       localStorage.setItem('token', user.token);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
-      history.push(`/game`);
+      history.push(`/landing`);
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
   };
 
+  const goToRegistration = async () => {
+    try {
+      history.push(`/registration`);
+    } catch (error) {
+      alert(`Something went wrong during the Registration: \n${handleError(error)}`);
+    }
+  };
+
   return (
+
     <BaseContainer>
       <div className="login container">
         <div className="login form">
@@ -68,10 +84,11 @@ const Login = props => {
             onChange={un => setUsername(un)}
           />
           <FormField
-            label="Name"
+            label="Password"
             value={name}
             onChange={n => setName(n)}
           />
+
           <div className="login button-container">
             <Button
               disabled={!username || !name}
@@ -81,19 +98,13 @@ const Login = props => {
               Login
             </Button>
           </div>
-          <div className="Forgot-Password container">
-            <p
-                onClick={()=> doLogin()}
+          <div className="login button-container">
+            <Button
+                width="100%"
+                onClick={() => goToRegistration()}
             >
-              Forgot Password
-            </p>
-          </div>
-          <div className="Forgot-Password container">
-            <p
-                onClick={()=> doLogin()}
-            >
-              Register a new account!
-            </p>
+              New here? Create an account!
+            </Button>
           </div>
         </div>
       </div>

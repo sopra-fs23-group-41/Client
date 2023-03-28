@@ -7,7 +7,17 @@
 
   &.title {
     font-weight: bold;
-    color: $background;
+    font-size: 40px;
+    font-family: "JetBrains Mono";
+    color: #ffffff;
     text-align: center;
+    text-shadow: 0 0 2px black;
   }
+
+  &.bg {
+    background-image: url("../../components/pictures/2.jpg");
+    filter: blur(40px);
+    -webkit-filter: blur(40px);
+  }
+
 }
