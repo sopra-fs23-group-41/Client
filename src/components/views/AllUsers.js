@@ -18,7 +18,7 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const Landing = () => {
+const AllUsers = () => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
 
@@ -33,8 +33,6 @@ const Landing = () => {
         localStorage.removeItem('token');
         history.push('/login');
     }
-
-
 
 
     // the effect hook can be used to react to change in your component.
@@ -82,9 +80,9 @@ const Landing = () => {
                 <img className="landing img" src={logo} alt="LOL"/>
                 <nav>
                     <ul className="nav__links">
-                        <li><a href="allusers">Find User</a></li>
-                        <li><a href="profilepage">View Profile</a></li>
                         <li><a href="leaderboard">Leaderboard</a></li>
+                        <li><a href="profilepage">View Profile</a></li>
+                        <li><a href="landing">Home</a></li>
                     </ul>
                 </nav>
                 <div className="landing button-container">
@@ -101,4 +99,4 @@ const Landing = () => {
     );
 }
 
-export default Landing;
+export default AllUsers;

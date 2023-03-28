@@ -24,7 +24,7 @@
     padding-left: 37px;
     padding-right: 37px;
     border-radius: 0.2em;
-    background-color: #ffeb17;
+    background-color: sandybrown;
     transition: opacity 0.5s ease, transform 0.5s ease;
     box-shadow: 0 0 15px #000000;
     font-family: "JetBrains Mono";
@@ -41,7 +41,7 @@
     border: none;
     border-radius: 0.75em;
     margin-bottom: 20px;
-    background: transparentize(#40c204, .6);
+    background: transparentize(rgb(60, 61, 60), .6);
     color: #000000;
   }
   &.label {

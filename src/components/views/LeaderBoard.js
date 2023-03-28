@@ -18,7 +18,7 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const Landing = () => {
+const LeaderBoard = () => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
 
@@ -84,7 +84,7 @@ const Landing = () => {
                     <ul className="nav__links">
                         <li><a href="allusers">Find User</a></li>
                         <li><a href="profilepage">View Profile</a></li>
-                        <li><a href="leaderboard">Leaderboard</a></li>
+                        <li><a href="landing">Home</a></li>
                     </ul>
                 </nav>
                 <div className="landing button-container">
@@ -101,4 +101,4 @@ const Landing = () => {
     );
 }
 
-export default Landing;
+export default LeaderBoard;
