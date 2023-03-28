@@ -6,6 +6,9 @@ import PropTypes from "prop-types";
 import "styles/views/Landing.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
+import icon1 from '../pictures/sp-icon.jpg'
+import icon2 from '../pictures/pincode-icon.jpg'
+import icon3 from '../pictures/mp-icon.jpg'
 const Player = ({user}) => (
     <div className="player container">
         <div className="player username">{user.username}</div>
@@ -97,6 +100,24 @@ const Landing = () => {
                     </button>
                 </div>
             </div>
+
+
+            <div className="landing icons">
+                <div className="landing icon1">
+                    <h3 className="landing icon-description">Enter Pincode</h3>
+                    <img className="landing icon" src={icon2} alt="LOL"/>
+                </div>
+                <div className="landing icon2">
+                    <h3 className="landing icon-description">Singleplayer</h3>
+                    <img className="landing icon" src={icon1} alt="LOL"/>
+                </div>
+
+                <div className="landing icon3">
+                    <h3 className="landing icon-description">Multiplayer</h3>
+                    <img className="landing icon" src={icon3} alt="LOL"/>
+                </div>
+            </div>
+
         </BaseContainer>
     );
 }
