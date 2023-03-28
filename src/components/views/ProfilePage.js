@@ -7,7 +7,7 @@ import "styles/views/Landing.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 
-//hmm
+//hmmmm
 const Player = ({user}) => (
     <div className="player container">
         <div className="player username">{user.username}</div>
