@@ -9,6 +9,9 @@ import Header from "../../views/Header";
 import AllUsers from "../../views/AllUsers";
 import ProfilePage from "../../views/ProfilePage";
 import LeaderBoard from "../../views/LeaderBoard";
+import MultiPlayer from "../../views/MultiPlayer";
+import SinglePlayer from "../../views/SinglePlayer";
+import PinCode from "../../views/PinCode";
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -37,6 +40,21 @@ const AppRouter = () => {
          <GameGuard>
            <ProfilePage/>
          </GameGuard>
+        </Route>
+        <Route exact path="/multiplayer">
+          <GameGuard>
+            <MultiPlayer/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/singleplayer">
+          <GameGuard>
+            <SinglePlayer/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/pincode">
+          <GameGuard>
+            <PinCode/>
+          </GameGuard>
         </Route>
         <Route exact path="/allusers">
           <GameGuard>

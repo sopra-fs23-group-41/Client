@@ -4,7 +4,6 @@ import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/MultiPlayer.scss";
-import "styles/views/PinCode.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 import {Spinner} from "../ui/Spinner";
@@ -19,7 +18,7 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const PinCode = () => {
+const SinglePlayer = () => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
 
@@ -91,26 +90,53 @@ const PinCode = () => {
 
     return (
         <BaseContainer className="multiplayer container">
+
             <div className="multiplayer navbar">
                 <img className="multiplayer img" src={logo} alt="LOL"/>
-                <h1 className="multiplayer title">Pincode</h1>
+                <h1 className="multiplayer title">Singleplayer</h1>
                 <nav>
                     <ul className="nav__links">
                         <li><a href="landing">Home</a></li>
                     </ul>
                 </nav>
             </div>
-            <h1 className="pin-title">Enter PIN here</h1>
-            <div className="pin-code">
-                <input type="number" maxLength="1" autoFocus/>
-                    <input type="number" maxLength="1"/>
-                        <input type="number" maxLength="1"/>
-                            <input type="number" maxLength="1"/>
+            <div className="multiplayer upper-part">
+                <div className="multiplayer settings">
+                    <h3>Settings</h3>
+                    <p>Category</p>
+                    <select className="multiplayer select">
+                        <option>Choose</option>
+                        <option>Men</option>
+                        <option>Women</option>
+                        <option>Shoes</option>
+                        <option>Gucci</option>
+                        <option>Dior</option>
+                    </select>
+                    <p>Rounds</p>
+                    <select className="multiplayer select">
+                        <option>Choose</option>
+                        <option>6</option>
+                        <option>12</option>
+                        <option>18</option>
+                        <option>24</option>
+                        <option>30</option>
+                    </select>
+                    <p>Game Mode</p>
+                    <select className="multiplayer select">
+                        <option>Choose</option>
+                        <option>Guess the Price</option>
+                        <option>Higher or Lower</option>
+                    </select>
+                </div>
+                
             </div>
 
-            <button className="pin-code-button">Join Game</button>
+            <div className="multiplayer lower-part">
+                <button className="singleplayer button">Start Game</button>
+            </div>
+
         </BaseContainer>
     );
 }
 
-export default PinCode;
+export default SinglePlayer;

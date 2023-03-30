@@ -7,28 +7,11 @@
   for more information visit https://sass-lang.com/guide
  */
 
+.multiplayer {
 
-
-.button{
-  padding: 9px 25px;
-  background-color: sandybrown;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  color: #000000;
-  font-family: "JetBrains Mono";
-}
-
-.button:hover{
-  background-color: rgba(0, 136, 169, 0);
-  color: antiquewhite;
-}
-
-.landing {
   &.container {
     margin-top: 10px;
-    background: sandybrown;
+    background: #a597ff;
     border-radius: 4px;
     display: flex;
     height: 850px;
@@ -49,10 +32,6 @@
   & p,h2 {
     margin: 0.5em 0;
   }
-  &.button-container {
-    display: compact;
-    width: 150px;
-  }
 
   &.navbar {
     margin-top: 5px;
@@ -68,7 +47,6 @@
   &.logo{
     align-items: center;
     font-size: 20px;
-    color: #ffeb17;
     font-family: "JetBrains Mono";
   }
 
@@ -78,35 +56,6 @@
     border-radius: 3px;
   }
 
-  &.icon{
-    width: 300px;
-    height: 300px;
-    border-radius: 7px;
-    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .4);
-    transition: .3s;
-  }
-
-  &.icons{
-    width: 1000px;
-    margin-left: 65px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &.icon-description{
-    font-family: "JetBrains Mono";
-    color: floralwhite;
-    font-size: 35px;
-    margin-top: 50px;
-    margin-left: 45px;
-  }
-
-  &.icon:hover{
-    transform: scale(1.4) rotate(355deg);
-    z-index: 2;
-  }
-
   &.title p{
     color: #e3d9d9;
   }
@@ -114,13 +63,66 @@
   &.title{
     font-family: "JetBrains Mono";
     text-align: center;
-    color: #2f332e;
+    color: floralwhite;
     font-size: 35px;
     transition: .5s;
   }
 
   &.title:hover{
     transform: scale(1.2);
+  }
+  &.upper-part{
+    color: navajowhite;
+    font-family: "JetBrains Mono";
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.lower-part{
+    color: navajowhite;
+    font-family: "JetBrains Mono";
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.pin{
+    margin-right: 70px;
+    color: navajowhite;
+    font-family: "JetBrains Mono";
+  }
+
+  &.button{
+    margin-top: 200px;
+    margin-right: 30px;
+    padding: 9px 25px;
+    background-color: #ff97ee;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #000000;
+    font-family: "JetBrains Mono";
+    transition: .5s;
+  }
+
+  &.button:hover{
+    background-color: rgba(0, 136, 169, .7);
+    transform: scale(1.5);
+    color: antiquewhite;
+  }
+  &.settings p{
+    margin-top: 30px;
+  }
+
+  &.select{
+    color: #ffeb17;
+    background: black;
+    width: 100px;
+    border-radius: 7px;
+    box-shadow: 0 0.05em 0.05em #000000;
   }
 
 }
@@ -153,25 +155,45 @@ li, a, img{
 .player {
   &.container {
     margin: 0.5em 0;
-    width: 20em;
+    width: 250px;
+    height: 25px;
     padding: 10px;
-    border-radius: $borderRadius;
+    border-radius: 9px;
     display: flex;
     align-items: center;
+    justify-content: center;
     background: lighten($background, 5);
+    transition: .3s;
+    box-shadow: 0 0.05em 0.05em #000000;
   }
-  &.name {
-    font-weight: 300;
-    margin-left: 5px;
+
+  &.container:hover{
+    transform: scale(1.1);
   }
   &.username {
     font-weight: 500;
     color: $accent;
   }
-  &.id {
-    margin-left: auto;
-    margin-right: 10px;
-    font-family: $fontMono;
-    font-weight: 300;
+
+}
+
+.singleplayer {
+  &.button{
+    margin-top: 200px;
+    margin-left: 470px;
+    padding: 9px 25px;
+    background-color: #ff97ee;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #000000;
+    font-family: "JetBrains Mono";
+    transition: .5s;
+  }
+
+  &.button:hover{
+    background-color: rgba(0, 136, 169, .7);
+    transform: scale(1.5);
+    color: antiquewhite;
   }
 }

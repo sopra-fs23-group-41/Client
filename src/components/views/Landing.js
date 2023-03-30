@@ -9,6 +9,9 @@ import logo from '../pictures/Logo.jpg';
 import icon1 from '../pictures/sp-icon.jpg'
 import icon2 from '../pictures/pincode-icon.jpg'
 import icon3 from '../pictures/mp-icon.jpg'
+import {Button} from "../ui/Button";
+
+
 const Player = ({user}) => (
     <div className="player container">
         <div className="player username">{user.username}</div>
@@ -21,9 +24,10 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const Landing = () => {
+const Landing = props => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
+
 
     // define a state variable (using the state hook).
     // if this variable changes, the component will re-render, but the variable will
@@ -32,12 +36,13 @@ const Landing = () => {
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
     console.log(users)
+
+
     const logout = () => {
+
         localStorage.removeItem('token');
         history.push('/login');
     }
-
-
 
 
     // the effect hook can be used to react to change in your component.
@@ -78,6 +83,27 @@ const Landing = () => {
     }, []);
 
 
+    let content
+    console.log(users)
+    if (users) {
+        content = (
+            <div className="game">
+                <ul className="game user-list">
+                    {users.map(user => (
+                        <Player user={user} key={user.id}/>
+                    ))}
+                </ul>
+                <Button
+                    width="100%"
+                    onClick={() => logout()}
+                >
+                    Logout
+                </Button>
+            </div>
+        );
+    }
+
+
     return (
         <BaseContainer className="landing container">
 
@@ -100,24 +126,27 @@ const Landing = () => {
                     </button>
                 </div>
             </div>
+            <div className="landing title">
+                <h1>Show Me The Money</h1>
+                <p>Money is the root of all evil. Or is it the root of all people?</p>
+            </div>
 
 
             <div className="landing icons">
                 <div className="landing icon1">
                     <h3 className="landing icon-description">Enter Pincode</h3>
-                    <img className="landing icon" src={icon2} alt="LOL"/>
+                    <a href="pincode"><img className="landing icon" src={icon2} alt="LOL"/></a>
                 </div>
                 <div className="landing icon2">
                     <h3 className="landing icon-description">Singleplayer</h3>
-                    <img className="landing icon" src={icon1} alt="LOL"/>
+                    <a href="singleplayer"><img className="landing icon" src={icon1} alt="LOL"/></a>
                 </div>
 
                 <div className="landing icon3">
                     <h3 className="landing icon-description">Multiplayer</h3>
-                    <img className="landing icon" src={icon3} alt="LOL"/>
+                    <a href="multiplayer"><img className="landing icon" src={icon3} alt="LOL"/></a>
                 </div>
             </div>
-
         </BaseContainer>
     );
 }

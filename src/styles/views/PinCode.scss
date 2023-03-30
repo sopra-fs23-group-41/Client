@@ -1,0 +1,59 @@
+.pin-title{
+  display: flex;
+  justify-content: center;
+  font-family: "JetBrains Mono";
+}
+
+.pin-code-button{
+  margin-top: 30px;
+  margin-left: 410px;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  padding: 9px 25px;
+  background-color: #ff97ee;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  color: #000000;
+  font-family: "JetBrains Mono";
+  transition: .5s;
+}
+
+.pin-code-button:hover{
+  background-color: rgba(0, 136, 169, .7);
+  transform: scale(1.5);
+  color: antiquewhite;
+}
+
+.pin-code{
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content:center;
+
+}
+
+.pin-code input {
+  border: none;
+  text-align: center;
+  width: 48px;
+  height:48px;
+  font-size: 36px;
+  background-color: #F3F3F3;
+  margin-right:5px;
+}
+
+
+
+.pin-code input:focus {
+  border: 1px solid #573D8B;
+  outline:none;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
