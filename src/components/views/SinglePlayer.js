@@ -1,12 +1,11 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import {useHistory} from 'react-router-dom';
+//import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/MultiPlayer.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
-import {Spinner} from "../ui/Spinner";
 
 const Player = ({user}) => (
     <div className="player container">
@@ -19,7 +18,7 @@ Player.propTypes = {
 };
 
 const SinglePlayer = () => {
-    // use react-router-dom's hook to access the history
+    // use react-router-dom's hook to access the history LOL
 
     //const history = useHistory();
 

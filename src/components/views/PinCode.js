@@ -1,13 +1,12 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import {useHistory} from 'react-router-dom';
+//import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/MultiPlayer.scss";
 import "styles/views/PinCode.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
-import {Spinner} from "../ui/Spinner";
 
 const Player = ({user}) => (
     <div className="player container">
