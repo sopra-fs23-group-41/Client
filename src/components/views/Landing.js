@@ -24,7 +24,7 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const Landing = props => {
+const Landing = () => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
 
@@ -102,6 +102,7 @@ const Landing = props => {
             </div>
         );
     }
+    console.log(content)
 
 
     return (

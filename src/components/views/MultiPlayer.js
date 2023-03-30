@@ -20,7 +20,8 @@ Player.propTypes = {
 
 const MultiPlayer = () => {
     // use react-router-dom's hook to access the history
-    const history = useHistory();
+
+    //const history = useHistory();
 
     // define a state variable (using the state hook).
     // if this variable changes, the component will re-render, but the variable will

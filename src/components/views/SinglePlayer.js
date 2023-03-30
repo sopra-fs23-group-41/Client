@@ -20,7 +20,8 @@ Player.propTypes = {
 
 const SinglePlayer = () => {
     // use react-router-dom's hook to access the history
-    const history = useHistory();
+
+    //const history = useHistory();
 
     // define a state variable (using the state hook).
     // if this variable changes, the component will re-render, but the variable will
@@ -29,10 +30,7 @@ const SinglePlayer = () => {
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
     console.log(users)
-    const logout = () => {
-        localStorage.removeItem('token');
-        history.push('/login');
-    }
+
 
 
 
@@ -74,19 +72,7 @@ const SinglePlayer = () => {
         fetchData();
     }, []);
 
-    let content = <Spinner/>;
 
-    if (users) {
-        content = (
-            <div className="game">
-                <ul className="game user-list">
-                    {users.map(user => (
-                        <Player user={user} key={user.id}/>
-                    ))}
-                </ul>
-            </div>
-        );
-    }
 
     return (
         <BaseContainer className="multiplayer container">
