@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 It is possible to add multiple components inside a single file,
 however be sure not to clutter your files with an endless amount!
 As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
+specific components that belong to the main one and the same file.
  */
 const FormField = props => {
     return (
@@ -38,12 +38,13 @@ FormField.propTypes = {
 const Registration = props => {
     const history = useHistory();
     //const [password, setPassword] = useState(null);
-    const [name, setName] = useState(null);
+    const [password, setPassword] = useState(null);
     const [username, setUsername] = useState(null);
+    const [realName, setRealName] = useState(null);
 
     const doRegistration = async () => {
         try {
-            const requestBody = JSON.stringify({username, name});
+            const requestBody = JSON.stringify({username, realName, password});
             await api.post('/users', requestBody);
 
             const responseStatusUpdate = await api.post("statusOnline", requestBody)
@@ -79,13 +80,19 @@ const Registration = props => {
                     />
 
                     <FormField
+                        label="Enter your name here"
+                        value={realName}
+                        onChange={rn => setRealName(rn)}
+                    />
+
+                    <FormField
                         label="Enter your password here"
-                        value={name}
-                        onChange={n => setName(n)}
+                        value={password}
+                        onChange={p => setPassword(p)}
                     />
                     <div className="login button-container">
                         <Button
-                            disabled={!username || !name}
+                            disabled={!username || !password || !realName}
                             width="100%"
                             onClick={() => doRegistration()}
                         >

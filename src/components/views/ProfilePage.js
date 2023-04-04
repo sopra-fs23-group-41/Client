@@ -85,7 +85,6 @@ const ProfilePage = () => {
                     </ul>
                 </nav>
                 <div className="landing button-container">
-
                     <button
                         className="button"
                         onClick={() => logout()}
