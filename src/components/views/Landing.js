@@ -10,7 +10,7 @@ import icon1 from '../pictures/sp-icon.jpg'
 import icon2 from '../pictures/pincode-icon.jpg'
 import icon3 from '../pictures/mp-icon.jpg'
 import {Button} from "../ui/Button";
-
+import {Link} from 'react-router-dom';
 
 const Player = ({user}) => (
     <div className="player container">
@@ -113,7 +113,8 @@ const Landing = () => {
                 <nav>
                     <ul className="nav__links">
                         <li><a href="allusers">Find User</a></li>
-                        <li><a href="profilepage">View Profile</a></li>
+                        <Link to={"/profilepage/" + localStorage.userId}><li>View Profile</li></Link>
+                        
                         <li><a href="leaderboard">Leaderboard</a></li>
                     </ul>
                 </nav>
