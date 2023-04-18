@@ -16,7 +16,7 @@ import '../pictures/img1.jpg'
 It is possible to add multiple components inside a single file,
 however be sure not to clutter your files with an endless amount!
 As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
+specific components that belong to the main one and the same file.
  */
 const FormField = props => {
   return (
@@ -44,12 +44,12 @@ FormField.propTypes = {
 
 const Login = props => {
   const history = useHistory();
-  const [name, setName] = useState(null);
+  const [password, setPassword] = useState(null);
   const [username, setUsername] = useState(null);
 
   const doLogin = async () => {
     try {
-      const requestBody = JSON.stringify({username, name});
+      const requestBody = JSON.stringify({username, password});
       const response = await api.post('/users', requestBody);
 
       // Get the returned user and update a new object.
@@ -88,13 +88,13 @@ const Login = props => {
           <FormField
             className="login formfield"
             label="Password"
-            value={name}
-            onChange={n => setName(n)}
+            value={password}
+            onChange={p => setPassword(p)}
           />
 
           <div className="login button-container">
             <Button
-              disabled={!username || !name}
+              disabled={!username || !password}
               width="100%"
               onClick={() => doLogin()}
             >
