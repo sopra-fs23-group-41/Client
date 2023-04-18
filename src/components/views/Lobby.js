@@ -6,21 +6,70 @@ import PropTypes from "prop-types";
 import "styles/views/MultiPlayer.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
-import Game from "../../models/Game.js";
+import Player from "../../models/Player";
+import Game from "../../models/Game";
 
-const Player = ({user}) => (
+
+const Pleyer = ({user}) => (
     <div className="player container">
         <div className="player username">{user.username}</div>
     </div>
 );
 
-Player.propTypes = {
+Pleyer.propTypes = {
     user: PropTypes.object
 };
 
-let mockGame = new Game();
 
-const MultiPlayer = () => {
+
+let p1 = {
+    username: "Timo",
+    points: 1615,
+    rank: 1
+}
+
+let p2 = {
+    username: "Euni",
+    points: 1315,
+    rank: 3
+}
+
+let p3 = {
+    username: "Tiago",
+    points: 1523,
+    rank: 2
+}
+
+let p4 = {
+    username: "Yuqing",
+    points: 1267,
+    rank: 4
+}
+
+let p5 = {
+    username: "Laurent",
+    points: 12,
+    rank: 5
+}
+
+let player1 = new Player(p1);
+let player2 = new Player(p2);
+let player3 = new Player(p3);
+let player4 = new Player(p4);
+let player5 = new Player(p5);
+let players = [player1, player2, player3, player4, player5];
+
+let mg = {
+    numberOfRounds: 12,
+    pincode: 2222,
+    category: "shoes",
+    gameMode: "Guess The Price"
+}
+
+let mockGame = new Game(mg);
+console.log(mockGame);
+
+const Lobby = () => {
     // use react-router-dom's hook to access the history
 
     //const history = useHistory();
@@ -32,34 +81,6 @@ const MultiPlayer = () => {
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
     console.log(users)
-
-
-    const selectNumberOfPlayers = document.getElementById("players");
-    const selectNumberOfRounds = document.getElementById("rounds");
-    const selectCategory = document.getElementById("category");
-    const selectGameMode = document.getElementById("game-mode");
-
-    const adjustNumberOfPlayers = () => {
-        mockGame.numberOfPlayers = selectNumberOfPlayers.value;
-        console.log(mockGame);
-    }
-
-    const adjustCategory = () => {
-        mockGame.category = selectCategory.value;
-        console.log(mockGame);
-
-    }
-
-    const adjustGameMode = () => {
-        mockGame.gameMode = selectGameMode.value;
-        console.log(mockGame);
-
-    }
-
-    const adjustNumberOfRounds = () => {
-        mockGame.numberOfRounds = selectNumberOfRounds.value;
-        console.log(mockGame);
-    }
 
 
     // the effect hook can be used to react to change in your component.
@@ -99,8 +120,16 @@ const MultiPlayer = () => {
         fetchData();
     }, []);
 
+    let content = (
+            <div className="game">
+                <ul className="game user-list">
+                    {players.map(user => (
+                        <Pleyer user={user} key={user.username}/>
+                    ))}
+                </ul>
+            </div>
+    );
 
-    console.log(mockGame);
 
     return (
         <BaseContainer className="multiplayer container">
@@ -111,55 +140,37 @@ const MultiPlayer = () => {
                         <button className="multiplayer home-button"><a className="multiplayer home-button-color" href="landing">Home</a></button>
                     </ul>
                 </nav>
-                <h1 className="multiplayer title">Multiplayer</h1>
+                <h1 className="multiplayer title">Game Lobby</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
             <div className="multiplayer upper-part">
                 <div className="multiplayer settings">
-                    <h2>Choose Settings</h2>
-                    <p>Category</p>
-                    <select className="multiplayer select" id="category">
-                        <option>Choose</option>
-                        <option value="Men" onSelect={() => adjustCategory()}>Men</option>
-                        <option value="Women" onClick={() => adjustCategory()}>Women</option>
-                        <option value="Shoes" onClick={() => adjustCategory()}>Shoes</option>
-                        <option value="Gucci" onClick={() => adjustCategory()}>Gucci</option>
-                        <option value="Dior" onClick={() => adjustCategory()}>Dior</option>
-                    </select>
-                    <p>Rounds</p>
-                    <select className="multiplayer select" id="rounds">
-                        <option>Choose</option>
-                        <option value="6" onClick={() => adjustNumberOfRounds()}>6</option>
-                        <option value="12" onClick={() => adjustNumberOfRounds()}>12</option>
-                        <option value="18" onClick={() => adjustNumberOfRounds()}>18</option>
-                        <option value="24" onClick={() => adjustNumberOfRounds()}>24</option>
-                        <option value="30" onClick={() => adjustNumberOfRounds()}>30</option>
-                    </select>
-                    <p>Game Mode</p>
-                    <select className="multiplayer select" id="game-mode">
-                        <option>Choose</option>
-                        <option value="Guess The Price" onClick={() => adjustGameMode()}>Guess the Price</option>
-                        <option value="Higher or Lower" onClick={() => adjustGameMode()}>Higher or Lower</option>
-                    </select>
-                    <p>Number of Players</p>
-                    <select className="multiplayer select" id="players">
-                        <option>Choose</option>
-                        <option value="2" onClick={() => adjustNumberOfPlayers}>2</option>
-                        <option value="3" onClick={() => adjustNumberOfPlayers}>3</option>
-                        <option value="4" onClick={() => adjustNumberOfPlayers}>4</option>
-                        <option value="5" onClick={() => adjustNumberOfPlayers}>5</option>
-                    </select>
+                    <h2>Settings</h2>
+
+                    <p>Game Mode: {mockGame.gameMode} </p>
+
+                    <p>Rounds: {mockGame.numberOfRounds} </p>
+
+                    <p>Category: {mockGame.category}</p>
+
+                    <p>Pincode: {mockGame.pincode} </p>
+
+                    <h2 className="multiplayer list-of-players">Players</h2>
+                    <p>{content}</p>
+
                 </div>
             </div>
 
             <div className="multiplayer lower-part">
                 <div className="multiplayer settings">
+
                 </div>
-                <button className="multiplayer button"><a href="lobby">Create Lobby</a></button>
+
+                <button className="multiplayer button"><a href="gtpgame">Start Game</a></button>
             </div>
 
         </BaseContainer>
     );
 }
 
-export default MultiPlayer;
+export default Lobby;

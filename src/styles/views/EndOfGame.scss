@@ -1,0 +1,43 @@
+.end-of-game {
+  &.crown{
+    font-size: 50px;
+  }
+
+  &.winner{
+    font-family: "JetBrains Mono";
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+    height: 80px;
+    width: 440px;
+    background-color: #f3ddad;
+  }
+
+  &.buttons{
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  &.btn{
+    margin-top: 200px;
+    margin-right: 30px;
+    padding: 9px 25px;
+    background-color: #ff97ee;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: "JetBrains Mono";
+    transition: .5s;
+  }
+
+  &.btn:hover {
+    background-color: rgba(0, 136, 169, .7);
+    transform: scale(1.5);
+    color: antiquewhite;
+  }
+
+}

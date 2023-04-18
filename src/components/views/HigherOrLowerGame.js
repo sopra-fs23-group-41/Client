@@ -4,9 +4,15 @@ import {api, handleError} from 'helpers/api';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/MultiPlayer.scss";
-import "styles/views/PinCode.scss";
+import "styles/views/GTPGame.scss";
+import "styles/views/HigherOrLowerGame.scss";
+
 import '../pictures/2.jpg';
+import guccishoe from '../pictures/guccishoe.png';
+import luisvuittonshoe from '../pictures/luisvuittonshoe.png';
 import logo from '../pictures/Logo.jpg';
+import "helpers/Timer.js";
+import Timer from "../../helpers/Timer";
 
 const Player = ({user}) => (
     <div className="player container">
@@ -18,8 +24,9 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const PinCode = () => {
+const HigherOrLowerGame = () => {
     // use react-router-dom's hook to access the history
+
     //const history = useHistory();
 
     // define a state variable (using the state hook).
@@ -29,8 +36,6 @@ const PinCode = () => {
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
     console.log(users)
-
-
 
 
     // the effect hook can be used to react to change in your component.
@@ -74,26 +79,31 @@ const PinCode = () => {
 
     return (
         <BaseContainer className="multiplayer container">
+
             <div className="multiplayer navbar">
                 <nav>
                     <ul className="nav__links">
                         <a className="multiplayer home-button-color" href="landing"><button className="multiplayer home-button">Home</button></a>
                     </ul>
                 </nav>
-                <h1 className="multiplayer title">Pincode</h1>
+                <h1 className="multiplayer title">Higher or Lower</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-            <h1 className="pin-title">Enter PIN here</h1>
-            <div className="pin-code">
-                <input type="number" maxLength="1" autoFocus/>
-                    <input type="number" maxLength="1"/>
-                        <input type="number" maxLength="1"/>
-                            <input type="number" maxLength="1"/>
+            <Timer seconds={30}/>
+            <h1 className="h-or-l current-price">Current Price: 799CHF</h1>
+            <div className="h-or-l items">
+                <img className="h-or-l item-pic" src={guccishoe} alt="LOL"/>
+                <img className="h-or-l item-pic" src={luisvuittonshoe} alt="LOL"/>
             </div>
 
-            <button className="pin-code-button">Join Game</button>
+
+            <div className="gtp answer-container">
+                <button className="h-or-l higher">Higher</button>
+                <button className="h-or-l lower">Lower</button>
+            </div>
+
         </BaseContainer>
     );
 }
 
-export default PinCode;
+export default HigherOrLowerGame;

@@ -77,13 +77,13 @@ const SinglePlayer = () => {
         <BaseContainer className="multiplayer container">
 
             <div className="multiplayer navbar">
-                <img className="multiplayer img" src={logo} alt="LOL"/>
-                <h1 className="multiplayer title">Singleplayer</h1>
                 <nav>
                     <ul className="nav__links">
-                        <li><a href="landing">Home</a></li>
+                        <a className="multiplayer home-button-color" href="landing"><button className="multiplayer home-button">Home</button></a>
                     </ul>
                 </nav>
+                <h1 className="multiplayer title">Singleplayer</h1>
+                <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
             <div className="multiplayer upper-part">
                 <div className="multiplayer settings">
@@ -117,7 +117,7 @@ const SinglePlayer = () => {
             </div>
 
             <div className="multiplayer lower-part">
-                <button className="singleplayer button">Start Game</button>
+                <button className="singleplayer button"><a href="higher-or-lower-game">Start Game</a></button>
             </div>
 
         </BaseContainer>

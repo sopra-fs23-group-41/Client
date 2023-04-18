@@ -1,0 +1,50 @@
+.h-or-l{
+  &.items{
+    margin: 20px auto 40px auto;
+    display: flex;
+
+  }
+  &.item-pic{
+    display: flex;
+    border-radius: 30px;
+    position: center;
+    height: 250px;
+    width: 380px;
+  }
+  &.higher{
+    background-color: #0db00d;
+    border-radius: 30px;
+    height: 150px;
+    width: 250px;
+    font-family: "JetBrains Mono";
+    font-size: 30px;
+    color: #ffffff;
+    transition: .35s;
+  }
+
+  &.lower{
+    background-color: #dc0000;
+    border-radius: 30px;
+    height: 150px;
+    width: 250px;
+    font-family: "JetBrains Mono";
+    font-size: 30px;
+    color: #ffffff;
+    transition: .35s;
+  }
+
+  &.higher:hover{
+    transform: scale(1.1);
+    background-color: #1ff11f;
+  }
+  &.lower:hover{
+    transform: scale(1.1);
+    background-color: red;
+  }
+  &.current-price{
+    color: floralwhite;
+    font-family: "JetBrains Mono";
+    margin-left: 200px;
+  }
+
+}

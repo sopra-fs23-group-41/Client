@@ -1,0 +1,38 @@
+
+.standings{
+  font-family: "JetBrains Mono";
+
+  &.container {
+    box-shadow: 2px 2px 2px grey;
+    justify-content: space-between;
+    margin: 0px auto 10px auto;
+    width: 20em;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    background: lighten(floralwhite, 5);
+  }
+  &.name {
+    font-weight: 300;
+    margin-left: 5px;
+  }
+  &.username {
+    font-weight: 500;
+    color: #97ABFF;
+  }
+
+}
+
+.next-question-timer{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.next-question-title{
+  font-size: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #f3ddad;
+  font-family: "JetBrains Mono";
+}

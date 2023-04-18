@@ -12,6 +12,11 @@ import LeaderBoard from "../../views/LeaderBoard";
 import MultiPlayer from "../../views/MultiPlayer";
 import SinglePlayer from "../../views/SinglePlayer";
 import PinCode from "../../views/PinCode";
+import GTPGame from "../../views/GTPGame";
+import EndOfGame from "../../views/EndOfGame";
+import ItemList from "../../views/ItemList";
+import HigherOrLowerGame from "../../views/HigherOrLowerGame";
+import Lobby from "../../views/Lobby";
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -64,6 +69,31 @@ const AppRouter = () => {
         <Route exact path="/leaderboard">
           <GameGuard>
             <LeaderBoard/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/gtpgame">
+          <GameGuard>
+            <GTPGame/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/higher-or-lower-game">
+          <GameGuard>
+            <HigherOrLowerGame/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/lobby">
+          <GameGuard>
+            <Lobby/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/end-of-game">
+          <GameGuard>
+            <EndOfGame/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/item-list">
+          <GameGuard>
+            <ItemList/>
           </GameGuard>
         </Route>
         <Route exact path="/landing">
