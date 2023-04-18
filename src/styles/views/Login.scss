@@ -1,6 +1,9 @@
-@import 'styles/theme';
+@import 'src/styles/_theme';
 
 .login {
+
+
+
   &.container {
     margin-top: 2em;
     min-height: 300px;
@@ -11,18 +14,20 @@
   &.form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: normal;
     width: 60%;
     max-width: 30em;
-    height: 20em;
-    font-size: 16px;
-    font-weight: 300;
+    height: 35em;
+    font-size: 18px;
+    font-weight: 500;
+    padding-top: 20px;
     padding-left: 37px;
     padding-right: 37px;
-    border-radius: 0.75em;
-    background-color: $background;
+    border-radius: 0.2em;
+    background-color: sandybrown;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    box-shadow: $dropShadow;
+    box-shadow: 0 0 15px #000000;
+    font-family: "JetBrains Mono";
   }
   &.field {
     display: flex;
@@ -36,18 +41,24 @@
     border: none;
     border-radius: 0.75em;
     margin-bottom: 20px;
-    background: transparentize(white, 0.85);
-    color: $textColor;
+    background: transparentize(rgb(60, 61, 60), .6);
+    color: #000000;
   }
   &.label {
     color: $textColor;
     margin-bottom: 10px;
-    text-transform: lowercase;
-    font-weight: 300;
+    font-weight: 600;
   }
   &.button-container {
     display: flex;
     justify-content: center;
     margin-top: 2em;
+
+  }
+
+  &.bg {
+    background-image: url("../../components/pictures/img1.jpg");
+    height: 1024px;
+    width: 1300px;
   }
 }

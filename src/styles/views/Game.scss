@@ -1,4 +1,4 @@
-@import 'styles/theme';
+@import '../_theme';
 
 /* The '&' is a shorthand for the containing element,
   so for example a '&.user-list' inside .game will compile to
@@ -9,16 +9,18 @@
 
 .game {
   &.container {
-    background: $background;
+    background: #ffeb17;
     padding: 1.5em;
     border-radius: $borderRadius;
     display: flex;
+    height: 800px;
+    width: 1000px;
     flex-direction: column;
     align-items: center;
     box-shadow: $dropShadow;
   }
   &.user-list {
-    list-style: none;
+    list-style: georgian;
     padding-left: 0;
   }
   &.user-item {

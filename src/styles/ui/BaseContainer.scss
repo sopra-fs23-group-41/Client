@@ -1,4 +1,4 @@
-@import 'styles/theme';
+@import 'src/styles/_theme';
 
 .base-container {
   margin-left: auto;
@@ -8,3 +8,4 @@
   max-width: $DESKTOP_WIDTH;
   color: $textColor;
 }
+

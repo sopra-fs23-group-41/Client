@@ -3,7 +3,15 @@ import {GameGuard} from "components/routing/routeProtectors/GameGuard";
 import GameRouter from "components/routing/routers/GameRouter";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
-
+import Registration from "../../views/Registration";
+import Landing from "../../views/Landing"
+import Header from "../../views/Header";
+import AllUsers from "../../views/AllUsers";
+import ProfilePage from "../../views/ProfilePage";
+import LeaderBoard from "../../views/LeaderBoard";
+import MultiPlayer from "../../views/MultiPlayer";
+import SinglePlayer from "../../views/SinglePlayer";
+import PinCode from "../../views/PinCode";
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -23,12 +31,54 @@ const AppRouter = () => {
           </GameGuard>
         </Route>
         <Route exact path="/login">
+          <Header height="100"/>
           <LoginGuard>
             <Login/>
           </LoginGuard>
         </Route>
+        <Route exact path="/profilepage">
+         <GameGuard>
+           <ProfilePage/>
+         </GameGuard>
+        </Route>
+        <Route exact path="/multiplayer">
+          <GameGuard>
+            <MultiPlayer/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/singleplayer">
+          <GameGuard>
+            <SinglePlayer/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/pincode">
+          <GameGuard>
+            <PinCode/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/allusers">
+          <GameGuard>
+            <AllUsers/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/leaderboard">
+          <GameGuard>
+            <LeaderBoard/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/landing">
+          <GameGuard>
+            <Landing/>
+          </GameGuard>
+        </Route>
         <Route exact path="/">
           <Redirect to="/game"/>
+        </Route>
+        <Route exact path="/registration">
+          <Header height="100"/>
+          <LoginGuard>
+            <Registration/>
+          </LoginGuard>
         </Route>
       </Switch>
     </BrowserRouter>
