@@ -49,18 +49,28 @@ const Login = props => {
 
   const doLogin = async () => {
     try {
-      const requestBody = JSON.stringify({username, password});
-      const response = await api.post('/users', requestBody);
 
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
 
-      // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
-      localStorage.setItem('user', JSON.stringify(user));
+      //Get a List of all Users
+      const response = await api.get('/users');
+      var user1;
+      var userExists = false;
+      for(var i=0; i< response.data.length; i++) {
+        if (response.data[i].username === username && response.data[i].password === password) {
+          user1 = new User(response.data[i]);
+          localStorage.setItem('token', user1.token);
+          const requestBody = JSON.stringify({username, password});
+          await api.post("statusOnline", requestBody)
+          history.push(`/landing`);
+          userExists = true;
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
-      history.push(`/landing`);
+        }
+      }
+      if(!userExists){
+        alert('Username or Password false')
+        history.push('login')
+      }
+
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
