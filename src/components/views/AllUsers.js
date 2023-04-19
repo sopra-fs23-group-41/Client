@@ -6,13 +6,16 @@ import PropTypes from "prop-types";
 import "styles/views/Landing.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
+
 const Player = ({user}) => (
+    <Link to={"/profilepage/" + user.id}> 
     <div className="player container">
         <div className="player username">{user.username}</div>
         <div className="player name">{user.name}</div>
-        <div className="player id">id: {user.id}</div>
+        <div className="player status">{user.status}</div>
     </div>
-);
+    </Link>
+  );
 
 Player.propTypes = {
     user: PropTypes.object
@@ -68,11 +71,30 @@ const AllUsers = () => {
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
-
         fetchData();
     }, []);
 
 
+    let content = <Spinner/>;
+
+    if (users) {
+      content = (
+        <div className="game">
+          <ul className="game user-list">
+            {users.map(user => (
+              <Player user={user} key={user.id}/>
+            ))}
+          </ul>
+          <Button className="redbtn"
+            width="100%"
+            onClick={() => doLogout()}
+          >
+            Logout
+          </Button>
+        </div>
+      );
+    }
+  
     return (
         <BaseContainer className="landing container">
 
@@ -95,6 +117,7 @@ const AllUsers = () => {
                     </button>
                 </div>
             </div>
+            {content}
         </BaseContainer>
     );
 }
