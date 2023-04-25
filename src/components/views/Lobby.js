@@ -100,7 +100,7 @@ const Lobby = () => {
 
     useEffect(() => {
         doSettings();
-    }, []);
+    });
 
     console.log(rounds);
 

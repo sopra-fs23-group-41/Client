@@ -15,11 +15,14 @@ const TimerLeaderboard = ({seconds}) => {
         return () => clearInterval(timerId.current)
     }, [])
 
-    useEffect(async () => {
-        if (countdown <= 0) {
-            clearInterval(timerId.current)
-            history.push('gtpgame')
+    useEffect( () => {
+        async function doCountdown(){
+            if (countdown <= 0) {
+                clearInterval(timerId.current)
+                history.push('gtpgame')
+            }
         }
+        doCountdown();
     })
 
     return (
