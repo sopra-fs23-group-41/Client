@@ -7,66 +7,55 @@ import 'styles/views/Login.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one and the same file.
- */
 const FormField = props => {
     return (
-        <div className="login field">
-            <label className="login label">
-                {props.label}
-            </label>
-            <input
-                className="login input"
-                placeholder="enter here.."
-                value={props.value}
-                onChange={e => props.onChange(e.target.value)}
-            />
-        </div>
+      <div className="login field">
+        <label className="login label">
+          {props.label}
+        </label>
+        <input
+          className="login input"
+          placeholder="enter here.."
+          value={props.value}
+          onChange={e => props.onChange(e.target.value)}
+        />
+      </div>
     );
-};
-
-FormField.propTypes = {
+  };
+  
+  FormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func
-};
+  };
 
 const Registration = props => {
     const history = useHistory();
-    //const [password, setPassword] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [name, setName] = useState(null);
     const [username, setUsername] = useState(null);
-    const [realName, setRealName] = useState(null);
-
-    const doRegistration = async () => {
+    const [password, setPassword] = useState(null);
+  
+    const doRegister = async () => {
         try {
-            const requestBody = JSON.stringify({username, realName, password});
-            await api.post('/users', requestBody);
-
-            const responseStatusUpdate = await api.post("statusOnline", requestBody)
+            const requestBody = JSON.stringify({username, name, password});
+            const response = await api.post('/users', requestBody);
+    
             // Get the returned user and update a new object.
-            const user = new User(responseStatusUpdate.data);
-
+            const user = new User(response.data);
+    
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
+            localStorage.setItem('userId', user.id);
 
-            // Login successfully worked --> navigate to the route /game in the GameRouter
+            // Login successfully worked --> navigate to the route /landing in the GameRouter
             history.push(`/landing`);
         } catch (error) {
-            alert(`Something went wrong during the Registration: \n${handleError(error)}`); //changed login to registration
+            alert(`Something went wrong during the registration: \n${handleError(error)}`);
         }
     };
 
-    const goToLogin = async () => {
-        try {
-            history.push(`/login`);
-        } catch (error) {
-            alert(`Something went wrong during the Registration: \n${handleError(error)}`);
-        }
+    const goToLogin = () => {
+        history.push(`/login`);
     };
 
     return (
@@ -81,8 +70,8 @@ const Registration = props => {
 
                     <FormField
                         label="Enter your name here"
-                        value={realName}
-                        onChange={rn => setRealName(rn)}
+                        value={name}
+                        onChange={n => setName(n)}
                     />
 
                     <FormField
@@ -92,9 +81,9 @@ const Registration = props => {
                     />
                     <div className="login button-container">
                         <Button
-                            disabled={!username || !password || !realName}
+                            disabled={!username || !password || !name}
                             width="100%"
-                            onClick={() => doRegistration()}
+                            onClick={() => doRegister()}
                         >
                             Register
                         </Button>
