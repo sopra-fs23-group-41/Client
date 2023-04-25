@@ -25,7 +25,6 @@ const PinCode = () => {
     const history = useHistory();
     const [pincode, setPincode] = useState(null);
     const userId = localStorage.getItem('userId');
-
     const joinGame = async () => {
         try {
             const requestBody = JSON.stringify({id:userId});
@@ -52,12 +51,11 @@ const PinCode = () => {
             </div>
             <h1 className="pin-title">Enter PIN here</h1>
             <div className="pin-code">
-            <PinInput length={6} focus type="text" inputMode="text" value={pincode} onChange={a => setPincode(a.toLowerCase())}/>
-     
+                <PinInput length={6} focus type="text" inputMode="text" value={pincode} onChange={a => setPincode(a.toLowerCase())}/>
             </div>
             <Button className="pin-code-button" onClick={() => joinGame()}>
-            Join Game
-        </Button>
+                Join Game
+            </Button>
         </BaseContainer>
     );
 }
