@@ -1,5 +1,4 @@
 
-
 class Item {
 
     constructor(data = {})  {
@@ -7,6 +6,7 @@ class Item {
         this.picture = null;
         this.link = null;
         this.name = null;
+        this.category = null;
         Object.assign(this, data)
     }
 }

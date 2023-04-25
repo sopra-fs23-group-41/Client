@@ -1,3 +1,6 @@
+import {useEffect, useState} from 'react';
+import {api, handleError} from 'helpers/api';
+//import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/MultiPlayer.scss";
 import "styles/views/EndOfGame.scss";
@@ -9,55 +12,11 @@ import Standings from "../../helpers/Standings";
 import Player from "../../models/Player";
 
 
-
-let p1 = {
-    id: 1,
-    username: "Tiago",
-    points: 1615,
-    rank: 1
-}
-
-let p2 = {
-    id: 2,
-    username: "Euni",
-    points: 1315,
-    rank: 3
-}
-
-let p3 = {
-    id: 3,
-    username: "Laurent",
-    points: 1523,
-    rank: 2
-}
-
-let p4 = {
-    id: 4,
-    username: "Yuqing",
-    points: 1267,
-    rank: 4
-}
-
-let p5 = {
-    id: 5,
-    username: "Timo",
-    points: 12,
-    rank: 5
-}
-
-let player1 = new Player(p1);
-let player2 = new Player(p2);
-let player3 = new Player(p3);
-let player4 = new Player(p4);
-let player5 = new Player(p5);
-let players = [player1, player2, player3, player4, player5];
-
-
-let temp;
 function playerSort (players) {
+    let temp;
     for(let i=0; i<players.length; i++){
         for(let j=0; j<players.length; j++){
-            if(players[i].rank < players[j].rank){
+            if(players[i].totalScore > players[j].totalScore){
                 temp = players[j];
                 players[j] = players[i];
                 players[i] = temp;
@@ -65,20 +24,32 @@ function playerSort (players) {
         }
     }
 }
-//Sort players based on Rank
-playerSort(players);
-
-//Set the winner and remove the winner from the array of players.
-let winner = players[0];
-players.shift();
 
 
-const EndOfGame = () => {
-    // use react-router-dom's hook to access the history
+const EndOfGame = (props) => {
+    const [players, setPlayers] = useState([]);
+    const [winner, setWinner] = useState(null);
 
-    //const history = useHistory();
+    useEffect(() => {
+        const fetchPlayers = async () => {
+            try {
+                const response = await api.get('/lobbies/${props}');
+                const playersJson = response.data.players;
+                const players = playersJson.map(playerJson => Player.fromJson(playerJson));
+                playerSort(players);
+                setWinner(players[0]);
+                setPlayers(players.slice(1));
+            } catch (error) {
+                console.error(`Something went wrong while fetching the players in leaderboard: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching the players in leaderboard! See the console for details.");
+            }
+        };
+        fetchPlayers();
+    }, [props]);
 
     //  Plug into "end-of-game non-winners": <Standings className="end-of-game non-winner" players={users}/>
+
 
     return (
         <BaseContainer className="multiplayer container">
@@ -93,16 +64,17 @@ const EndOfGame = () => {
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
 
+            {winner && (
             <div className="end-of-game leaderboard">
                 <div className="end-of-game winner">
                     <h1 className="end-of-game crown">👑</h1>
-                    <h1>{winner.username}</h1>
-                    <h1>{winner.points}</h1>
+                    <h1>{winner.playerName}</h1>
+                    <h1>{winner.totalScore}</h1>
                 </div>
                 <div className="end-of-game non-winners">
                     <Standings players={players} />
                 </div>
-            </div>
+            </div>)}
 
             <div className="end-of-game buttons">
                 <button className="end-of-game btn"><a href="item-list">View Items</a></button>

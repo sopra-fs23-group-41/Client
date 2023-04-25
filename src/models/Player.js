@@ -1,12 +1,23 @@
 class Player {
 
     constructor(data = {})  {
-        this.username = null;
-        this.points = null;
-        this.rank = null;
+        this.playerId = null;
+        this.playerName = null;
+        this.userId = null;
+        this.gameId = null;
+        this.totalScore = null;
+        this.roundScore = null;
+        this.answers = null;
         this.isGameMaster = false;
+
         Object.assign(this, data)
     }
+
+    static fromJson(json) {
+        const playerData = json.data;
+        return new Player(playerData);
+    }
+
 }
 
 export default Player;
