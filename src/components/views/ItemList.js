@@ -84,7 +84,7 @@ const DisplayItem = ({item}) => (
         <h3 className="item-list price">Price: {item.price} CHF</h3>
         <h3 className="item-list name">Article Name: {item.name}</h3>
         <img className="item-list picture" src={item.picture} alt="Lol"/>
-        <h3 className="item-list link"><a href={item.link} target="_blank" rel="noreferxrer">Link to Website</a></h3>
+        <h3 className="item-list link"><a href={item.link} target="_blank" rel="noreferrer">Link to Website</a></h3>
     </div>
 );
 
