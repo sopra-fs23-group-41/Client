@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Landing.scss";
@@ -75,25 +75,7 @@ const AllUsers = () => {
     }, []);
 
 
-    let content = <Spinner/>;
 
-    if (users) {
-      content = (
-        <div className="game">
-          <ul className="game user-list">
-            {users.map(user => (
-              <Player user={user} key={user.id}/>
-            ))}
-          </ul>
-          <Button className="redbtn"
-            width="100%"
-            onClick={() => doLogout()}
-          >
-            Logout
-          </Button>
-        </div>
-      );
-    }
   
     return (
         <BaseContainer className="landing container">
@@ -117,7 +99,6 @@ const AllUsers = () => {
                     </button>
                 </div>
             </div>
-            {content}
         </BaseContainer>
     );
 }

@@ -69,9 +69,8 @@ const Lobby = () => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const gameId = localStorage.getItem('gameId');
-    const pincode = localStorage.getItem('pincode');
-    console.log(pincode);
-    console.log(gameId);
+
+
 
     const [users, setUsers] = useState(null);
     console.log(users)
