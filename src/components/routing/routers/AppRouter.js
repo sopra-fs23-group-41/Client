@@ -86,7 +86,7 @@ const AppRouter = () => {
             <Lobby/>
           </GameGuard>
         </Route>
-        <Route exact path="/end-of-game">
+        <Route exact path="/endofgame">
           <GameGuard>
             <EndOfGame/>
           </GameGuard>

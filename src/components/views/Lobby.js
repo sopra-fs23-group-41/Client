@@ -7,7 +7,6 @@ import "styles/views/MultiPlayer.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 import Player from "../../models/Player";
-import Game from "../../models/Game";
 
 
 const Pleyer = ({user}) => (
@@ -59,16 +58,6 @@ let player4 = new Player(p4);
 let player5 = new Player(p5);
 let players = [player1, player2, player3, player4, player5];
 
-let mg = {
-    numberOfRounds: 12,
-    pincode: 2222,
-    category: "shoes",
-    gameMode: "Guess The Price"
-}
-
-let mockGame = new Game(mg);
-console.log(mockGame);
-
 const Lobby = () => {
     // use react-router-dom's hook to access the history
 
@@ -79,8 +68,42 @@ const Lobby = () => {
     // keep its value throughout render cycles.
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
+    const gameId = localStorage.getItem('gameId');
+    const pincode = localStorage.getItem('pincode');
+    console.log(pincode);
+    console.log(gameId);
+
     const [users, setUsers] = useState(null);
     console.log(users)
+
+    console.log('/lobbies/'+gameId);
+
+    const [rounds, setRounds] = useState(null);
+    const [pin, setPin] = useState(null);
+    const [category, setCategory] = useState(null);
+    const [gameMode, setGameMode] = useState(null);
+
+    localStorage.setItem('currentRound', '1');
+
+    async function doSettings() {
+        try {
+            const settings = await api.get('/lobbies/'+gameId);
+            console.log(settings.data);
+            setGameMode(settings.data.gameMode);
+            setRounds(settings.data.rounds);
+            setCategory(settings.data.category);
+            setPin(settings.data.gamePIN);
+            console.log(rounds);
+        } catch (error) {
+            console.log('not functioning');
+        }
+    }
+
+    useEffect(() => {
+        doSettings();
+    }, []);
+
+    console.log(rounds);
 
 
     // the effect hook can be used to react to change in your component.
@@ -130,7 +153,6 @@ const Lobby = () => {
             </div>
     );
 
-
     return (
         <BaseContainer className="multiplayer container">
 
@@ -147,13 +169,13 @@ const Lobby = () => {
                 <div className="multiplayer settings">
                     <h2>Settings</h2>
 
-                    <p>Game Mode: {mockGame.gameMode} </p>
+                    <p>Game Mode: {gameMode} </p>
 
-                    <p>Rounds: {mockGame.numberOfRounds} </p>
+                    <p>Rounds: {rounds} </p>
 
-                    <p>Category: {mockGame.category}</p>
+                    <p>Category: {category} </p>
 
-                    <p>Pincode: {mockGame.pincode} </p>
+                    <p>Pincode: {pin} </p>
 
                     <h2 className="multiplayer list-of-players">Players</h2>
                     <p>{content}</p>

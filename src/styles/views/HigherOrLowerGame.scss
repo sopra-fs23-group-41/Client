@@ -41,6 +41,11 @@
     transform: scale(1.1);
     background-color: red;
   }
+
+  &.higher.active{
+    background-color: blue;
+  }
+
   &.current-price{
     color: floralwhite;
     font-family: "JetBrains Mono";

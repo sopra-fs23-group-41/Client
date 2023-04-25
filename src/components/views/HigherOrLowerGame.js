@@ -24,6 +24,8 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
+
+
 const HigherOrLowerGame = () => {
     // use react-router-dom's hook to access the history
 
@@ -35,7 +37,18 @@ const HigherOrLowerGame = () => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
+    const [clicked, setClicked] = useState(false);
+    const [clicked2, setClicked2] = useState(false);
     console.log(users)
+
+    const handleClick = () => {
+        setClicked(true);
+    }
+
+    const handleClick2 = () => {
+        setClicked2(true);
+    }
+
 
 
     // the effect hook can be used to react to change in your component.
@@ -96,10 +109,28 @@ const HigherOrLowerGame = () => {
                 <img className="h-or-l item-pic" src={luisvuittonshoe} alt="LOL"/>
             </div>
 
-
+            <div>
+                {(clicked || clicked2) && <h2>Your Guess</h2>}
+            </div>
             <div className="gtp answer-container">
-                <button className="h-or-l higher">Higher</button>
-                <button className="h-or-l lower">Lower</button>
+                {!clicked2 && <button
+                    className="h-or-l higher"
+                    onClick = {handleClick}
+                    disabled = {clicked || clicked2}
+                    style ={{backgroundColor: clicked ? 'blue' : '#0db00d', scale: clicked ? '1.5' : '1', marginRight: clicked? '10px' : '0px'}}
+                >
+                    Higher
+                </button>}
+
+
+                { !clicked && <button
+                    className="h-or-l lower"
+                    disabled = {clicked || clicked2}
+                    onClick = {handleClick2}
+                    style ={{backgroundColor: clicked2 ? 'blue' : '#dc0000', scale: clicked2 ? '1.5' : '1', marginLeft: clicked2? '10px' : '0px'}}
+                >
+                    Lower
+                </button>}
             </div>
 
         </BaseContainer>

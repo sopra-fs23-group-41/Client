@@ -7,6 +7,8 @@ import "styles/views/MultiPlayer.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 import Game from "../../models/Game.js";
+import {useHistory} from "react-router-dom";
+
 
 const Player = ({user}) => (
     <div className="player container">
@@ -18,12 +20,12 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-let mockGame = new Game();
+let game = new Game();
 
 const MultiPlayer = () => {
     // use react-router-dom's hook to access the history
 
-    //const history = useHistory();
+    const history = useHistory();
 
     // define a state variable (using the state hook).
     // if this variable changes, the component will re-render, but the variable will
@@ -34,33 +36,25 @@ const MultiPlayer = () => {
     console.log(users)
 
 
-    const selectNumberOfPlayers = document.getElementById("players");
-    const selectNumberOfRounds = document.getElementById("rounds");
-    const selectCategory = document.getElementById("category");
-    const selectGameMode = document.getElementById("game-mode");
+    const createLobby = async () =>{
 
-    const adjustNumberOfPlayers = () => {
-        mockGame.numberOfPlayers = selectNumberOfPlayers.value;
-        console.log(mockGame);
+        game.rounds = document.getElementById("rounds").value
+        game.numOfPlayer = document.getElementById("players").value
+        game.category = document.getElementById("category").value
+        game.gameMode = document.getElementById("game-mode").value
+        game.gameType = 'MULTI'
+
+        console.log(game)
+        const requestBody = JSON.stringify(game)
+        console.log(requestBody)
+        const request = await api.post('lobbies', requestBody)
+        localStorage.setItem('gameId', request.data.gameId)
+        localStorage.setItem('pincode', request.data.gamePIN)
+        console.log(request.data.gameId)
+        console.log(request)
+
+        history.push('lobby')
     }
-
-    const adjustCategory = () => {
-        mockGame.category = selectCategory.value;
-        console.log(mockGame);
-
-    }
-
-    const adjustGameMode = () => {
-        mockGame.gameMode = selectGameMode.value;
-        console.log(mockGame);
-
-    }
-
-    const adjustNumberOfRounds = () => {
-        mockGame.numberOfRounds = selectNumberOfRounds.value;
-        console.log(mockGame);
-    }
-
 
     // the effect hook can be used to react to change in your component.
     // in this case, the effect hook is only run once, the first time the component is mounted
@@ -100,8 +94,6 @@ const MultiPlayer = () => {
     }, []);
 
 
-    console.log(mockGame);
-
     return (
         <BaseContainer className="multiplayer container">
 
@@ -120,34 +112,31 @@ const MultiPlayer = () => {
                     <p>Category</p>
                     <select className="multiplayer select" id="category">
                         <option>Choose</option>
-                        <option value="Men" onSelect={() => adjustCategory()}>Men</option>
-                        <option value="Women" onClick={() => adjustCategory()}>Women</option>
-                        <option value="Shoes" onClick={() => adjustCategory()}>Shoes</option>
-                        <option value="Gucci" onClick={() => adjustCategory()}>Gucci</option>
-                        <option value="Dior" onClick={() => adjustCategory()}>Dior</option>
+                        <option value="SHOES">Shoes</option>
+                        <option value="JEANS">Jeans</option>
+                        <option value="ACCESSORIES">Accessories</option>
                     </select>
                     <p>Rounds</p>
                     <select className="multiplayer select" id="rounds">
                         <option>Choose</option>
-                        <option value="6" onClick={() => adjustNumberOfRounds()}>6</option>
-                        <option value="12" onClick={() => adjustNumberOfRounds()}>12</option>
-                        <option value="18" onClick={() => adjustNumberOfRounds()}>18</option>
-                        <option value="24" onClick={() => adjustNumberOfRounds()}>24</option>
-                        <option value="30" onClick={() => adjustNumberOfRounds()}>30</option>
+                        <option value="6">6</option>
+                        <option value="12">12</option>
+                        <option value="18">18</option>
+                        <option value="24">24</option>
+                        <option value="30">30</option>
                     </select>
                     <p>Game Mode</p>
                     <select className="multiplayer select" id="game-mode">
                         <option>Choose</option>
-                        <option value="Guess The Price" onClick={() => adjustGameMode()}>Guess the Price</option>
-                        <option value="Higher or Lower" onClick={() => adjustGameMode()}>Higher or Lower</option>
+                        <option value="GuessThePrice">Guess the Price</option>
+                        <option value="HighOrLow">Higher or Lower</option>
                     </select>
                     <p>Number of Players</p>
                     <select className="multiplayer select" id="players">
                         <option>Choose</option>
-                        <option value="2" onClick={() => adjustNumberOfPlayers}>2</option>
-                        <option value="3" onClick={() => adjustNumberOfPlayers}>3</option>
-                        <option value="4" onClick={() => adjustNumberOfPlayers}>4</option>
-                        <option value="5" onClick={() => adjustNumberOfPlayers}>5</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                     </select>
                 </div>
             </div>
@@ -155,7 +144,11 @@ const MultiPlayer = () => {
             <div className="multiplayer lower-part">
                 <div className="multiplayer settings">
                 </div>
-                <button className="multiplayer button"><a href="lobby">Create Lobby</a></button>
+                <button className="multiplayer button"
+                        onClick={createLobby}
+                >
+                    Create Lobby
+                </button>
             </div>
 
         </BaseContainer>

@@ -32,7 +32,27 @@ const GTPGame = () => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
+    const [clicked, setClicked] = useState(false);
+    const [clicked2, setClicked2] = useState(false);
+    const [clicked3, setClicked3] = useState(false);
+    const [clicked4, setClicked4] = useState(false);
     console.log(users)
+
+    const firstAnswer = () => {
+        setClicked(true);
+    }
+
+    const secondAnswer = () => {
+        setClicked2(true);
+    }
+
+    const thirdAnswer = () => {
+        setClicked3(true);
+    }
+
+    const forthAnswer = () => {
+        setClicked4(true);
+    }
 
 
     // the effect hook can be used to react to change in your component.
@@ -86,16 +106,48 @@ const GTPGame = () => {
                 <h1 className="multiplayer title">Guess The Price</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-            <Timer seconds={30}/>
+            <Timer seconds={6}/>
 
             <img className="gtp item-pic" src={guccishoe} alt="LOL"/>
+
             <div className="gtp answer-container">
-                <a href="leaderboard"><button className="gtp answer-button">200CHF</button></a>
-                <button className="gtp answer-button">300CHF</button>
+                {(clicked || clicked2) && <h1>Your Guess</h1>}
+                {!(clicked2 || clicked3 || clicked4) && <button
+                    className="gtp answer-button"
+                    onClick={firstAnswer}
+                    disabled={clicked || clicked2 || clicked3 || clicked4}
+                    style ={{backgroundColor: clicked ? 'navajowhite' : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px'}}
+                >
+                    200CHF
+                </button>}
+                {!(clicked || clicked3 || clicked4) && <button
+                    className="gtp answer-button"
+                    onClick={secondAnswer}
+                    disabled={clicked || clicked2 || clicked3 || clicked4}
+                    style ={{backgroundColor: clicked2 ? 'navajowhite' : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px'}}
+                >
+                    300CHF
+                </button>}
+
             </div>
             <div className="gtp answer-container">
-                <button className="gtp answer-button">400CHF</button>
-                <button className="gtp answer-button">500CHF</button>
+                {(clicked3 || clicked4) && <h1>Your Guess</h1>}
+                {!(clicked || clicked2 || clicked4) && <button
+                    className="gtp answer-button"
+                    onClick={thirdAnswer}
+                    disabled={clicked || clicked2 || clicked3 || clicked4}
+                    style ={{backgroundColor: clicked3 ? 'navajowhite' : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px'}}
+                >
+                    400CHF
+                </button>}
+                {!(clicked || clicked3 || clicked2) && <button
+                    className="gtp answer-button"
+                    onClick={forthAnswer}
+                    disabled={clicked || clicked2 || clicked3 || clicked4}
+                    style ={{backgroundColor: clicked4 ? 'navajowhite' : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px'}}
+                >
+                    500CHF
+                </button>}
             </div>
 
 

@@ -8,32 +8,32 @@ import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 import "helpers/Timer.js";
 import Standings from "../../helpers/Standings";
-import Timer from "../../helpers/Timer";
+import Timer from "../../helpers/TimerLeaderboard";
 import "styles/ui/Standings.scss";
 import Player from "../../models/Player";
 
 
 
 let p1 = {
-    username: "Timo",
+    username: "Yuqing",
     points: 1615,
     rank: 1
 }
 
 let p2 = {
-    username: "Euni",
+    username: "Timo",
     points: 1315,
     rank: 3
 }
 
 let p3 = {
-    username: "Tiago",
+    username: "Eunji",
     points: 1523,
     rank: 2
 }
 
 let p4 = {
-    username: "Yuqing",
+    username: "Tiago",
     points: 1267,
     rank: 4
 }
@@ -136,7 +136,7 @@ const LeaderBoard = () => {
 
             <h1 className="next-question-title">Next question starts in:</h1>
             <div className="next-question-timer">
-                <Timer seconds={15}/>
+                <Timer seconds={6}/>
             </div>
             <Standings players={players}/>
 
