@@ -34,7 +34,7 @@ const PinCode = () => {
             history.push(`/lobby/` + gameId);
         } catch (error) {
             console.log(userId);
-            alert(`Something went wrong during the login: \n${handleError(error)}`);
+            alert(`Something went wrong with the pincode: \n${handleError(error)}`);
         }
     };
 
