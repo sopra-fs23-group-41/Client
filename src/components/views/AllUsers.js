@@ -32,9 +32,14 @@ const AllUsers = () => {
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
     console.log(users)
-    const logout = () => {
-        localStorage.removeItem('token');
-        history.push('/login');
+    const logout = async () => {
+        try {
+            await api.get('/users/'+localStorage.getItem('userId')+'/logout');
+            localStorage.clear();
+            history.push('/login');
+        } catch (error) {
+            alert(`Something went wrong during the logout: \n${handleError(error)}`);
+        }
     }
 
 

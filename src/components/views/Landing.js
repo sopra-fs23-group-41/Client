@@ -38,10 +38,14 @@ const Landing = () => {
     console.log(users)
 
 
-    const logout = () => {
-
-        localStorage.removeItem('token');
-        history.push('/login');
+    const logout = async () => {
+        try {
+            await api.get('/users/'+localStorage.getItem('userId')+'/logout');
+            localStorage.clear();
+            history.push('/login');
+        } catch (error) {
+            alert(`Something went wrong during the logout: \n${handleError(error)}`);
+        }
     }
 
 
