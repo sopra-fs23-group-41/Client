@@ -44,14 +44,12 @@ const MultiPlayer = () => {
         game.gameMode = document.getElementById("game-mode").value
         game.gameType = 'MULTI'
 
-        console.log(game)
         const requestBody = JSON.stringify(game)
-        console.log(requestBody)
         const request = await api.post('lobbies', requestBody)
         localStorage.setItem('gameId', request.data.gameId)
         localStorage.setItem('pincode', request.data.gamePIN)
-        console.log(request.data.gameId)
-        console.log(request)
+        localStorage.setItem('isGm', 'true')
+
 
         history.push('lobby')
     }
@@ -134,6 +132,7 @@ const MultiPlayer = () => {
                     <p>Number of Players</p>
                     <select className="multiplayer select" id="players">
                         <option>Choose</option>
+                        <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>

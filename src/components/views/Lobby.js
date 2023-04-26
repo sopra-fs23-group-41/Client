@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-//import {useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/MultiPlayer.scss";
 import '../pictures/2.jpg';
@@ -13,8 +13,12 @@ const Players = ({user}) => (
 );
 
 const Lobby = () => {
-    // const history = useHistory();
+    const history = useHistory();
     const gameId = localStorage.getItem('gameId');
+    const isGm = localStorage.getItem('isGm');
+
+
+
 
     const [rounds, setRounds] = useState(null);
     const [pin, setPin] = useState(null);
@@ -22,13 +26,20 @@ const Lobby = () => {
     const [gameMode, setGameMode] = useState(null);
     const [players, setPlayers] = useState(null);
 
+    const startGame = async () => {
+        api.post('lobbies/'+gameId+'/begin')
+        history.push('gtpgame')
+    }
+
     localStorage.setItem('currentRound', '1');
+
 
     useEffect(() => {
         const interval = setInterval(() => {
             async function fetchData(gameId) {
                 try {
                     const response = await api.get('/lobbies/'+gameId);
+                    console.log(response)
                     setGameMode(response.data.gameMode);
                     setRounds(response.data.rounds);
                     setCategory(response.data.category);
@@ -91,7 +102,10 @@ const Lobby = () => {
 
                 </div>
 
-                <button className="multiplayer button"><a href="gtpgame">Start Game</a></button>
+                <button className="multiplayer button"
+                        onClick={startGame}
+                        disabled={!isGm}
+                >Start Game</button>
             </div>
 
         </BaseContainer>

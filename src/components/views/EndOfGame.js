@@ -26,14 +26,15 @@ function playerSort (players) {
 }
 
 
-const EndOfGame = (props) => {
+const EndOfGame = () => {
     const [players, setPlayers] = useState([]);
     const [winner, setWinner] = useState(null);
 
+    const gameId = localStorage.getItem('gameId');
     useEffect(() => {
         const fetchPlayers = async () => {
             try {
-                const response = await api.get(`/lobbies/${props}`);
+                const response = await api.get(`/lobbies/`+gameId);
                 const playersJson = response.data.players;
                 const players = playersJson.map(playerJson => Player.fromJson(playerJson));
                 playerSort(players);
@@ -46,7 +47,7 @@ const EndOfGame = (props) => {
             }
         };
         fetchPlayers();
-    }, [props]);
+    }, [gameId]);
 
     //  Plug into "end-of-game non-winners": <Standings className="end-of-game non-winner" players={users}/>
 

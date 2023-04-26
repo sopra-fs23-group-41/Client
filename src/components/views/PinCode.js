@@ -31,6 +31,7 @@ const PinCode = () => {
             const response = await api.post('/lobbies/joinGame/'+pincode, requestBody)
             console.log(response);
             const gameId = response.data.gameId;
+            localStorage.setItem('isGm', 'false');
             localStorage.setItem('gameId', gameId);
             history.push('/lobby');
         } catch (error) {

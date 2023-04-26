@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
+import {api} from 'helpers/api';
 //import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
@@ -10,6 +10,7 @@ import guccishoe from '../pictures/guccishoe.png';
 import logo from '../pictures/Logo.jpg';
 import "helpers/Timer.js";
 import Timer from "../../helpers/Timer";
+
 
 const Player = ({user}) => (
     <div className="player container">
@@ -24,74 +25,113 @@ Player.propTypes = {
 const GTPGame = () => {
     // use react-router-dom's hook to access the history
 
-    //const history = useHistory();
 
-    // define a state variable (using the state hook).
-    // if this variable changes, the component will re-render, but the variable will
-    // keep its value throughout render cycles.
-    // a component can have as many state variables as you like.
-    // more information can be found under https://reactjs.org/docs/hooks-state.html
-    const [users, setUsers] = useState(null);
+
+    const gameId = localStorage.getItem('gameId');
+    const isGm = localStorage.getItem('isGm');
+
+    const [onlyOnce, setOnlyOnce] = useState(true);
+
+
+
+
+    //Interactive Button
     const [clicked, setClicked] = useState(false);
     const [clicked2, setClicked2] = useState(false);
     const [clicked3, setClicked3] = useState(false);
     const [clicked4, setClicked4] = useState(false);
-    console.log(users)
 
+
+    //Answer-Data
+    /*
+    const [playerId, setPlayerId] = useState(null);
+    const [numOfRound, setNumOfRound] = useState(null);
+    const [playerAnswer, setPlayerAnswer] = useState(null);
+    const [timeUsed, setTimeUsed] = useState(null);
+    const [question, setQuestion] = useState(null);
+    */
+
+    //Question-Data
+    const [trueAnswer, setTrueAnswer] = useState(0);
+    const [falseAnswers, setFalseAnswers] = useState([0, 0, 0]);
+    const [picture, setPicture] = useState(guccishoe);
+
+
+
+
+    async function startNextRound(){
+        try{
+            const request = await api.get('/lobbies/'+gameId+'/nextRound')
+            console.log(request)
+            console.log(request.data.picUrls)
+            console.log(request.data.trueAnswer)
+            setPicture(request.data.picUrls);
+            setTrueAnswer(request.data.trueAnswer);
+            setFalseAnswers(request.data.falseAnswers);
+            //setItems(request.data.articles);
+
+
+        }catch(error){
+            console.log('Something went wrong, bro')
+        }
+    }
+
+    useEffect(() => {
+        if(isGm === 'true' && onlyOnce){
+            setOnlyOnce(false);
+            startNextRound();
+        }
+    }, [isGm, onlyOnce]);
+
+    console.log(guccishoe)
+    console.log(picture[0])
+
+    const pictureUrl = "https://"+picture[0]
+
+
+
+    //Load Question from the Back-end
+    /*async function getQuestion(){
+        try{
+            const request = await api.get('/lobbies/'+gameId+'/nextQuestion');
+            console.log(request.data)
+            setPicture(request.data.picUrls);
+            setTrueAnswer(request.data.trueAnswer);
+            setFalseAnswers(request.data.falseAnswers);
+            setItems(request.data.articles);
+
+        }catch(error){
+            console.log('Something went wrong.')
+        }
+
+    }
+
+    useEffect(()=>{
+        getQuestion();
+    });*/
+
+
+
+    //Boolean Flags that are used to create Effects on the Answer-Buttons
     const firstAnswer = () => {
         setClicked(true);
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', trueAnswer)
     }
 
     const secondAnswer = () => {
         setClicked2(true);
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', trueAnswer)
     }
 
     const thirdAnswer = () => {
         setClicked3(true);
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', trueAnswer)
     }
 
     const forthAnswer = () => {
         setClicked4(true);
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', trueAnswer)
     }
-
-
-    // the effect hook can be used to react to change in your component.
-    // in this case, the effect hook is only run once, the first time the component is mounted
-    // this can be achieved by leaving the second argument an empty array.
-    // for more information on the effect hook, please see https://reactjs.org/docs/hooks-effect.html
-    useEffect(() => {
-        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        async function fetchData() {
-            try {
-                const response = await api.get('/users');
-
-                // delays continuous execution of an async operation for 1 second.
-                // This is just a fake async call, so that the spinner can be displayed
-                // feel free to remove it :)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-
-                // Get the returned users and update the state.
-                setUsers(response.data);
-
-                // This is just some data for you to see what is available.
-                // Feel free to remove it.
-                console.log('request to:', response.request.responseURL);
-                console.log('status code:', response.status);
-                console.log('status text:', response.statusText);
-                console.log('requested data:', response.data);
-
-                // See here to get more data.
-                console.log(response);
-            } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
-            }
-        }
-
-        fetchData();
-    }, []);
-
 
 
     return (
@@ -106,9 +146,8 @@ const GTPGame = () => {
                 <h1 className="multiplayer title">Guess The Price</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-            <Timer seconds={6}/>
-
-            <img className="gtp item-pic" src={guccishoe} alt="LOL"/>
+            <Timer seconds={10}/>
+            <img className="gtp item-pic" src={pictureUrl} alt="LOL"/>
 
             <div className="gtp answer-container">
                 {(clicked || clicked2) && <h1>Your Guess</h1>}
@@ -118,7 +157,7 @@ const GTPGame = () => {
                     disabled={clicked || clicked2 || clicked3 || clicked4}
                     style ={{backgroundColor: clicked ? 'navajowhite' : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px'}}
                 >
-                    200CHF
+                    {trueAnswer} CHF
                 </button>}
                 {!(clicked || clicked3 || clicked4) && <button
                     className="gtp answer-button"
@@ -126,7 +165,7 @@ const GTPGame = () => {
                     disabled={clicked || clicked2 || clicked3 || clicked4}
                     style ={{backgroundColor: clicked2 ? 'navajowhite' : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px'}}
                 >
-                    300CHF
+                    {falseAnswers[0]} CHF
                 </button>}
 
             </div>
@@ -138,7 +177,7 @@ const GTPGame = () => {
                     disabled={clicked || clicked2 || clicked3 || clicked4}
                     style ={{backgroundColor: clicked3 ? 'navajowhite' : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px'}}
                 >
-                    400CHF
+                    {falseAnswers[2]} CHF
                 </button>}
                 {!(clicked || clicked3 || clicked2) && <button
                     className="gtp answer-button"
@@ -146,7 +185,7 @@ const GTPGame = () => {
                     disabled={clicked || clicked2 || clicked3 || clicked4}
                     style ={{backgroundColor: clicked4 ? 'navajowhite' : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px'}}
                 >
-                    500CHF
+                    {falseAnswers[1]} CHF
                 </button>}
             </div>
 
