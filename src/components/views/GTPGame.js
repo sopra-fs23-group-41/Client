@@ -86,7 +86,7 @@ const GTPGame = () => {
             setOnlyOnce(false);
             startNextRound();
         }
-    }, [isGm, onlyOnce]);
+    },  );
 
     console.log(guccishoe)
     console.log(picture[0])
