@@ -50,8 +50,19 @@ const MultiPlayer = () => {
         localStorage.setItem('pincode', request.data.gamePIN)
         localStorage.setItem('isGm', 'true')
 
+        const pincode = request.data.gamePIN;
+        const userId = localStorage.getItem('userId');
 
-        history.push('lobby')
+
+            try {
+                const requestBody2 = JSON.stringify({id:userId});
+                await api.post('/lobbies/joinGame/'+pincode, requestBody2)
+                history.push('/lobby');
+            } catch (error) {
+                console.log(pincode);
+                alert(`Something went wrong with the pincode: \n${handleError(error)}`);
+            }
+
     }
 
     // the effect hook can be used to react to change in your component.
