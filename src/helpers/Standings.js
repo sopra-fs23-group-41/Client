@@ -4,7 +4,8 @@ import "styles/ui/Standings.scss";
 const Player = ({user}) => (
     <div className="standings container">
         <div className="standings username">{user.playerName}</div>
-        <div className="standings username">{user.totalScore}</div>
+        <div className="standings roundscore">+{user.roundScore}</div>
+        <div className="standings totalscore">{user.totalScore}</div>
     </div>
 );
 

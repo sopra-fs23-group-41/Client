@@ -35,11 +35,18 @@ const EndOfGame = () => {
         const fetchPlayers = async () => {
             try {
                 const response = await api.get(`/lobbies/`+gameId);
-                const playersJson = response.data.players;
-                const players = playersJson.map(playerJson => Player.fromJson(playerJson));
-                playerSort(players);
-                setWinner(players[0]);
-                setPlayers(players.slice(1));
+                let temporaryPlayers = [];
+                for(let i=0; i<response.data.players.length; i++){
+                    const tempPlayer = new Player();
+                    console.log(response.data.players[i].roundScore)
+                    tempPlayer.playerName = response.data.players[i].playerName;
+                    tempPlayer.roundScore = response.data.players[i].roundScore;
+                    tempPlayer.totalScore = response.data.players[i].totalScore;
+                    temporaryPlayers[i] = tempPlayer;
+                }
+                playerSort(temporaryPlayers);
+                setWinner(temporaryPlayers[0]);
+                setPlayers(temporaryPlayers.slice(1));
             } catch (error) {
                 console.error(`Something went wrong while fetching the players in leaderboard: \n${handleError(error)}`);
                 console.error("Details:", error);
@@ -49,7 +56,7 @@ const EndOfGame = () => {
         fetchPlayers();
     }, [gameId]);
 
-    //  Plug into "end-of-game non-winners": <Standings className="end-of-game non-winner" players={users}/>
+
 
 
     return (

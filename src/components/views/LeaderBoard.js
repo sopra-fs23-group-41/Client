@@ -34,9 +34,20 @@ const LeaderBoard = () => {
             try {
                 const response = await api.get(`/lobbies/`+gameId);
                 const playersJson = response.data.players;
-                const players = playersJson.map(playerJson => Player.fromJson(playerJson));
-                playerSort(players);
-                setPlayers(players);
+                console.log(playersJson)
+                let temporaryPlayers = [];
+                for(let i=0; i<response.data.players.length; i++){
+                    const tempPlayer = new Player();
+                    console.log(response.data.players[i].roundScore)
+                    tempPlayer.playerName = response.data.players[i].playerName;
+                    tempPlayer.roundScore = response.data.players[i].roundScore;
+                    tempPlayer.totalScore = response.data.players[i].totalScore;
+                    temporaryPlayers[i] = tempPlayer;
+                }
+                //const playersTemp = playersJson.map(playerJson => Player.fromJson(playerJson));
+                console.log(temporaryPlayers)
+                playerSort(temporaryPlayers);
+                setPlayers(temporaryPlayers);
             } catch (error) {
                 console.error(`Something went wrong while fetching the players in leaderboard: \n${handleError(error)}`);
                 console.error("Details:", error);
@@ -46,7 +57,7 @@ const LeaderBoard = () => {
         fetchPlayers();
     }, [gameId]);
 
-
+    console.log(players)
     return (
         <BaseContainer className="multiplayer container">
 

@@ -56,7 +56,10 @@ const MultiPlayer = () => {
 
             try {
                 const requestBody2 = JSON.stringify({id:userId});
-                await api.post('/lobbies/joinGame/'+pincode, requestBody2)
+                const response = await api.post('/lobbies/joinGame/'+pincode, requestBody2)
+                const playerId = response.data.playerId
+                localStorage.setItem('playerId', playerId)
+
                 history.push('/lobby');
             } catch (error) {
                 console.log(pincode);
@@ -120,14 +123,12 @@ const MultiPlayer = () => {
                     <h2>Choose Settings</h2>
                     <p>Category</p>
                     <select className="multiplayer select" id="category">
-                        <option>Choose</option>
                         <option value="SHOES">Shoes</option>
                         <option value="JEANS">Jeans</option>
                         <option value="ACCESSORIES">Accessories</option>
                     </select>
                     <p>Rounds</p>
                     <select className="multiplayer select" id="rounds">
-                        <option>Choose</option>
                         <option value="6">6</option>
                         <option value="12">12</option>
                         <option value="18">18</option>
@@ -136,13 +137,11 @@ const MultiPlayer = () => {
                     </select>
                     <p>Game Mode</p>
                     <select className="multiplayer select" id="game-mode">
-                        <option>Choose</option>
                         <option value="GuessThePrice">Guess the Price</option>
                         <option value="HighOrLow">Higher or Lower</option>
                     </select>
                     <p>Number of Players</p>
                     <select className="multiplayer select" id="players">
-                        <option>Choose</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

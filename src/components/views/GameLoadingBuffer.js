@@ -13,7 +13,13 @@ import TimerLeaderboard from "../../helpers/TimerLeaderboard";
 
 const GameLoadingBuffer = () => {
 
-
+    const isGm = localStorage.getItem('isGm')
+    let time;
+    if(isGm == 'true'){
+        time = 5;
+    }else{
+        time = 4;
+    }
 
     return (
         <BaseContainer className="multiplayer container">
@@ -33,7 +39,7 @@ const GameLoadingBuffer = () => {
 
             <h1 className="next-question-title">Game starts in:</h1>
             <div className="next-question-timer">
-                <TimerLeaderboard seconds={5}/>
+                <TimerLeaderboard seconds={time}/>
             </div>
 
 

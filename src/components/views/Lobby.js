@@ -34,6 +34,8 @@ const Lobby = () => {
     localStorage.setItem('currentRound', '1');
 
 
+
+
     useEffect(() => {
         const interval = setInterval(() => {
             async function fetchData(gameId) {
@@ -114,7 +116,7 @@ const Lobby = () => {
 
                 <button className="multiplayer button"
                         onClick={startGame}
-                        disabled={!isGm}
+                        disabled={!(isGm === 'true')}
                 >Start Game</button>
             </div>
 

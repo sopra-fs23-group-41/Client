@@ -10,6 +10,7 @@ import guccishoe from '../pictures/guccishoe.png';
 import logo from '../pictures/Logo.jpg';
 import "helpers/Timer.js";
 import Timer from "../../helpers/Timer";
+import Answer from "../../models/Answer";
 
 
 const Player = ({user}) => (
@@ -29,7 +30,9 @@ const GTPGame = () => {
 
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
-    const userId = localStorage.getItem('userId')
+    //const userId = localStorage.getItem('userId')
+    const playerId = localStorage.getItem('playerId')
+    const currentRound = localStorage.getItem('currentRound')
 
     const [onlyOnce, setOnlyOnce] = useState(true);
 
@@ -80,21 +83,44 @@ const GTPGame = () => {
         }
     }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
 
+    const getNextQuestion = useCallback(async () => {
+        try {
+            const request = await api.get('/lobbies/' + gameId + '/nextQuestion')
+            console.log(request)
+            console.log(request.data.picUrls)
+            console.log(request.data.trueAnswer)
+            setPicture(request.data.picUrls);
+            setTrueAnswer(request.data.trueAnswer);
+            setFalseAnswers(request.data.falseAnswers);
+            //setItems(request.data.articles);
+        } catch (error) {
+            console.log('Something went wrong, sis')
+        }
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+
 
 
 
     useEffect(() => {
-        if(isGm === 'true' && onlyOnce){
+        if(isGm === 'true' && onlyOnce) {
             setOnlyOnce(false);
             startNextRound();
         }
     },[isGm, onlyOnce, startNextRound]);
 
-    console.log(guccishoe)
-    console.log(picture[0])
+
+
+    useEffect(() => {
+        if(isGm === 'false' && onlyOnce) {
+            setOnlyOnce(false);
+            getNextQuestion();
+        }
+    },[isGm, onlyOnce, startNextRound]);
+
+
 
     const pictureUrl = "https://"+picture[0]
-    //uff
+
 
 
 
@@ -119,26 +145,42 @@ const GTPGame = () => {
     });*/
 
 
-
+    const playerAnswer = new Answer();
     //Boolean Flags that are used to create Effects on the Answer-Buttons
     const firstAnswer = () => {
         setClicked(true);
-        api.post('lobbies/'+gameId+'/player/'+userId+'/answered', trueAnswer)
+        playerAnswer.playerId = playerId;
+        playerAnswer.timeUsed = 10;
+        playerAnswer.numOfRound = currentRound;
+        playerAnswer.playerAnswer = trueAnswer;
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
     const secondAnswer = () => {
         setClicked2(true);
-        api.post('lobbies/'+gameId+'/player/'+userId+'/answered', trueAnswer)
+        playerAnswer.playerId = playerId;
+        playerAnswer.timeUsed = 10;
+        playerAnswer.numOfRound = currentRound;
+        playerAnswer.playerAnswer = falseAnswers[0];
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
     const thirdAnswer = () => {
         setClicked3(true);
-        api.post('lobbies/'+gameId+'/player/'+userId+'/answered', trueAnswer)
+        playerAnswer.playerId = playerId;
+        playerAnswer.timeUsed = 10;
+        playerAnswer.numOfRound = currentRound;
+        playerAnswer.playerAnswer = falseAnswers[1];
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
     const forthAnswer = () => {
         setClicked4(true);
-        api.post('lobbies/'+gameId+'/player/'+userId+'/answered', trueAnswer)
+        playerAnswer.playerId = playerId;
+        playerAnswer.timeUsed = 10;
+        playerAnswer.numOfRound = currentRound;
+        playerAnswer.playerAnswer = falseAnswers[2];
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
 
@@ -158,12 +200,14 @@ const GTPGame = () => {
             <img className="gtp item-pic" src={pictureUrl} alt="LOL"/>
 
             <div className="gtp answer-container">
-                {(clicked || clicked2) && <h1>Your Guess</h1>}
+                {clicked && <h1>Your Guess is correct!</h1>}
+                {clicked2 && <h1>Your Guess is wrong! Right answer: {trueAnswer} CHF</h1>}
                 {!(clicked2 || clicked3 || clicked4) && <button
+
                     className="gtp answer-button"
                     onClick={firstAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked ? 'navajowhite' : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px'}}
+                    style ={{backgroundColor: clicked ? '#1ff11f' : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px', marginLeft: clicked? '45px': '0px'}}
                 >
                     {trueAnswer} CHF
                 </button>}
@@ -171,19 +215,19 @@ const GTPGame = () => {
                     className="gtp answer-button"
                     onClick={secondAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked2 ? 'navajowhite' : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px'}}
+                    style ={{backgroundColor: clicked2 ? '#ee3030' : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px', marginLeft: clicked2? '225px': '0px'}}
                 >
                     {falseAnswers[0]} CHF
                 </button>}
 
             </div>
             <div className="gtp answer-container">
-                {(clicked3 || clicked4) && <h1>Your Guess</h1>}
+                {(clicked3 || clicked4) && <h1>Your Guess is Wrong! Right answer: {trueAnswer} CHF</h1>}
                 {!(clicked || clicked2 || clicked4) && <button
                     className="gtp answer-button"
                     onClick={thirdAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked3 ? 'navajowhite' : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px'}}
+                    style ={{backgroundColor: clicked3 ? '#ee3030' : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px', marginLeft: clicked3? '225px': '0px'}}
                 >
                     {falseAnswers[2]} CHF
                 </button>}
@@ -191,7 +235,7 @@ const GTPGame = () => {
                     className="gtp answer-button"
                     onClick={forthAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked4 ? 'navajowhite' : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px'}}
+                    style ={{backgroundColor: clicked4 ? '#ee3030' : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px', marginLeft: clicked4? '225px': '0px'}}
                 >
                     {falseAnswers[1]} CHF
                 </button>}
