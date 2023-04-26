@@ -61,7 +61,7 @@ const Lobby = () => {
             fetchData(gameId);
         }, 1000);
         return () => clearInterval(interval);
-    }, [gameId]);
+    }, [gameId, history]);
 
 
 
