@@ -50,6 +50,9 @@ const GTPGame = () => {
     const [timeUsed, setTimeUsed] = useState(null);
     const [question, setQuestion] = useState(null);
     */
+    //const [playerId, setPlayerId] = useState(null);
+    const playerId = 0;
+
 
     //Question-Data
     const [trueAnswer, setTrueAnswer] = useState(0);
@@ -87,6 +90,7 @@ const GTPGame = () => {
     console.log(picture[0])
 
     const pictureUrl = "https://"+picture[0]
+    //uff
 
 
 
