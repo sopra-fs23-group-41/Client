@@ -53,6 +53,8 @@ const GTPGame = () => {
     //const [playerId, setPlayerId] = useState(null);
     const playerId = 0;
 
+    //whats wrong now wtf
+
 
     //Question-Data
     const [trueAnswer, setTrueAnswer] = useState(0);
