@@ -28,7 +28,7 @@ const Lobby = () => {
 
     const startGame = async () => {
         api.post('lobbies/'+gameId+'/begin')
-        history.push('gtpgame')
+        history.push('game-loading-buffer')
     }
 
     localStorage.setItem('currentRound', '1');

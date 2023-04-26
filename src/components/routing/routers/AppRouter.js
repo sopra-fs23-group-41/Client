@@ -17,6 +17,7 @@ import EndOfGame from "../../views/EndOfGame";
 import ItemList from "../../views/ItemList";
 import HigherOrLowerGame from "../../views/HigherOrLowerGame";
 import Lobby from "../../views/Lobby";
+import GameLoadingBuffer from "../../views/GameLoadingBuffer";
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -45,6 +46,11 @@ const AppRouter = () => {
          <GameGuard>
            <ProfilePage/>
          </GameGuard>
+        </Route>
+        <Route exact path="/game-loading-buffer">
+          <GameGuard>
+            <GameLoadingBuffer/>
+          </GameGuard>
         </Route>
         <Route exact path="/multiplayer">
           <GameGuard>
