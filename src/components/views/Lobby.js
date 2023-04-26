@@ -39,12 +39,19 @@ const Lobby = () => {
             async function fetchData(gameId) {
                 try {
                     const response = await api.get('/lobbies/'+gameId);
-                    console.log(response)
                     setGameMode(response.data.gameMode);
                     setRounds(response.data.rounds);
                     setCategory(response.data.category);
                     setPin(response.data.gamePIN);
                     setPlayers(response.data.players);
+
+                    // To check the beginning of the game
+                    const beginCheck = await api.get('/lobbies/'+gameId+'/beginStatus');
+                    const begin = beginCheck.data;
+                    console.log(begin);
+                    if (begin == true) {
+                        history.push('game-loading-buffer')
+                    }
                 } catch (error) {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
@@ -53,6 +60,9 @@ const Lobby = () => {
         }, 1000);
         return () => clearInterval(interval);
     }, [gameId]);
+
+
+
 
     let content = (<div></div>);
     if (players) {
