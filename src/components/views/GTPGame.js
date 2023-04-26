@@ -115,7 +115,7 @@ const GTPGame = () => {
             setOnlyOnce(false);
             getNextQuestion();
         }
-    },[isGm, onlyOnce, startNextRound]);
+    },[isGm, onlyOnce, getNextQuestion]);
 
 
 

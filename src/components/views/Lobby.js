@@ -51,7 +51,7 @@ const Lobby = () => {
                     const beginCheck = await api.get('/lobbies/'+gameId+'/beginStatus');
                     const begin = beginCheck.data;
                     console.log(begin);
-                    if (begin == true) {
+                    if (begin === true) {
                         history.push('game-loading-buffer')
                     }
                 } catch (error) {

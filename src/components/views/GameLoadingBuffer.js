@@ -15,7 +15,7 @@ const GameLoadingBuffer = () => {
 
     const isGm = localStorage.getItem('isGm')
     let time;
-    if(isGm == 'true'){
+    if(isGm === 'true'){
         time = 5;
     }else{
         time = 4;
