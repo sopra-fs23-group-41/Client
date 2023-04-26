@@ -33,7 +33,7 @@ const EndOfGame = (props) => {
     useEffect(() => {
         const fetchPlayers = async () => {
             try {
-                const response = await api.get('/lobbies/${props}');
+                const response = await api.get(`/lobbies/${props}`);
                 const playersJson = response.data.players;
                 const players = playersJson.map(playerJson => Player.fromJson(playerJson));
                 playerSort(players);

@@ -2,12 +2,9 @@ import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 //import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
 import "styles/views/MultiPlayer.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
-import Player from "../../models/Player";
-
 
 const Players = ({user}) => (
     <div className="player container">
@@ -29,7 +26,7 @@ const Lobby = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            async function fetchData() {
+            async function fetchData(gameId) {
                 try {
                     const response = await api.get('/lobbies/'+gameId);
                     setGameMode(response.data.gameMode);
@@ -41,10 +38,10 @@ const Lobby = () => {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
             }
-            fetchData();
+            fetchData(gameId);
         }, 1000);
         return () => clearInterval(interval);
-    }, []);
+    }, [gameId]);
 
     let content = (<div></div>);
     if (players) {
