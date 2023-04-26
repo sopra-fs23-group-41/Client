@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {api} from 'helpers/api';
 //import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
@@ -29,6 +29,7 @@ const GTPGame = () => {
 
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
+    const userId = localStorage.getItem('userId')
 
     const [onlyOnce, setOnlyOnce] = useState(true);
 
@@ -51,7 +52,7 @@ const GTPGame = () => {
     const [question, setQuestion] = useState(null);
     */
     //const [playerId, setPlayerId] = useState(null);
-    const playerId = 0;
+
 
     //whats wrong now wtf
 
@@ -64,9 +65,9 @@ const GTPGame = () => {
 
 
 
-    async function startNextRound(){
-        try{
-            const request = await api.get('/lobbies/'+gameId+'/nextRound')
+    const startNextRound = useCallback(async () => {
+        try {
+            const request = await api.get('/lobbies/' + gameId + '/nextRound')
             console.log(request)
             console.log(request.data.picUrls)
             console.log(request.data.trueAnswer)
@@ -74,12 +75,13 @@ const GTPGame = () => {
             setTrueAnswer(request.data.trueAnswer);
             setFalseAnswers(request.data.falseAnswers);
             //setItems(request.data.articles);
-
-
-        }catch(error){
+        } catch (error) {
             console.log('Something went wrong, bro')
         }
-    }
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+
+
+
 
     useEffect(() => {
         if(isGm === 'true' && onlyOnce){
@@ -121,22 +123,22 @@ const GTPGame = () => {
     //Boolean Flags that are used to create Effects on the Answer-Buttons
     const firstAnswer = () => {
         setClicked(true);
-        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', trueAnswer)
+        api.post('lobbies/'+gameId+'/player/'+userId+'/answered', trueAnswer)
     }
 
     const secondAnswer = () => {
         setClicked2(true);
-        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', trueAnswer)
+        api.post('lobbies/'+gameId+'/player/'+userId+'/answered', trueAnswer)
     }
 
     const thirdAnswer = () => {
         setClicked3(true);
-        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', trueAnswer)
+        api.post('lobbies/'+gameId+'/player/'+userId+'/answered', trueAnswer)
     }
 
     const forthAnswer = () => {
         setClicked4(true);
-        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', trueAnswer)
+        api.post('lobbies/'+gameId+'/player/'+userId+'/answered', trueAnswer)
     }
 
 
