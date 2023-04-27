@@ -69,7 +69,7 @@ const GTPGame = () => {
         } catch (error) {
             console.log('Something went wrong, bro')
         }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers, falseAnswers]);
 
     const getNextQuestion = useCallback(async () => {
         try {
