@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
@@ -9,7 +8,6 @@ import logo from '../pictures/Logo.jpg';
 import icon1 from '../pictures/sp-icon.jpg'
 import icon2 from '../pictures/pincode-icon.jpg'
 import icon3 from '../pictures/mp-icon.jpg'
-import {Button} from "../ui/Button";
 
 
 const Player = ({user}) => (
