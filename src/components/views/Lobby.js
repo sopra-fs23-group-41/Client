@@ -17,9 +17,6 @@ const Lobby = () => {
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
 
-
-
-
     const [rounds, setRounds] = useState(null);
     const [pin, setPin] = useState(null);
     const [category, setCategory] = useState(null);
@@ -32,9 +29,6 @@ const Lobby = () => {
     }
 
     localStorage.setItem('currentRound', '1');
-
-
-
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -63,9 +57,6 @@ const Lobby = () => {
         return () => clearInterval(interval);
     }, [gameId, history]);
 
-
-
-
     let content = (<div></div>);
     if (players) {
         content = (
@@ -81,7 +72,6 @@ const Lobby = () => {
 
     return (
         <BaseContainer className="multiplayer container">
-
             <div className="multiplayer navbar">
                 <nav>
                     <ul className="nav__links">
@@ -94,32 +84,23 @@ const Lobby = () => {
             <div className="multiplayer upper-part">
                 <div className="multiplayer settings">
                     <h2>Settings</h2>
-
                     <p>Game Mode: {gameMode} </p>
-
                     <p>Rounds: {rounds} </p>
-
                     <p>Category: {category} </p>
-
                     <p>Pincode: {pin} </p>
-
                     <h2 className="multiplayer list-of-players">Players</h2>
                     <p>{content}</p>
-
                 </div>
             </div>
 
             <div className="multiplayer lower-part">
                 <div className="multiplayer settings">
-
                 </div>
-
                 <button className="multiplayer button"
                         onClick={startGame}
                         disabled={!(isGm === 'true')}
                 >Start Game</button>
             </div>
-
         </BaseContainer>
     );
 }
