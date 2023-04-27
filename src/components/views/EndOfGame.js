@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-//import {useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/MultiPlayer.scss";
 import "styles/views/EndOfGame.scss";
@@ -27,10 +27,20 @@ function playerSort (players) {
 
 
 const EndOfGame = () => {
+
+    const history = useHistory();
+
     const [players, setPlayers] = useState([]);
     const [winner, setWinner] = useState(null);
 
     const gameId = localStorage.getItem('gameId');
+    const isGm = localStorage.getItem('isGm');
+
+    const endGame = async () => {
+        const response = await api.post('lobbies/'+gameId+'/end')
+        console.log(response)
+        history.push('landing')
+    }
     useEffect(() => {
         const fetchPlayers = async () => {
             try {
@@ -86,6 +96,11 @@ const EndOfGame = () => {
 
             <div className="end-of-game buttons">
                 <button className="end-of-game btn"><a href="item-list">View Items</a></button>
+                <button className="end-of-game btn"
+                        onClick={endGame}
+                        disabled={!(isGm === 'true')}
+                >End Game</button>
+
             </div>
         </BaseContainer>
     );

@@ -49,7 +49,8 @@ const MultiPlayer = () => {
         localStorage.setItem('gameId', request.data.gameId)
         localStorage.setItem('pincode', request.data.gamePIN)
         localStorage.setItem('isGm', 'true')
-
+        const update = await api.put('/lobbies/'+request.data.gameId, requestBody)
+        console.log(update)
         const pincode = request.data.gamePIN;
         const userId = localStorage.getItem('userId');
 
