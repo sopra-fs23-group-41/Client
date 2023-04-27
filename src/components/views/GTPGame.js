@@ -30,13 +30,11 @@ const GTPGame = () => {
 
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
-    //const userId = localStorage.getItem('userId')
     const playerId = localStorage.getItem('playerId')
     const currentRound = localStorage.getItem('currentRound')
 
+    //Boolean Flag
     const [onlyOnce, setOnlyOnce] = useState(true);
-
-
 
 
     //Interactive Button
@@ -46,25 +44,13 @@ const GTPGame = () => {
     const [clicked4, setClicked4] = useState(false);
 
 
-    //Answer-Data
-    /*
-    const [playerId, setPlayerId] = useState(null);
-    const [numOfRound, setNumOfRound] = useState(null);
-    const [playerAnswer, setPlayerAnswer] = useState(null);
-    const [timeUsed, setTimeUsed] = useState(null);
-    const [question, setQuestion] = useState(null);
-    */
-    //const [playerId, setPlayerId] = useState(null);
-
-
-    //whats wrong now wtf
-
 
     //Question-Data
     const [trueAnswer, setTrueAnswer] = useState(0);
     const [falseAnswers, setFalseAnswers] = useState([0, 0, 0]);
     const [picture, setPicture] = useState(guccishoe);
-
+    const [answers, setAnswers] = useState([0, 0, 0, 0]);
+    const [randomizedAnswers, setRandomizedAnswers] = useState([0, 0, 0, 0]);
 
 
 
@@ -77,36 +63,34 @@ const GTPGame = () => {
             setPicture(request.data.picUrls);
             setTrueAnswer(request.data.trueAnswer);
             setFalseAnswers(request.data.falseAnswers);
+            setAnswers([request.data.trueAnswer, request.data.falseAnswers[0], request.data.falseAnswers[1], request.data.falseAnswers[2]])
             //setItems(request.data.articles);
         } catch (error) {
             console.log('Something went wrong, bro')
         }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers, trueAnswer, falseAnswers]);
 
     const getNextQuestion = useCallback(async () => {
         try {
             const request = await api.get('/lobbies/' + gameId + '/nextQuestion')
-            console.log(request)
-            console.log(request.data.picUrls)
-            console.log(request.data.trueAnswer)
             setPicture(request.data.picUrls);
             setTrueAnswer(request.data.trueAnswer);
             setFalseAnswers(request.data.falseAnswers);
+            setAnswers([request.data.trueAnswer, request.data.falseAnswers[0], request.data.falseAnswers[1], request.data.falseAnswers[2]])
             //setItems(request.data.articles);
         } catch (error) {
             console.log('Something went wrong, sis')
         }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
-
-
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers, trueAnswer, falseAnswers]);
 
 
     useEffect(() => {
         if(isGm === 'true' && onlyOnce) {
             setOnlyOnce(false);
             startNextRound();
+            console.log(answers)
         }
-    },[isGm, onlyOnce, startNextRound]);
+    },[isGm, onlyOnce, startNextRound, answers]);
 
 
 
@@ -114,72 +98,68 @@ const GTPGame = () => {
         if(isGm === 'false' && onlyOnce) {
             setOnlyOnce(false);
             getNextQuestion();
+            console.log(answers)
         }
-    },[isGm, onlyOnce, getNextQuestion]);
+    },[isGm, onlyOnce, getNextQuestion, answers]);
 
 
 
     const pictureUrl = "https://"+picture[0]
 
-
-
-
-    //Load Question from the Back-end
-    /*async function getQuestion(){
-        try{
-            const request = await api.get('/lobbies/'+gameId+'/nextQuestion');
-            console.log(request.data)
-            setPicture(request.data.picUrls);
-            setTrueAnswer(request.data.trueAnswer);
-            setFalseAnswers(request.data.falseAnswers);
-            setItems(request.data.articles);
-
-        }catch(error){
-            console.log('Something went wrong.')
+    useEffect(() => {
+        function getRandomInt(max) {
+            return Math.floor(Math.random()*max);
         }
 
-    }
+        let randomAnswers = [0, 0, 0, 0];
+        var rand = getRandomInt(4);
+        for (let i = 0; i < 4; i++) {
+            randomAnswers[i] = answers[(i + rand)%4]
+        }
 
-    useEffect(()=>{
-        getQuestion();
-    });*/
+        setRandomizedAnswers(randomAnswers);
+    }, [answers]);
 
 
     const playerAnswer = new Answer();
     //Boolean Flags that are used to create Effects on the Answer-Buttons
     const firstAnswer = () => {
+        console.log(randomizedAnswers)
         setClicked(true);
         playerAnswer.playerId = playerId;
         playerAnswer.timeUsed = 10;
         playerAnswer.numOfRound = currentRound;
-        playerAnswer.playerAnswer = trueAnswer;
+        playerAnswer.playerAnswer = randomizedAnswers[0];
         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
     const secondAnswer = () => {
+        console.log(randomizedAnswers)
         setClicked2(true);
         playerAnswer.playerId = playerId;
         playerAnswer.timeUsed = 10;
         playerAnswer.numOfRound = currentRound;
-        playerAnswer.playerAnswer = falseAnswers[0];
+        playerAnswer.playerAnswer = randomizedAnswers[1];
         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
     const thirdAnswer = () => {
+        console.log(randomizedAnswers)
         setClicked3(true);
         playerAnswer.playerId = playerId;
         playerAnswer.timeUsed = 10;
         playerAnswer.numOfRound = currentRound;
-        playerAnswer.playerAnswer = falseAnswers[1];
+        playerAnswer.playerAnswer = randomizedAnswers[2];
         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
     const forthAnswer = () => {
+        console.log(randomizedAnswers)
         setClicked4(true);
         playerAnswer.playerId = playerId;
         playerAnswer.timeUsed = 10;
         playerAnswer.numOfRound = currentRound;
-        playerAnswer.playerAnswer = falseAnswers[2];
+        playerAnswer.playerAnswer = randomizedAnswers[3];
         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
@@ -200,44 +180,49 @@ const GTPGame = () => {
             <img className="gtp item-pic" src={pictureUrl} alt="LOL"/>
 
             <div className="gtp answer-container">
-                {clicked && <h1>Your Guess is correct!</h1>}
-                {clicked2 && <h1>Your Guess is wrong! Right answer: {trueAnswer} CHF</h1>}
+                {clicked && (randomizedAnswers[0] === trueAnswer) && <h1>Your Guess is correct!</h1>}
+                {clicked2 && (randomizedAnswers[1] === trueAnswer) && <h1>Your Guess is correct!</h1>}
+                {clicked && (randomizedAnswers[0] !== trueAnswer) && <h1>Your Guess is wrong! Right answer: {trueAnswer} CHF</h1>}
+                {clicked2 && (randomizedAnswers[1] !== trueAnswer) && <h1>Your Guess is wrong! Right answer: {trueAnswer} CHF</h1>}
                 {!(clicked2 || clicked3 || clicked4) && <button
 
                     className="gtp answer-button"
                     onClick={firstAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked ? '#1ff11f' : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px', marginLeft: clicked? '45px': '0px'}}
+                    style ={{backgroundColor: clicked ? (trueAnswer === randomizedAnswers[0] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px', marginLeft: clicked ? (randomizedAnswers[0] !== trueAnswer ? '235px': '45px') : '0px'}}
                 >
-                    {trueAnswer} CHF
+                    {randomizedAnswers[0]} CHF
                 </button>}
                 {!(clicked || clicked3 || clicked4) && <button
                     className="gtp answer-button"
                     onClick={secondAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked2 ? '#ee3030' : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px', marginLeft: clicked2? '225px': '0px'}}
+                    style ={{backgroundColor: clicked2 ? (trueAnswer === randomizedAnswers[1] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px', marginLeft: clicked2 ? (randomizedAnswers[1] === trueAnswer ? '45px': '235px') : '0px'}}
                 >
-                    {falseAnswers[0]} CHF
+                    {randomizedAnswers[1]} CHF
                 </button>}
 
             </div>
             <div className="gtp answer-container">
-                {(clicked3 || clicked4) && <h1>Your Guess is Wrong! Right answer: {trueAnswer} CHF</h1>}
+                {clicked3 && (randomizedAnswers[2] === trueAnswer) && <h1>Your Guess is correct!</h1>}
+                {clicked4 && (randomizedAnswers[3] === trueAnswer) && <h1>Your Guess is correct!</h1>}
+                {clicked3 && (randomizedAnswers[2] !== trueAnswer) && <h1>Your Guess is wrong! Right answer: {trueAnswer} CHF</h1>}
+                {clicked4 && (randomizedAnswers[3] !== trueAnswer) && <h1>Your Guess is wrong! Right answer: {trueAnswer} CHF</h1>}
                 {!(clicked || clicked2 || clicked4) && <button
                     className="gtp answer-button"
                     onClick={thirdAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked3 ? '#ee3030' : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px', marginLeft: clicked3? '225px': '0px'}}
+                        style ={{backgroundColor: clicked3 ? (trueAnswer === randomizedAnswers[2] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px', marginLeft: clicked3 ? (randomizedAnswers[2] === trueAnswer ? '45px': '235px') : '0px'}}
                 >
-                    {falseAnswers[2]} CHF
+                    {randomizedAnswers[2]} CHF
                 </button>}
                 {!(clicked || clicked3 || clicked2) && <button
                     className="gtp answer-button"
                     onClick={forthAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked4 ? '#ee3030' : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px', marginLeft: clicked4? '225px': '0px'}}
+                    style ={{backgroundColor: clicked4 ? (trueAnswer === randomizedAnswers[3] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px', marginLeft: clicked4 ? (randomizedAnswers[3] === trueAnswer ? '45px': '235px'): '0px'}}
                 >
-                    {falseAnswers[1]} CHF
+                    {randomizedAnswers[3]} CHF
                 </button>}
             </div>
 
