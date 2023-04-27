@@ -14,7 +14,7 @@ const DisplayItem = ({item}) => (
             <h3 className="item-list price">Price: {item.price} CHF</h3>
             <h3 className="item-list name">Name: {item.name}</h3>
             <img className="item-list picture" src={`https://${item.imageUrl}`} alt="Lol"/>
-            <h3 className="item-list link"><a href={`https://asos.com/${item.url}`} target="_blank" rel="noreferrer">Link to Website</a></h3>
+            <h3 className="item-list link"><a href={`https://asos.com/us/${item.url}`} target="_blank" rel="noreferrer">Link to Website</a></h3>
         </div>
     </div>
 );
