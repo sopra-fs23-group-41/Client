@@ -1,0 +1,29 @@
+.userlist {
+    &.container {
+        width: 70%;
+        margin: 10px auto;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 1em;
+        text-align: center;
+      
+      &.ONLINE {
+        background-color: greenyellow;
+        color: black;
+      }
+
+      &.OFFLINE {
+        background-color: darkgray;
+        color: white;
+      }
+    
+      }
+
+    &.container:hover {
+      transform: scale(1.1);
+    }
+  
+  
+
+  
+  }
