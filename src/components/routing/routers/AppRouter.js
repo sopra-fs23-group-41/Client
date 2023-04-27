@@ -42,7 +42,7 @@ const AppRouter = () => {
             <Login/>
 
         </Route>
-        <Route exact path="/profilepage">
+        <Route exact path="/profilepage/:id">
          <GameGuard>
            <ProfilePage/>
          </GameGuard>
