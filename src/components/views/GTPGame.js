@@ -63,12 +63,13 @@ const GTPGame = () => {
             setPicture(request.data.picUrls);
             setTrueAnswer(request.data.trueAnswer);
             setFalseAnswers(request.data.falseAnswers);
+            console.log(falseAnswers)
             setAnswers([request.data.trueAnswer, request.data.falseAnswers[0], request.data.falseAnswers[1], request.data.falseAnswers[2]])
             //setItems(request.data.articles);
         } catch (error) {
             console.log('Something went wrong, bro')
         }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers, trueAnswer, falseAnswers]);
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
 
     const getNextQuestion = useCallback(async () => {
         try {
@@ -81,7 +82,7 @@ const GTPGame = () => {
         } catch (error) {
             console.log('Something went wrong, sis')
         }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers, trueAnswer, falseAnswers]);
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
 
 
     useEffect(() => {
