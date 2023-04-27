@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/MultiPlayer.scss";
 import "styles/ui/DisplayedItems.scss"
@@ -8,7 +7,6 @@ import "styles/views/GTPGame.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 import "helpers/Timer.js";
-import Item from "../../models/Item";
 
 const DisplayItem = ({item}) => (
     <div className="item-list items">
@@ -22,7 +20,6 @@ const DisplayItem = ({item}) => (
 );
 
 const ItemList = () => {
-    const history = useHistory();
     const gameId = localStorage.getItem('gameId');
     console.log(gameId);
     const [items, setItems] = useState(null);
