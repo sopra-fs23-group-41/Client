@@ -4,16 +4,25 @@
     display: flex;
 
   }
+
+  &.prices{
+    margin-right: 20px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+  }
+
   &.item-pic{
     display: flex;
-    border-radius: 30px;
+    margin-right: 10px;
+    border-radius: 5px;
     position: center;
-    height: 250px;
-    width: 380px;
+    max-height: 250px;
+    max-width: 380px;
   }
   &.higher{
     background-color: #0db00d;
-    border-radius: 30px;
+    border-radius: 5px;
     height: 150px;
     width: 250px;
     font-family: "JetBrains Mono";
@@ -24,7 +33,7 @@
 
   &.lower{
     background-color: #dc0000;
-    border-radius: 30px;
+    border-radius: 5px;
     height: 150px;
     width: 250px;
     font-family: "JetBrains Mono";
@@ -46,10 +55,15 @@
     background-color: blue;
   }
 
-  &.current-price{
+  &.left-price{
     color: floralwhite;
     font-family: "JetBrains Mono";
-    margin-left: 200px;
+    margin-left: 405px;
+  }
+  &.right-price{
+    margin-right: 390px;
+    color: floralwhite;
+    font-family: "JetBrains Mono";
   }
 
 }

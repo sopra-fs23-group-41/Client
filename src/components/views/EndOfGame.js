@@ -99,7 +99,7 @@ const EndOfGame = () => {
                 <button className="end-of-game btn"
                         onClick={endGame}
                         disabled={!(isGm === 'true')}
-                >End Game</button>
+                >Close Game</button>
 
             </div>
         </BaseContainer>

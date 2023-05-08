@@ -17,9 +17,13 @@ const TimerLeaderboard = ({seconds}) => {
 
     useEffect( () => {
         async function doCountdown(){
-            if (countdown <= 0) {
+            if (countdown <= 0 && localStorage.getItem('gameMode') === 'GuessThePrice') {
                 clearInterval(timerId.current)
                 history.push('gtpgame')
+            }
+            else if (countdown <= 0 && localStorage.getItem('gameMode') === 'HighOrLow'){
+                clearInterval(timerId.current)
+                history.push('higher-or-lower-game')
             }
         }
         doCountdown();

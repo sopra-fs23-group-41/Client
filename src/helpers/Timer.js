@@ -1,12 +1,14 @@
 import {useEffect, useRef, useState} from "react";
 import {useHistory} from "react-router-dom";
 import {api} from "./api";
+import Answer from "../models/Answer";
 
 const Timer = ({seconds}) => {
 
     const history = useHistory();
     const [countdown, setCountdown] = useState(seconds);
     const timerId = useRef();
+
 
     useEffect(() => {
         timerId.current = setInterval(() => {
@@ -24,15 +26,26 @@ const Timer = ({seconds}) => {
 
                 const gameId = localStorage.getItem('gameId');
                 const game = await api.get('/lobbies/' + gameId);
-                console.log(game);
-                console.log(currentRound);
-                console.log(game.data.rounds);
+
 
                 if (currentRound >= game.data.rounds) {
-                    console.log('Hello there')
                     history.push('endofgame');
                 }
                 else{
+                    const hasAnswered = localStorage.getItem('hasAnswered')
+                    if(hasAnswered === 'false'){
+                        localStorage.setItem('hasAnswered', 'true')
+                        const gameId = localStorage.getItem('gameId');
+                        const playerId = localStorage.getItem('playerId')
+                        const currentRound = localStorage.getItem('currentRound')
+                        const playerAnswer = new Answer();
+                        playerAnswer.playerId = playerId;
+                        playerAnswer.timeUsed = 30;
+                        playerAnswer.numOfRound = currentRound;
+                        playerAnswer.playerAnswer = 0;
+
+                        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
+                    }
                     currentRound = currentRound + 1;
                     currentRound = currentRound.toString();
                     localStorage.setItem('currentRound', currentRound);

@@ -1,11 +1,15 @@
 .gtp{
   &.item-pic{
     display: block;
-    margin: 40px auto 30px auto;
-    border-radius: 30px;
+    margin: 0px auto 30px auto;
+    border-radius: 5px;
     position: center;
-    height: 250px;
-    width: 380px;
+    max-height: 300px;
+    max-width: 600px;
+  }
+
+  &.reply{
+    font-family: "JetBrains Mono";
   }
 
   &.answer-container{
@@ -17,7 +21,7 @@
 
   &.answer-button{
     background-color: floralwhite;
-    border-radius: 30px;
+    border-radius: 5px;
     height: 150px;
     width: 250px;
     font-family: "JetBrains Mono";
@@ -30,28 +34,41 @@
     transform: scale(1.1);
     background-color: navajowhite;
   }
+
+  &.bonus-and-streak{
+    font-family: "JetBrains Mono";
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  &.bonus{
+    margin-left: 70px;
+  }
+
 }
 
 .timer{
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: auto;
   align-items: center;
   justify-content: space-evenly;
   font-family: "JetBrains Mono";
   font-size: 40px;
   background:floralwhite;
-  width: 250px;
-  height: 120px;
-  border-radius: 10px;
+  width: 150px;
+  height: 70px;
+  border-radius: 5px;
   box-shadow: 2px 2px 2px #8208e6;
 }
 
 .timer__btn{
+
   margin-top: 10px;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   color: floralwhite;
   background: #97ABFF;
-  margin-left: 16px;
-  border-radius: 50%;
+  margin-left: 17px;
+  border-radius: 6px;
 }

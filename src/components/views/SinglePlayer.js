@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-//import {useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/MultiPlayer.scss";
@@ -18,9 +18,8 @@ Player.propTypes = {
 };
 
 const SinglePlayer = () => {
-    // use react-router-dom's hook to access the history LOL
 
-    //const history = useHistory();
+    const history = useHistory();
 
     // define a state variable (using the state hook).
     // if this variable changes, the component will re-render, but the variable will
@@ -32,6 +31,15 @@ const SinglePlayer = () => {
 
 
 
+    const startSinglePlayer = () => {
+        if(document.getElementById('game-mode').value === 'HighOrLow'){
+            localStorage.setItem('gameMode', 'HighOrLow')
+            history.push('higher-or-lower-game')
+        }else{
+            localStorage.setItem('gameMode', 'GuessThePrice')
+            history.push('gtpgame')
+        }
+    }
 
 
     // the effect hook can be used to react to change in your component.
@@ -89,35 +97,33 @@ const SinglePlayer = () => {
                 <div className="multiplayer settings">
                     <h3>Settings</h3>
                     <p>Category</p>
-                    <select className="multiplayer select">
-                        <option>Choose</option>
-                        <option>Men</option>
-                        <option>Women</option>
-                        <option>Shoes</option>
-                        <option>Gucci</option>
-                        <option>Dior</option>
+                    <select className="multiplayer select" id="category">
+                        <option value="SHOES">Shoes</option>
+                        <option value="JEANS">Jeans</option>
+                        <option value="ACCESSORIES">Accessories</option>
                     </select>
                     <p>Rounds</p>
-                    <select className="multiplayer select">
-                        <option>Choose</option>
-                        <option>6</option>
-                        <option>12</option>
-                        <option>18</option>
-                        <option>24</option>
-                        <option>30</option>
+                    <select className="multiplayer select" id="rounds">
+                        <option value="6">6</option>
+                        <option value="12">12</option>
+                        <option value="18">18</option>
+                        <option value="24">24</option>
+                        <option value="30">30</option>
                     </select>
                     <p>Game Mode</p>
-                    <select className="multiplayer select">
-                        <option>Choose</option>
-                        <option>Guess the Price</option>
-                        <option>Higher or Lower</option>
+                    <select className="multiplayer select" id="game-mode">
+                        <option value="GuessThePrice">Guess the Price</option>
+                        <option value="HighOrLow">Higher or Lower</option>
                     </select>
                 </div>
                 
             </div>
 
             <div className="multiplayer lower-part">
-                <button className="singleplayer button"><a href="higher-or-lower-game">Start Game</a></button>
+                <button
+                    className="singleplayer button"
+                    onClick={startSinglePlayer}                >
+                    Start Game</button>
             </div>
 
         </BaseContainer>

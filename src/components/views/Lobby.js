@@ -16,6 +16,7 @@ const Lobby = () => {
     const history = useHistory();
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
+    localStorage.setItem('streak', '0')
 
     const [rounds, setRounds] = useState(null);
     const [pin, setPin] = useState(null);
@@ -25,7 +26,6 @@ const Lobby = () => {
 
     const startGame = async () => {
         api.post('lobbies/'+gameId+'/begin')
-        history.push('game-loading-buffer')
     }
 
     localStorage.setItem('currentRound', '1');
@@ -40,6 +40,14 @@ const Lobby = () => {
                     setCategory(response.data.category);
                     setPin(response.data.gamePIN);
                     setPlayers(response.data.players);
+                    if(response.data.gameMode === 'GuessThePrice'){
+                        localStorage.setItem('gameMode', 'GuessThePrice')
+                        console.log(response.data.gameMode)
+                    }else{
+                        localStorage.setItem('gameMode', 'HighOrLow')
+                        console.log(response.data.gameMode)
+
+                    }
 
                     // To check the beginning of the game
                     const beginCheck = await api.get('/lobbies/'+gameId+'/beginStatus');

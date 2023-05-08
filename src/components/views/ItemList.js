@@ -56,7 +56,7 @@ const ItemList = () => {
             <div className="multiplayer navbar">
                 <nav>
                     <ul className="nav__links">
-                        <a className="multiplayer home-button-color" href="landing"><button className="multiplayer home-button">Home</button></a>
+                        <button className="multiplayer home-button"><a className="multiplayer home-button-color" href="landing">Home</a></button>
                     </ul>
                 </nav>
                 <h1 className="multiplayer title">Displayed Products</h1>

@@ -33,8 +33,6 @@ const LeaderBoard = () => {
         const fetchPlayers = async () => {
             try {
                 const response = await api.get(`/lobbies/`+gameId);
-                const playersJson = response.data.players;
-                console.log(playersJson)
                 let temporaryPlayers = [];
                 for(let i=0; i<response.data.players.length; i++){
                     const tempPlayer = new Player();
@@ -45,7 +43,6 @@ const LeaderBoard = () => {
                     temporaryPlayers[i] = tempPlayer;
                 }
                 //const playersTemp = playersJson.map(playerJson => Player.fromJson(playerJson));
-                console.log(temporaryPlayers)
                 playerSort(temporaryPlayers);
                 setPlayers(temporaryPlayers);
             } catch (error) {
@@ -76,7 +73,7 @@ const LeaderBoard = () => {
 
             <h1 className="next-question-title">Next question starts in:</h1>
             <div className="next-question-timer">
-                <Timer seconds={6}/>
+                <Timer seconds={5}/>
             </div>
             <Standings players={players}/>
 

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 //import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
@@ -9,10 +9,10 @@ import "styles/views/HigherOrLowerGame.scss";
 
 import '../pictures/2.jpg';
 import guccishoe from '../pictures/guccishoe.png';
-import luisvuittonshoe from '../pictures/luisvuittonshoe.png';
 import logo from '../pictures/Logo.jpg';
 import "helpers/Timer.js";
 import Timer from "../../helpers/Timer";
+import Answer from "../../models/Answer";
 
 const Player = ({user}) => (
     <div className="player container">
@@ -39,16 +39,123 @@ const HigherOrLowerGame = () => {
     const [users, setUsers] = useState(null);
     const [clicked, setClicked] = useState(false);
     const [clicked2, setClicked2] = useState(false);
+
+
+    //Boolean Flags
+    const [onlyOnce, setOnlyOnce] = useState(true);
+    const [onlyOnce2, setOnlyOnce2] = useState(true);
+    const [onlyOnce3, setOnlyOnce3] = useState(true);
+
+
+
+    const gameId = localStorage.getItem('gameId');
+    const isGm = localStorage.getItem('isGm');
+    const playerId = localStorage.getItem('playerId')
+    const currentRound = localStorage.getItem('currentRound')
+
+    //Question-Data
+    const [trueAnswer, setTrueAnswer] = useState(null);
+    const [falseAnswers, setFalseAnswers] = useState(0);
+    const [picture, setPicture] = useState(guccishoe);
+    const [answers, setAnswers] = useState([0, 0]);
+    const [randomizedAnswers, setRandomizedAnswers] = useState([0, 0]);
+    const [prices, setPrices] = useState([0, 0]);
+
+    //Used to avoid returning multiple answers to the Back-end
+    if(onlyOnce3){
+        setOnlyOnce3(false);
+        localStorage.setItem('hasAnswered', 'false')
+    }
+    //Measure time
+    const [startTime, setStartTime] = useState(null);
+    if(onlyOnce2){
+        setOnlyOnce2(false);
+        setStartTime(Date.now())
+    }
     console.log(users)
 
-    const handleClick = () => {
+
+    const startNextRound = useCallback(async () => {
+        try {
+            const request = await api.get('/lobbies/' + gameId + '/nextRound')
+
+            setPicture(request.data.picUrls);
+            setTrueAnswer(request.data.trueAnswer);
+            setFalseAnswers(request.data.falseAnswers);
+            setAnswers([request.data.trueAnswer, request.data.falseAnswers[0]])
+            setPrices([request.data.articles[0].price, request.data.articles[1].price])
+        } catch (error) {
+            console.log('Something went wrong')
+        }
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+
+    const getNextQuestion = useCallback(async () => {
+        try {
+            const request = await api.get('/lobbies/' + gameId + '/nextQuestion')
+            setPicture(request.data.picUrls);
+            setTrueAnswer(request.data.trueAnswer);
+            setFalseAnswers(request.data.falseAnswers);
+            setAnswers([request.data.trueAnswer, request.data.falseAnswers[0]])
+            setPrices([request.data.articles[0].price, request.data.articles[1].price])
+        } catch (error) {
+            console.log('Something went wrong')
+        }
+    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+
+
+    useEffect(() => {
+        if(isGm === 'true' && onlyOnce) {
+            setOnlyOnce(false);
+            startNextRound();
+        }
+    },[isGm, onlyOnce, startNextRound, answers]);
+
+    console.log(falseAnswers)
+
+
+    useEffect(() => {
+        if(isGm === 'false' && onlyOnce) {
+            setOnlyOnce(false);
+            getNextQuestion();
+        }
+    },[isGm, onlyOnce, getNextQuestion, answers]);
+
+    const pictureUrl1 = "https://"+picture[0]
+    const pictureUrl2 = "https://"+picture[1]
+
+
+    const playerAnswer = new Answer();
+    //Boolean Flags that are used to create Effects on the Answer-Buttons
+    const firstAnswer = () => {
+        localStorage.setItem('hasAnswered', 'true')
         setClicked(true);
+        playerAnswer.playerId = playerId;
+        playerAnswer.timeUsed = (Date.now() - startTime)/1000;
+        playerAnswer.numOfRound = currentRound;
+        playerAnswer.playerAnswer = 'Higher';
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
-    const handleClick2 = () => {
+    const secondAnswer = () => {
+        localStorage.setItem('hasAnswered', 'true')
+        console.log(randomizedAnswers)
         setClicked2(true);
+        playerAnswer.playerId = playerId;
+        playerAnswer.timeUsed = (Date.now() - startTime)/1000;
+        playerAnswer.numOfRound = currentRound;
+        playerAnswer.playerAnswer = 'Lower';
+        api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
     }
 
+    useEffect(() => {
+
+        let randomAnswers = [0, 0];
+        for (let i = 0; i < 2; i++) {
+            randomAnswers[i] = answers[i]
+        }
+
+        setRandomizedAnswers(randomAnswers);
+    }, [answers]);
 
 
     // the effect hook can be used to react to change in your component.
@@ -102,32 +209,39 @@ const HigherOrLowerGame = () => {
                 <h1 className="multiplayer title">Higher or Lower</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-            <Timer seconds={30}/>
-            <h1 className="h-or-l current-price">Current Price: 799CHF</h1>
-            <div className="h-or-l items">
-                <img className="h-or-l item-pic" src={guccishoe} alt="LOL"/>
-                <img className="h-or-l item-pic" src={luisvuittonshoe} alt="LOL"/>
+            <Timer seconds={10}/>
+
+            <div className="h-or-l prices">
+                <h1 className="h-or-l left-price">{prices[0]} USD</h1>
+                {(clicked || clicked2) && <h1 className="h-or-l right-price">{prices[1]} USD</h1>
+                }
             </div>
 
-            <div>
-                {(clicked || clicked2) && <h2>Your Guess</h2>}
+
+            <div className="h-or-l items">
+                <img className="h-or-l item-pic" src={pictureUrl1} alt="LOL"/>
+                <img className="h-or-l item-pic" src={pictureUrl2} alt="LOL"/>
             </div>
+
             <div className="gtp answer-container">
-                {!clicked2 && <button
-                    className="h-or-l higher"
-                    onClick = {handleClick}
-                    disabled = {clicked || clicked2}
-                    style ={{backgroundColor: clicked ? 'blue' : '#0db00d', scale: clicked ? '1.5' : '1', marginRight: clicked? '10px' : '0px'}}
+                {clicked && (trueAnswer === 'Higher') && <h1 className="gtp reply">"It's taking me HIGHER" - Taio Cruz</h1>}
+                {clicked && (trueAnswer === 'Lower') && <h1 className="gtp reply">"If you're playing me, keep it on the LOW" - Mario Winans</h1>}
+                {clicked2 && (trueAnswer === 'Higher') && <h1 className="gtp reply">"Because I got HIGH" - Afroman</h1>}
+                {clicked2 && (trueAnswer === 'Lower') && <h1 className="gtp reply">"LOW, LOW, LOW, LOW!" - Flo Rida</h1>}
+
+                {!(clicked2) && <button
+                    className="gtp answer-button"
+                    onClick={firstAnswer}
+                    disabled={clicked || clicked2}
+                    style ={{backgroundColor: clicked ? (trueAnswer === 'Higher' ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked ? '1.4' : '1', marginTop: clicked? '20px' : '0px', marginLeft: clicked? (trueAnswer === 'Higher' ? '132px' : '280px') : '0px', color: clicked? 'floralwhite' : '#8BA1FAFF'}}
                 >
                     Higher
                 </button>}
-
-
-                { !clicked && <button
-                    className="h-or-l lower"
-                    disabled = {clicked || clicked2}
-                    onClick = {handleClick2}
-                    style ={{backgroundColor: clicked2 ? 'blue' : '#dc0000', scale: clicked2 ? '1.5' : '1', marginLeft: clicked2? '10px' : '0px'}}
+                {!(clicked) && <button
+                    className="gtp answer-button"
+                    onClick={secondAnswer}
+                    disabled={clicked || clicked2}
+                    style ={{backgroundColor: clicked2 ? (trueAnswer === 'Lower' ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked2 ? '1.4' : '1', marginTop: clicked2? '20px' : '0px', marginLeft: clicked2? (trueAnswer === 'Lower' ? '138px' : '100px') : '0px', color: clicked2? 'floralwhite' : '#8BA1FAFF'}}
                 >
                     Lower
                 </button>}

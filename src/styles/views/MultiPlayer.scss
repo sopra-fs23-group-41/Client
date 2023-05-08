@@ -98,7 +98,7 @@
     padding: 9px 25px;
     background-color: #ff97ee;
     border: none;
-    border-radius: 50px;
+    border-radius: 5px;
     cursor: pointer;
     font-family: "JetBrains Mono";
     transition: .5s;
@@ -117,13 +117,13 @@
     color: #ffeb17;
     background: black;
     width: 100px;
-    border-radius: 7px;
+    border-radius: 5px;
     box-shadow: 0 0.05em 0.05em #000000;
   }
   &.home-button{
     background-color: floralwhite;
     border: none;
-    border-radius: 17px;
+    border-radius: 5px;
     cursor: pointer;
     font-family: "JetBrains Mono";
     transition: .3s;
@@ -175,7 +175,7 @@ li, a, img{
     width: 250px;
     height: 25px;
     padding: 10px;
-    border-radius: 9px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,7 +201,7 @@ li, a, img{
     padding: 9px 25px;
     background-color: #ff97ee;
     border: none;
-    border-radius: 50px;
+    border-radius: 5px;
     cursor: pointer;
     color: #000000;
     font-family: "JetBrains Mono";

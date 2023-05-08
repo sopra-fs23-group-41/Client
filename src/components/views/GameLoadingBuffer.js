@@ -18,7 +18,7 @@ const GameLoadingBuffer = () => {
     if(isGm === 'true'){
         time = 5;
     }else{
-        time = 4;
+        time = 5;
     }
 
     return (
