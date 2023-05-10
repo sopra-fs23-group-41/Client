@@ -11,6 +11,7 @@ import ProfilePage from "../../views/ProfilePage";
 import LeaderBoard from "../../views/LeaderBoard";
 import MultiPlayer from "../../views/MultiPlayer";
 import SinglePlayer from "../../views/SinglePlayer";
+import AllTimeLeaderBoard from "../../views/AllTimeLeaderBoard";
 import PinCode from "../../views/PinCode";
 import GTPGame from "../../views/GTPGame";
 import EndOfGame from "../../views/EndOfGame";
@@ -75,6 +76,11 @@ const AppRouter = () => {
         <Route exact path="/leaderboard">
           <GameGuard>
             <LeaderBoard/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/alltimeleaderboard">
+          <GameGuard>
+            <AllTimeLeaderBoard/>
           </GameGuard>
         </Route>
         <Route exact path="/gtpgame">
