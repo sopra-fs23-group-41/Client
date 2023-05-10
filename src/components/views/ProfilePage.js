@@ -3,32 +3,33 @@ import {api, handleError} from 'helpers/api';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/Landing.scss";
+import "styles/views/Profile.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 import {useParams} from 'react-router-dom'
 import {Button} from 'components/ui/Button';;
 
 const ProfilePage = () => {
-    const history = useHistory();
-    const [user, setUser] = useState(null);
-    const userId = useParams().id;
-  
-    const editProfile = () => {
-      history.push('/edit-profile/' + userId)
-    }
+  const history = useHistory();
+  const [user, setUser] = useState(null);
+  const userId = useParams().id;
 
-    const goList = () => {
-        history.push('/allusers')
-    }
-/*    const logout = async () => {
-        try {
-            await api.get('/users/'+localStorage.getItem('userId')+'/logout');
-            localStorage.clear();
-            history.push('/login');
-        } catch (error) {
-            alert(`Something went wrong during the logout: \n${handleError(error)}`);
-        }
-    }
+  const editProfile = () => {
+    history.push('/edit-profile/' + userId)
+  }
+
+  const goList = () => {
+      history.push('/allusers')
+  }
+/*const logout = async () => {
+  try {
+    await api.get('/users/'+localStorage.getItem('userId')+'/logout');
+    localStorage.clear();
+    history.push('/login');
+  } catch (error) {
+    alert(`Something went wrong during the logout: \n${handleError(error)}`);
+  }
+}
 */
     
   useEffect(() => {
@@ -47,56 +48,61 @@ const ProfilePage = () => {
 
   if (user) {
     content = (
-      <div className="game">
-        <ul className="game user-list">
-            <div className="player container">
-              <div className="player username">Username: </div>
-              <div className="player id">{user.username}</div>
-            </div>
-            <div className="player container">
-              <div className="player username">Status: </div>
-              <div className="player id">{user.status}</div>
-            </div>
-            <div className="player container">
-              <div className="player username">Created: </div>
-              <div className="player id">{user.creationDate}</div>
-            </div>
-            <div className="player container">
-              <div className="player username">Birthdate: </div>
-              <div className="player id">{user.birthdate}</div>
-            </div>
-        </ul>
+      <div className="profile">
+        <div className="container">
+          <h1>Profile</h1>
+          <div className="flex">
+            <div>Username: </div>
+            <div>{user.username}</div>
+          </div>
+          <div className="flex">
+            <div>Name: </div>
+            <div></div>
+          </div>
+          <div className="flex">
+            <div>Status: </div>
+            <div>{user.status}</div>
+          </div>
+          <div className="flex">
+            <div>Created: </div>
+            <div>{user.creationDate}</div>
+          </div>
+          <div className="flex">
+            <div>Birthdate: </div>
+            <div>{user.birthdate}</div>
+          </div>
+          <div className="flex">
+            <div>Number of Games Won: </div>
+            <div>{user.numOfGameWon}</div>
+          </div>
 
-        <Button width="100%" onClick={() => editProfile()}>
+
+        <Button onClick={() => editProfile()}>
           Edit
         </Button>
-        <Button width="100%" onClick={() => goList()}>
+        <Button onClick={() => goList()}>
           List
         </Button>
+        </div>
       </div>
     )
   }
 
-    return (
-        <BaseContainer className="landing container">
-
-            <div className="landing navbar">
-                <img className="landing img" src={logo} alt="LOL"/>
-                <nav>
-                    <ul className="nav__links">
-                        <li><a href="/allusers">Find User</a></li>
-                        <li><a href="/landing">Home</a></li>
-                        <li><a href="/leaderboard">Leaderboard</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-                <div className="landing button-container">
-                {content}
-
-                </div>
-        </BaseContainer>
-    );
+  return (
+    <BaseContainer className="landing container">
+      <div className="landing navbar">
+        <img className="landing img" src={logo} alt="LOL"/>
+        <nav>
+          <ul className="nav__links">
+            <li><a href="/allusers">Find User</a></li>
+            <li><a href="/landing">Home</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
+          </ul>
+        </nav>
+      </div>
+      {content}
+    </BaseContainer>
+  );
 }
 
 export default ProfilePage;

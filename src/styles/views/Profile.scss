@@ -1,0 +1,36 @@
+.profile {
+    & .container {
+        width: 85%;
+        margin: 30px auto;
+        padding: 20px;
+        text-align: center;
+        border-color: #363B48;
+        background-color: #D8504D;
+        border-radius: 20px;
+
+        & h1 {
+            margin: 0px 0px 20px 0px;
+            color: black;
+        }
+
+        & .flex {
+            margin: 10px 0px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2em;
+            background-color: bisque;
+            color: #363B48;
+            padding: 10px;
+            border-radius: 10px;
+
+            & div:nth-child(1) {
+                font-weight: bold;
+            }
+        }
+
+        & button {
+            width: calc(50% - 10px);
+            margin: 5px;
+        }
+    }
+}
