@@ -15,7 +15,7 @@ const ProfilePage = () => {
   const userId = useParams().id;
 
   const editProfile = () => {
-    history.push('/edit-profile/' + userId)
+    history.push('/profileedit/' + userId)
   }
 
   const goList = () => {

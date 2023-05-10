@@ -8,6 +8,7 @@ import Landing from "../../views/Landing"
 import Header from "../../views/Header";
 import AllUsers from "../../views/AllUsers";
 import ProfilePage from "../../views/ProfilePage";
+import ProfileEdit from "../../views/ProfileEdit";
 import LeaderBoard from "../../views/LeaderBoard";
 import MultiPlayer from "../../views/MultiPlayer";
 import SinglePlayer from "../../views/SinglePlayer";
@@ -46,6 +47,11 @@ const AppRouter = () => {
         <Route exact path="/profilepage/:id">
          <GameGuard>
            <ProfilePage/>
+         </GameGuard>
+        </Route>
+        <Route exact path="/profileedit/:id">
+         <GameGuard>
+           <ProfileEdit/>
          </GameGuard>
         </Route>
         <Route exact path="/game-loading-buffer">
