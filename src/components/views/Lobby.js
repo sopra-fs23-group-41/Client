@@ -46,11 +46,8 @@ const Lobby = () => {
                     }
                     if(response.data.gameMode === 'GuessThePrice'){
                         localStorage.setItem('gameMode', 'GuessThePrice')
-                        console.log(response.data.gameMode)
                     }else{
                         localStorage.setItem('gameMode', 'HighOrLow')
-                        console.log(response.data.gameMode)
-
                     }
 
                     // To check the beginning of the game
