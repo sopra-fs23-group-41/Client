@@ -26,7 +26,7 @@ const Lobby = () => {
     const [players, setPlayers] = useState(null);
 
     const startGame = async () => {
-        api.post('lobbies/'+gameId+'/begin')
+        api.post('lobbies/' + gameId + '/begin')
     }
 
 
@@ -41,6 +41,9 @@ const Lobby = () => {
                     setCategory(response.data.category);
                     setPin(response.data.gamePIN);
                     setPlayers(response.data.players);
+                    if (rounds !== null) {
+                        localStorage.setItem('rounds', rounds.toString());
+                    }
                     if(response.data.gameMode === 'GuessThePrice'){
                         localStorage.setItem('gameMode', 'GuessThePrice')
                         console.log(response.data.gameMode)
@@ -64,7 +67,7 @@ const Lobby = () => {
             fetchData(gameId);
         }, 1000);
         return () => clearInterval(interval);
-    }, [gameId, history]);
+    }, [gameId, history, rounds]);
 
     let content = (<div></div>);
     if (players) {
@@ -81,6 +84,7 @@ const Lobby = () => {
 
     return (
         <BaseContainer className="multiplayer container">
+
             <div className="multiplayer navbar">
                 <nav>
                     <ul className="nav__links">
