@@ -28,6 +28,8 @@ function playerSort (players) {
 const LeaderBoard = () => {
     const [players, setPlayers] = useState([]);
     const gameId = localStorage.getItem('gameId');
+    const rounds = localStorage.getItem('rounds');
+    const currentRound = localStorage.getItem('currentRound')
 
     useEffect(() => {
         const fetchPlayers = async () => {
@@ -70,7 +72,9 @@ const LeaderBoard = () => {
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
 
-
+            <div className="gtp rounds" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <h2>Round {currentRound-1}/ {rounds}</h2>
+            </div>
             <h1 className="next-question-title">Next question starts in:</h1>
             <div className="next-question-timer">
                 <Timer seconds={5}/>

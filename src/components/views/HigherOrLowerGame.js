@@ -27,15 +27,6 @@ Player.propTypes = {
 
 
 const HigherOrLowerGame = () => {
-    // use react-router-dom's hook to access the history
-
-    //const history = useHistory();
-
-    // define a state variable (using the state hook).
-    // if this variable changes, the component will re-render, but the variable will
-    // keep its value throughout render cycles.
-    // a component can have as many state variables as you like.
-    // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
     const [clicked, setClicked] = useState(false);
     const [clicked2, setClicked2] = useState(false);
@@ -52,6 +43,7 @@ const HigherOrLowerGame = () => {
     const isGm = localStorage.getItem('isGm');
     const playerId = localStorage.getItem('playerId')
     const currentRound = localStorage.getItem('currentRound')
+    const rounds = localStorage.getItem('rounds')
 
     //Question-Data
     const [trueAnswer, setTrueAnswer] = useState(null);
@@ -209,7 +201,11 @@ const HigherOrLowerGame = () => {
                 <h1 className="multiplayer title">Higher or Lower</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-            <Timer seconds={10}/>
+
+            <div className="game-status-container">
+                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}><h2>Round {currentRound}/{rounds}</h2></div>
+                <div> <Timer seconds={5} /> </div>
+            </div>
 
             <div className="h-or-l prices">
                 <h1 className="h-or-l left-price">{prices[0]} USD</h1>

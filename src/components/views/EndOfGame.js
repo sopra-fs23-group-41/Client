@@ -12,17 +12,18 @@ import Standings from "../../helpers/Standings";
 import Player from "../../models/Player";
 
 
-function playerSort (players) {
-    let temp;
-    for(let i=0; i<players.length; i++){
-        for(let j=0; j<players.length; j++){
-            if(players[i].totalScore > players[j].totalScore){
-                temp = players[j];
-                players[j] = players[i];
-                players[i] = temp;
-            }
+function playerSort(players) {
+    let maxScore = -Infinity;
+    let winners = [];
+    for (let i = 0; i < players.length; i++) {
+        if (players[i].totalScore > maxScore) {
+            winners = [players[i]];
+            maxScore = players[i].totalScore;
+        } else if (players[i].totalScore === maxScore) {
+            winners.push(players[i]);
         }
     }
+    return winners;
 }
 
 
@@ -31,15 +32,15 @@ const EndOfGame = () => {
     const history = useHistory();
 
     const [players, setPlayers] = useState([]);
-    const [winner, setWinner] = useState(null);
+    const [winners, setWinners] = useState([]);
 
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
 
     const endGame = async () => {
-        const response = await api.post('lobbies/'+gameId+'/end')
-        console.log(response)
         history.push('landing')
+        await api.post('lobbies/'+gameId+'/end')
+        await api.get('lobbies/'+gameId+'/end')
     }
     useEffect(() => {
         const fetchPlayers = async () => {
@@ -54,9 +55,9 @@ const EndOfGame = () => {
                     tempPlayer.totalScore = response.data.players[i].totalScore;
                     temporaryPlayers[i] = tempPlayer;
                 }
-                playerSort(temporaryPlayers);
-                setWinner(temporaryPlayers[0]);
-                setPlayers(temporaryPlayers.slice(1));
+                setPlayers(temporaryPlayers);
+                setWinners(playerSort(temporaryPlayers));
+
             } catch (error) {
                 console.error(`Something went wrong while fetching the players in leaderboard: \n${handleError(error)}`);
                 console.error("Details:", error);
@@ -82,17 +83,24 @@ const EndOfGame = () => {
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
 
-            {winner && (
-            <div className="end-of-game leaderboard">
-                <div className="end-of-game winner">
-                    <h1 className="end-of-game crown">👑</h1>
-                    <h1>{winner.playerName}</h1>
-                    <h1>{winner.totalScore}</h1>
+            {winners.length > 0 && (
+                <div className="end-of-game leaderboard">
+                    <h2 className="end-of-game subtitle">Winners:</h2>
+                    {winners.map((winner, index) => (
+                        <div key={winner.playerName} className="end-of-game winner">
+                            <h1 className="end-of-game crown">👑</h1>
+                            <h1>{winner.playerName}</h1>
+                            <h1>{winner.totalScore}</h1>
+                        </div>
+                    ))}
+                    {players.length > winners.length && (
+                        <div className="end-of-game non-winners">
+                            <h2 className="end-of-game subtitle">Losers:</h2>
+                            <Standings players={players.filter((player) => !winners.includes(player))} />
+                        </div>
+                    )}
                 </div>
-                <div className="end-of-game non-winners">
-                    <Standings players={players} />
-                </div>
-            </div>)}
+            )}
 
             <div className="end-of-game buttons">
                 <button className="end-of-game btn"><a href="item-list">View Items</a></button>

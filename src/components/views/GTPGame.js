@@ -13,16 +13,11 @@ import Answer from "../../models/Answer";
 
 
 const GTPGame = () => {
-    // use react-router-dom's hook to access the history
-
-
-    //General info about the Game and the Player
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
     const playerId = localStorage.getItem('playerId')
     const currentRound = localStorage.getItem('currentRound')
-
-
+    const rounds = localStorage.getItem('rounds')
 
     //Boolean Flag
     const [onlyOnce, setOnlyOnce] = useState(true);
@@ -38,7 +33,6 @@ const GTPGame = () => {
     const [clicked3, setClicked3] = useState(false);
     const [clicked4, setClicked4] = useState(false);
 
-
     //Question-Data
     const [trueAnswer, setTrueAnswer] = useState(0);
     const [falseAnswers, setFalseAnswers] = useState([0, 0, 0]);
@@ -47,7 +41,7 @@ const GTPGame = () => {
     const [randomizedAnswers, setRandomizedAnswers] = useState([0, 0, 0, 0]);
 
     console.log(falseAnswers)
-    if(parseInt(currentRound) % 3 === 0){
+    if(parseInt(currentRound) % 3 === 0) {
         setIsBonusRound(true);
     }
     //Measuring time
@@ -61,7 +55,6 @@ const GTPGame = () => {
     if(onlyOnce){
         localStorage.setItem('hasAnswered', 'false')
     }
-
 
     if(onlyOnce3){
         setOnlyOnce3(false);
@@ -110,7 +103,6 @@ const GTPGame = () => {
             getNextQuestion();
         }
     },[isGm, onlyOnce, getNextQuestion, answers]);
-
 
 
     //Add https to the picture link
@@ -207,7 +199,6 @@ const GTPGame = () => {
         }
     }
 
-
     return (
         <BaseContainer className="multiplayer container">
 
@@ -218,11 +209,11 @@ const GTPGame = () => {
                     </ul>
                 </nav>
                 <h1 className="multiplayer title">Guess The Price</h1>
-                <img className="multiplayer img" src={logo} alt="LOL"/>
+                <img className="multiplayer img" src={logo} alt="image"/>
             </div>
 
             <div className="gtp bonus-and-streak">
-
+                <h2>Round {currentRound}/ {rounds}</h2>
                 {isOnStreak && <h2 className="gtp streak">🔥🔥🔥You're on a Streak!🔥🔥🔥</h2>}
                 {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round is in the building!💹💰</h2>}
                 <Timer seconds={10}/>
@@ -280,8 +271,6 @@ const GTPGame = () => {
                     {randomizedAnswers[3]} CHF
                 </button>}
             </div>
-
-
 
         </BaseContainer>
     );
