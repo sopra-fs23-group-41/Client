@@ -41,27 +41,10 @@ const GTPGame = () => {
     const [randomizedAnswers, setRandomizedAnswers] = useState([0, 0, 0, 0]);
 
     console.log(falseAnswers)
-    if(parseInt(currentRound) % 3 === 0) {
-        setIsBonusRound(true);
-    }
+
     //Measuring time
     const [startTime, setStartTime] = useState(null);
-    if(onlyOnce2){
-        setOnlyOnce2(false);
-        setStartTime(Date.now())
-    }
 
-    //Make sure a question is answered only once
-    if(onlyOnce){
-        localStorage.setItem('hasAnswered', 'false')
-    }
-
-    if(onlyOnce3){
-        setOnlyOnce3(false);
-        if(parseInt(localStorage.getItem('streak')) >= 3){
-          setIsOnStreak(true);
-        }
-    }
     //Load the next question if the player is the GM
     const startNextRound = useCallback(async () => {
         try {
@@ -104,6 +87,32 @@ const GTPGame = () => {
         }
     },[isGm, onlyOnce, getNextQuestion, answers]);
 
+
+    useEffect(() => {
+        localStorage.setItem('hasAnswered', 'false')
+    }, [])
+
+    useEffect(() => {
+        if (parseInt(currentRound) % 3 === 0) {
+            setIsBonusRound(true);
+        }
+    }, [currentRound])
+
+    useEffect(() => {
+        if (onlyOnce2) {
+            setOnlyOnce2(false);
+            setStartTime(Date.now())
+        }
+    }, [onlyOnce2])
+
+    useEffect(() => {
+        if (onlyOnce3) {
+            setOnlyOnce3(false);
+            if (parseInt(localStorage.getItem('streak')) >= 3) {
+                setIsOnStreak(true);
+            }
+        }
+    }, [onlyOnce3])
 
     //Add https to the picture link
     const pictureUrl = "https://"+picture[0]
@@ -209,17 +218,17 @@ const GTPGame = () => {
                     </ul>
                 </nav>
                 <h1 className="multiplayer title">Guess The Price</h1>
-                <img className="multiplayer img" src={logo} alt="image"/>
+                <img className="multiplayer img" src={logo} alt="broken"/>
             </div>
 
             <div className="gtp bonus-and-streak">
                 <h2>Round {currentRound}/ {rounds}</h2>
                 {isOnStreak && <h2 className="gtp streak">🔥🔥🔥You're on a Streak!🔥🔥🔥</h2>}
-                {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round is in the building!💹💰</h2>}
+                {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round!💹💰</h2>}
                 <Timer seconds={10}/>
             </div>
 
-            <img className="gtp item-pic" src={pictureUrl} alt="LOL"/>
+            <img className="gtp item-pic" src={pictureUrl} alt="broken"/>
 
             <div className="gtp answer-container">
                 {clicked && (randomizedAnswers[0] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}

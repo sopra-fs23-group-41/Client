@@ -17,6 +17,7 @@ const Lobby = () => {
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
     localStorage.setItem('streak', '0')
+    localStorage.setItem('currentRound', '1');
 
     const [rounds, setRounds] = useState(null);
     const [pin, setPin] = useState(null);
@@ -28,7 +29,6 @@ const Lobby = () => {
         api.post('lobbies/'+gameId+'/begin')
     }
 
-    localStorage.setItem('currentRound', '1');
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -37,6 +37,7 @@ const Lobby = () => {
                     const response = await api.get('/lobbies/'+gameId);
                     setGameMode(response.data.gameMode);
                     setRounds(response.data.rounds);
+                    localStorage.setItem('rounds', response.data.rounds)
                     setCategory(response.data.category);
                     setPin(response.data.gamePIN);
                     setPlayers(response.data.players);
