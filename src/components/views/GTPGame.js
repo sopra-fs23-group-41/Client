@@ -209,7 +209,7 @@ const GTPGame = () => {
                     </ul>
                 </nav>
                 <h1 className="multiplayer title">Guess The Price</h1>
-                <img className="multiplayer img" src={logo} alt="image"/>
+                <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
 
             <div className="gtp bonus-and-streak">

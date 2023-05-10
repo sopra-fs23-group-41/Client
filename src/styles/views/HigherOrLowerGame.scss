@@ -66,4 +66,13 @@
     font-family: "JetBrains Mono";
   }
 
+  &.game-status-container {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 24px;
+  }
+
 }
