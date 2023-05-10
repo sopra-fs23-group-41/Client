@@ -10,25 +10,24 @@ import logo from '../pictures/Logo.jpg';
 import { Link } from 'react-router-dom';
 
 const Player = ({user}) => (
-    
     <div className={`container ${user.status}`}>
-        <div className="username">{user.username}</div>
-        <div>{user.numOfGameWon}</div>
+        <Link to={"/profilepage/" + user.id}>
+            <div className='innerContainer'>
+                <div className="username">{user.username}</div>
+                <div>{user.numOfGameWon}</div>
+            </div>
+        </Link>
     </div>
-
-  );
+);
 
 Player.propTypes = {
     user: PropTypes.object
 };
 
-
-
-
 const AllTimeLeaderBoard = () => {
     const history = useHistory();
     const [users, setUsers] = useState(null);
-    console.log(users)
+
     const logout = async () => {
         try {
             await api.get('/users/'+localStorage.getItem('userId')+'/logout');
@@ -62,7 +61,7 @@ const AllTimeLeaderBoard = () => {
           <div className="leaderboard">
           <h1>LeaderBoard</h1>
             {users.map(user => (
-              <Player user={user} key={user.id}/>
+              <Player user={user} key={user.id} />
             ))}
           </div>
         </div>

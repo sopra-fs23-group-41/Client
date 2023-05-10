@@ -6,8 +6,6 @@
   .container {
     width: 70%;
     font-size: 1em;
-    display: flex;
-    justify-content: space-between;
     margin: 10px auto;
     padding: 10px 20px;
     border-radius: 10px;
@@ -40,13 +38,14 @@
       content: "3";
     }
 
-
-
     &:hover {
       transform: scale(1.1);
       transition: .5s;
     }
 
-
+    & .innerContainer {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
