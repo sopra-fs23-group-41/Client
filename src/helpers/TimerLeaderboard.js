@@ -25,6 +25,10 @@ const TimerLeaderboard = ({seconds}) => {
                 clearInterval(timerId.current)
                 history.push('higher-or-lower-game')
             }
+            else if (countdown <= 0 && localStorage.getItem('gameMode') === 'MostExpensiveItem'){
+                clearInterval(timerId.current)
+                history.push('most-expensive-item')
+            }
         }
         doCountdown();
     })

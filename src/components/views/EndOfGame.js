@@ -40,7 +40,6 @@ const EndOfGame = () => {
     const endGame = async () => {
         history.push('landing')
         await api.post('lobbies/'+gameId+'/end')
-        await api.get('lobbies/'+gameId+'/end')
     }
     useEffect(() => {
         const fetchPlayers = async () => {
@@ -86,7 +85,7 @@ const EndOfGame = () => {
             {winners.length > 0 && (
                 <div className="end-of-game leaderboard">
                     <h2 className="end-of-game subtitle">Winners:</h2>
-                    {winners.map((winner, index) => (
+                    {winners.map((winner) => (
                         <div key={winner.playerName} className="end-of-game winner">
                             <h1 className="end-of-game crown">👑</h1>
                             <h1>{winner.playerName}</h1>

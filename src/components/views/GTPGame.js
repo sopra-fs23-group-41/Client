@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
-import {api} from 'helpers/api';
-//import {useHistory} from 'react-router-dom';
+import {api, handleError} from 'helpers/api';
+import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/MultiPlayer.scss";
 import "styles/views/GTPGame.scss";
@@ -13,8 +13,10 @@ import Answer from "../../models/Answer";
 
 
 const GTPGame = () => {
+
+    const history = new useHistory();
+
     const gameId = localStorage.getItem('gameId');
-    const isGm = localStorage.getItem('isGm');
     const playerId = localStorage.getItem('playerId')
     const currentRound = localStorage.getItem('currentRound')
     const rounds = localStorage.getItem('rounds')
@@ -46,7 +48,7 @@ const GTPGame = () => {
     const [startTime, setStartTime] = useState(null);
 
     //Load the next question if the player is the GM
-    const startNextRound = useCallback(async () => {
+    /*const startNextRound = useCallback(async () => {
         try {
             const request = await api.get('/lobbies/' + gameId + '/nextRound')
             console.log(request)
@@ -58,7 +60,7 @@ const GTPGame = () => {
             console.log('Something went wrong')
         }
     }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
-
+    */
 
     //Load the next question if the player is not the GM
     const getNextQuestion = useCallback(async () => {
@@ -74,19 +76,20 @@ const GTPGame = () => {
     }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
 
 
-    useEffect(() => {
+    /*useEffect(() => {
         if(isGm === 'true' && onlyOnce) {
             setOnlyOnce(false);
             startNextRound();
         }
     },[isGm, onlyOnce, startNextRound, answers]);
+    */
 
     useEffect(() => {
-        if(isGm === 'false' && onlyOnce) {
+        if(onlyOnce) {
             setOnlyOnce(false);
             getNextQuestion();
         }
-    },[isGm, onlyOnce, getNextQuestion, answers]);
+    },[onlyOnce, getNextQuestion, answers]);
 
 
     useEffect(() => {
@@ -117,7 +120,6 @@ const GTPGame = () => {
 
     //Add https to the picture link
     const pictureUrl = "https://"+picture[0]
-    console.log(pictureUrl)
 
 
     //Randomize the answers regarding their position on the screen
@@ -210,6 +212,44 @@ const GTPGame = () => {
         }
     }
 
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        const interval = setInterval(() => {
+            async function hasEveryoneAnswered(gameId) {
+                try {
+
+                    // To check if the nextRound has been initialized
+                    const allAnsweredCheck = await api.get('/lobbies/'+gameId+'/allAnswered');
+                    const canBegin = allAnsweredCheck.data;
+                    console.log(canBegin)
+                    let currRound = parseInt(localStorage.getItem('currentRound'));
+                    if (canBegin === true) {
+                        if (currRound >= rounds) {
+                            history.push('endofgame');
+                        }
+                        else{
+
+                            setTimeout(() => {
+                                currRound = currRound + 1;
+                                currRound = currRound.toString();
+                                console.log(currRound)
+                                localStorage.setItem('currentRound', currRound);
+                                history.push('leaderboard');
+                            }, 1400);
+                        }
+                    }
+
+                } catch (error) {
+                    alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
+                }
+            }
+            hasEveryoneAnswered(gameId);
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [gameId, currentRound, rounds, history]);
+
+
     return (
         <BaseContainer className="multiplayer container">
 
@@ -230,7 +270,7 @@ const GTPGame = () => {
                 <Timer seconds={10}/>
             </div>
 
-            <img className="gtp item-pic" src={picture} alt="broken"/>
+            <img className="gtp item-pic" src={pictureUrl} alt="broken"/>
 
             <div className="gtp answer-container">
                 {clicked && (randomizedAnswers[0] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}

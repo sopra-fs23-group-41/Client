@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 //import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
@@ -27,9 +27,28 @@ function playerSort (players) {
 
 const LeaderBoard = () => {
     const [players, setPlayers] = useState([]);
+    const [onlyOnce, setOnlyOnce] = useState(true);
     const gameId = localStorage.getItem('gameId');
     const rounds = localStorage.getItem('rounds');
     const currentRound = localStorage.getItem('currentRound')
+    const isGm = localStorage.getItem('isGm')
+
+
+    const startNextRound = useCallback(async () => {
+        try {
+            await api.get('/lobbies/' + gameId + '/nextRound')
+            console.log("next round")
+        } catch (error) {
+            console.log('Something went wrong')
+        }
+    }, [gameId]);
+
+    useEffect(() => {
+        if(isGm === 'true' && onlyOnce) {
+            setOnlyOnce(false);
+            startNextRound();
+        }
+    },[isGm, onlyOnce, startNextRound]);
 
     useEffect(() => {
         const fetchPlayers = async () => {
@@ -73,7 +92,7 @@ const LeaderBoard = () => {
             </div>
 
             <div className="gtp rounds" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <h2>Round {currentRound-1}/ {rounds}</h2>
+                <h2>Round {currentRound}/ {rounds}</h2>
             </div>
             <h1 className="next-question-title">Next question starts in:</h1>
             <div className="next-question-timer">
