@@ -66,7 +66,6 @@ const HigherOrLowerGame = () => {
         setOnlyOnce2(false);
         setStartTime(Date.now())
     }
-    console.log(users)
 
     const getNextQuestion = useCallback(async () => {
         try {
