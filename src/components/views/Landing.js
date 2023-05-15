@@ -47,7 +47,7 @@ const Landing = () => {
                         <li><a href="endofgame">EndOfGame</a></li>
                         <li><a href="allusers">Find User</a></li>
                         <li><a href={`profilepage/${userId}`}>View Profile</a></li>
-                        <li><a href="leaderboard">Leaderboard</a></li>
+                        <li><a href="most-expensive-item-game">MostExpensive</a></li>
                     </ul>
                 </nav>
                 <div className="landing button-container">

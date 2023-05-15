@@ -20,6 +20,7 @@ import ItemList from "../../views/ItemList";
 import HigherOrLowerGame from "../../views/HigherOrLowerGame";
 import Lobby from "../../views/Lobby";
 import GameLoadingBuffer from "../../views/GameLoadingBuffer";
+import MostExpensiveItem from "../../views/MostExpensiveItem";
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -97,6 +98,11 @@ const AppRouter = () => {
         <Route exact path="/higher-or-lower-game">
           <GameGuard>
             <HigherOrLowerGame/>
+          </GameGuard>
+        </Route>
+        <Route exact path="/most-expensive-item-game">
+          <GameGuard>
+            <MostExpensiveItem/>
           </GameGuard>
         </Route>
         <Route exact path="/lobby">

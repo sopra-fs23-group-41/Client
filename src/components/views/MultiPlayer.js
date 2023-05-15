@@ -27,12 +27,7 @@ const MultiPlayer = () => {
 
     const history = useHistory();
 
-    // define a state variable (using the state hook).
-    // if this variable changes, the component will re-render, but the variable will
-    // keep its value throughout render cycles.
-    // a component can have as many state variables as you like.
-    // more information can be found under https://reactjs.org/docs/hooks-state.html
-    const [users, setUsers] = useState(null);
+
     const [onlyOnce, setOnlyOnce] = useState(true);
 
     console.log(users)
@@ -91,43 +86,6 @@ const MultiPlayer = () => {
 
     }
 
-    // the effect hook can be used to react to change in your component.
-    // in this case, the effect hook is only run once, the first time the component is mounted
-    // this can be achieved by leaving the second argument an empty array.
-    // for more information on the effect hook, please see https://reactjs.org/docs/hooks-effect.html
-    useEffect(() => {
-        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        async function fetchData() {
-            try {
-                const response = await api.get('/users');
-
-                // delays continuous execution of an async operation for 1 second.
-                // This is just a fake async call, so that the spinner can be displayed
-                // feel free to remove it :)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-
-                // Get the returned users and update the state.
-                setUsers(response.data);
-
-                // This is just some data for you to see what is available.
-                // Feel free to remove it.
-                console.log('request to:', response.request.responseURL);
-                console.log('status code:', response.status);
-                console.log('status text:', response.statusText);
-                console.log('requested data:', response.data);
-
-                // See here to get more data.
-                console.log(response);
-            } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
-            }
-        }
-
-        fetchData();
-    }, []);
-
 
     return (
         <BaseContainer className="multiplayer container">
@@ -141,46 +99,108 @@ const MultiPlayer = () => {
                 <h1 className="multiplayer title">Multiplayer</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
+
             <div className="multiplayer upper-part">
                 <div className="multiplayer settings">
                     <h2>Choose Settings</h2>
-                    <p>Category</p>
-                    <select className="multiplayer select" id="category">
-                        <option value="SNEAKERS">Sneakers</option>
-                        <option value="JEANS">Jeans</option>
-                        <option value="ACCESSORIES">Accessories</option>
-                        <option value="JACKETS">Jackets</option>
-                        <option value="HOODIES">Hoodies</option>
-                        <option value="JEWELRY">Jewelry</option>
-                        <option value="T_SHIRTS">T-Shirts</option>
 
-                    </select>
-                    <p>Rounds</p>
-                    <select className="multiplayer select" id="rounds">
-                        <option value="4">4</option>
-                        <option value="6">6</option>
-                        <option value="8">8</option>
-                        <option value="10">10</option>
-                        <option value="12">12</option>
-                        <option value="16">16</option>
-                        <option value="20">20</option>
-                        <option value="24">24</option>
-                        <option value="28">28</option>
-                        <option value="30">30</option>
-                    </select>
-                    <p>Game Mode</p>
-                    <select className="multiplayer select" id="game-mode">
-                        <option value="GuessThePrice">Guess the Price</option>
-                        <option value="HighOrLow">Higher or Lower</option>
-                    </select>
-                    <p>Number of Players</p>
-                    <select className="multiplayer select" id="players">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">4</option>
-                    </select>
+                    <div className="list-choice-container">
+                        <div className="list-choice">
+                            <div className="list-choice-title">Category</div>
+                            <div className="list-choice-objects">
+                                <label>
+                                    <input value="SNEAKERS" type="radio" name="category" id="category"/> <span>Sneakers</span>
+                                </label>
+                                <label>
+                                    <input value="JEANS" type="radio" name="category" id="category"/> <span>Jeans</span>
+                                </label>
+                                <label>
+                                    <input value="ACCESSORIES" type="radio" name="category" id="category"/> <span>Accessories</span>
+                                </label>
+                                <label>
+                                    <input value="JACKETS" type="radio" name="category" id="category"/> <span>Jackets</span>
+                                </label>
+                                <label>
+                                    <input value="HOODIES" type="radio" name="category" id="category"/> <span>Hoodies</span>
+                                </label>
+                                <label>
+                                    <input value="JEWELRY" type="radio" name="category" id="category"/> <span>Jewelry</span>
+                                </label>
+                                <label>
+                                    <input value="T_SHIRTS" type="radio" name="category" id="category"/> <span>T-Shirts</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div className="list-choice">
+                            <div className="list-choice-title">Rounds</div>
+                            <div className="list-choice-objects">
+                                <label>
+                                    <input value="4" type="radio" name="rounds" id="rounds"/> <span>4</span>
+                                </label>
+                                <label>
+                                    <input value="8" type="radio" name="rounds" id="rounds"/> <span>8</span>
+                                </label>
+                                <label>
+                                    <input value="12" type="radio" name="rounds" id="rounds"/> <span>12</span>
+                                </label>
+                                <label>
+                                    <input value="16" type="radio" name="rounds" id="rounds"/> <span>16</span>
+                                </label>
+                                <label>
+                                    <input value="20" type="radio" name="rounds" id="rounds"/> <span>20</span>
+                                </label>
+                                <label>
+                                    <input value="24" type="radio" name="rounds" id="rounds"/> <span>24</span>
+                                </label>
+                                <label>
+                                    <input value="28" type="radio" name="rounds" id="rounds"/> <span>28</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div className="list-choice">
+                            <div className="list-choice-title">Game Mode</div>
+                            <div className="list-choice-objects">
+                                <label>
+                                    <input value="GuessThePrice" type="radio" name="game-mode" id="game-mode"/> <span>Guess the Price</span>
+                                </label>
+                                <label>
+                                    <input value="HighOrLow" type="radio" name="game-mode" id="game-mode"/> <span>Higher or Lower</span>
+                                </label>
+                                <label>
+                                    <input value="MostExpensiveItem" type="radio" name="game-mode" id="game-mode"/> <span>Most Expensive item</span>
+                                </label>
+                                <label>
+                                    <input value="MashUp" type="radio" name="game-mode" id="game-mode"/> <span>Mash Up Da Place</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="list-choice">
+                            <div className="list-choice-title">Players</div>
+                            <div className="list-choice-objects">
+                                <label>
+                                    <input value="1" type="radio" name="players" id="players"/> <span>1</span>
+                                </label>
+                                <label>
+                                    <input value="2" type="radio" name="players" id="players"/> <span>2</span>
+                                </label>
+                                <label>
+                                    <input value="3" type="radio" name="players" id="players"/> <span>3</span>
+                                </label>
+                                <label>
+                                    <input value="4" type="radio" name="players" id="players"/> <span>4</span>
+                                </label>
+                                <label>
+                                    <input value="5" type="radio" name="players" id="players"/> <span>5</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

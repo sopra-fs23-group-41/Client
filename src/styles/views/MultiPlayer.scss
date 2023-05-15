@@ -94,7 +94,7 @@
 
   &.button{
     margin-top: 100px;
-    margin-right: 30px;
+    margin-right: 500px;
     padding: 9px 25px;
     background-color: #ff97ee;
     border: none;
@@ -114,11 +114,13 @@
   }
 
   &.select{
-    color: #ffeb17;
-    background: black;
-    width: 100px;
-    border-radius: 5px;
-    box-shadow: 0 0.05em 0.05em #000000;
+    background-color: white;
+    border: thin solid blue;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
   }
   &.home-button{
     background-color: floralwhite;
@@ -213,4 +215,91 @@ li, a, img{
     transform: scale(1.5);
     color: antiquewhite;
   }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+body{
+  font-family: 'Raleway', sans-serif;
+}
+
+.list-choice-container{
+  margin-left: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list-choice{
+  width:250px;
+  margin:1em auto;
+  position: relative;
+  cursor: pointer;
+}
+.list-choice input[type="radio"]{
+  position:absolute;
+  left:-9999px;
+}
+
+.list-choice-title {
+  width: 100%;
+  display: block;
+  background: #D8D8D8;
+  text-align: center;
+  padding: 0.55em 1em;
+  box-sizing: border-box;
+  color: #FFF;
+  text-shadow: 0 1px 0 #CACACA;
+  border-radius: 0.2em;
+}
+.list-choice:hover .list-choice-title {
+  border-radius:0.2em 0.2em 0 0;
+}
+.list-choice-objects label:nth-last-of-type(1) span{
+  border-radius:0 0 0.2em 0.2em;
+}
+.list-choice input[type="radio"] + span {
+  color: white;
+  background: #0088A9B2;
+  padding: 0.55em 1em;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+}
+.list-choice-objects {
+  position: absolute;
+  top: 0;
+  padding-top: 2.1em;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  max-height: 0;
+  transition: all 250ms ease;
+}
+.list-choice:hover .list-choice-objects  input[type="radio"] + span {
+  position: relative;
+  top: 0;
+  transition: all 250ms ease-in-out;
+}
+.list-choice:hover input[type="radio"] + span:hover {
+  background:#BBB;
+}
+.list-choice:hover input[type="radio"]:checked + span:hover {
+  background: #e50f61;
+}
+.list-choice input[type="radio"]:checked + span {
+  background: #ff97ee;
+  position: absolute;
+  top: 0;
+  border-radius: 0.2em;
+}
+.list-choice:hover input[type="radio"]:checked + span {
+  border-radius: 0;
+}
+.list-choice:hover .list-choice-objects label:nth-last-of-type(1) input[type="radio"]:checked + span{
+  border-radius:0 0 0.2em 0.2em;
+}
+
+.list-choice:hover .list-choice-objects {
+  max-height: 540px;
 }
