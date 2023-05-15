@@ -30,7 +30,6 @@ const MultiPlayer = () => {
 
     const [onlyOnce, setOnlyOnce] = useState(true);
 
-    console.log(users)
 
 
     useEffect(() =>{
