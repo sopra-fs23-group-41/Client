@@ -4,7 +4,7 @@
   }
 
   &.winner{
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -32,7 +32,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     transition: .5s;
     color: floralwhite;
   }

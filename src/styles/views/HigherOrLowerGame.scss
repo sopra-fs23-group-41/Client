@@ -25,7 +25,7 @@
     border-radius: 5px;
     height: 150px;
     width: 250px;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     font-size: 30px;
     color: #ffffff;
     transition: .35s;
@@ -36,7 +36,7 @@
     border-radius: 5px;
     height: 150px;
     width: 250px;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     font-size: 30px;
     color: #ffffff;
     transition: .35s;
@@ -57,13 +57,13 @@
 
   &.left-price{
     color: floralwhite;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     margin-left: 405px;
   }
   &.right-price{
     margin-right: 390px;
     color: floralwhite;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
   }
 
   &.game-status-container {

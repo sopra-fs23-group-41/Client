@@ -47,7 +47,7 @@
   &.logo{
     align-items: center;
     font-size: 20px;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
   }
 
   &.img{
@@ -61,7 +61,7 @@
   }
 
   &.title{
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     text-align: center;
     color: floralwhite;
     font-size: 35px;
@@ -70,7 +70,7 @@
 
   &.upper-part{
     color: floralwhite;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     font-size: 20px;
     display: flex;
     justify-content: space-between;
@@ -79,7 +79,7 @@
 
   &.lower-part{
     color: floralwhite;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     font-size: 20px;
     display: flex;
     justify-content: space-between;
@@ -89,7 +89,7 @@
   &.pin{
     margin-right: 70px;
     color: floralwhite;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
   }
 
   &.button{
@@ -100,7 +100,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     transition: .5s;
   }
 
@@ -125,7 +125,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     transition: .3s;
     padding: 9px 36px;
   }
@@ -164,7 +164,7 @@
 }
 
 li, a, img{
-  font-family: "JetBrains Mono";
+  font-family: "JetBrains Mono", serif;
   color: antiquewhite;
   text-decoration: none;
 }
@@ -204,7 +204,7 @@ li, a, img{
     border-radius: 5px;
     cursor: pointer;
     color: #000000;
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     transition: .5s;
   }
 

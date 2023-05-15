@@ -13,13 +13,8 @@ import TimerLeaderboard from "../../helpers/TimerLeaderboard";
 
 const GameLoadingBuffer = () => {
 
-    const isGm = localStorage.getItem('isGm')
-    let time;
-    if(isGm === 'true'){
-        time = 5;
-    }else{
-        time = 5;
-    }
+    //const isGm = localStorage.getItem('isGm')
+    let time = 5;
 
     return (
         <BaseContainer className="multiplayer container">

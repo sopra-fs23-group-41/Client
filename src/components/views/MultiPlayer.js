@@ -33,9 +33,30 @@ const MultiPlayer = () => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [users, setUsers] = useState(null);
+    const [onlyOnce, setOnlyOnce] = useState(true);
+
     console.log(users)
 
 
+    useEffect(() =>{
+        if(onlyOnce){
+            initializeLobby();
+            setOnlyOnce(false);
+        }
+    }, [onlyOnce])
+
+    const initializeLobby = async () => {
+        game.rounds = 0;
+        game.numOfPlayer = 1;
+        game.category = "SNEAKERS";
+        game.gameMode = "GuessThePrice";
+        game.gameType = 'MULTI';
+        const requestBody = JSON.stringify(game)
+        const request = await api.post('lobbies', requestBody)
+        localStorage.setItem('gameId', request.data.gameId)
+        localStorage.setItem('pincode', request.data.gamePIN)
+        console.log("XD")
+    }
     const createLobby = async () =>{
 
         game.rounds = document.getElementById("rounds").value
@@ -45,13 +66,14 @@ const MultiPlayer = () => {
         game.gameType = 'MULTI'
 
         const requestBody = JSON.stringify(game)
-        const request = await api.post('lobbies', requestBody)
-        localStorage.setItem('gameId', request.data.gameId)
-        localStorage.setItem('pincode', request.data.gamePIN)
+        //const request = await api.post('lobbies', requestBody)
+
+        const gameId = localStorage.getItem('gameId')
         localStorage.setItem('isGm', 'true')
-        const update = await api.put('/lobbies/'+request.data.gameId, requestBody)
+
+        const update = await api.put('/lobbies/'+gameId, requestBody)
         console.log(update)
-        const pincode = request.data.gamePIN;
+        const pincode = localStorage.getItem('pincode')
         const userId = localStorage.getItem('userId');
 
 
@@ -124,16 +146,26 @@ const MultiPlayer = () => {
                     <h2>Choose Settings</h2>
                     <p>Category</p>
                     <select className="multiplayer select" id="category">
-                        <option value="SHOES">Shoes</option>
+                        <option value="SNEAKERS">Sneakers</option>
                         <option value="JEANS">Jeans</option>
                         <option value="ACCESSORIES">Accessories</option>
+                        <option value="JACKETS">Jackets</option>
+                        <option value="HOODIES">Hoodies</option>
+                        <option value="JEWELRY">Jewelry</option>
+                        <option value="T_SHIRTS">T-Shirts</option>
+
                     </select>
                     <p>Rounds</p>
                     <select className="multiplayer select" id="rounds">
+                        <option value="4">4</option>
                         <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
                         <option value="12">12</option>
-                        <option value="18">18</option>
+                        <option value="16">16</option>
+                        <option value="20">20</option>
                         <option value="24">24</option>
+                        <option value="28">28</option>
                         <option value="30">30</option>
                     </select>
                     <p>Game Mode</p>
@@ -147,6 +179,7 @@ const MultiPlayer = () => {
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
+                        <option value="5">4</option>
                     </select>
                 </div>
             </div>

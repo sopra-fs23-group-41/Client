@@ -49,7 +49,8 @@ const GTPGame = () => {
     const startNextRound = useCallback(async () => {
         try {
             const request = await api.get('/lobbies/' + gameId + '/nextRound')
-            setPicture(request.data.picUrls);
+            console.log(request)
+            setPicture("https://" + request.data.picUrls);
             setTrueAnswer(request.data.trueAnswer);
             setFalseAnswers(request.data.falseAnswers);
             setAnswers([request.data.trueAnswer, request.data.falseAnswers[0], request.data.falseAnswers[1], request.data.falseAnswers[2]])
@@ -116,6 +117,7 @@ const GTPGame = () => {
 
     //Add https to the picture link
     const pictureUrl = "https://"+picture[0]
+    console.log(pictureUrl)
 
 
     //Randomize the answers regarding their position on the screen
@@ -228,7 +230,7 @@ const GTPGame = () => {
                 <Timer seconds={10}/>
             </div>
 
-            <img className="gtp item-pic" src={pictureUrl} alt="broken"/>
+            <img className="gtp item-pic" src={picture} alt="broken"/>
 
             <div className="gtp answer-container">
                 {clicked && (randomizedAnswers[0] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}
