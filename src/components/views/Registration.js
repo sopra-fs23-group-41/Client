@@ -3,46 +3,52 @@ import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Login.scss';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import 'styles/views/Registration.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
-const FormField = props => {
+const FormField = (props) => {
     return (
-      <div className="login field">
-        <label className="login label">
-          {props.label}
-        </label>
-        <input
-          className="login input"
-          placeholder="enter here.."
-          value={props.value}
-          onChange={e => props.onChange(e.target.value)}
-        />
-      </div>
+        <div className="login field">
+            <label className="login label">{props.label}</label>
+            <div className="login input-container">
+                <input
+                    className="login input"
+                    value={props.value}
+                    onChange={(e) => props.onChange(e.target.value)}
+                    type={props.type}
+                />
+            </div>
+        </div>
     );
-  };
-  
-  FormField.propTypes = {
+};
+
+FormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func
-  };
+    onChange: PropTypes.func,
+    type: PropTypes.string,
+    showPassword: PropTypes.bool,
+    onToggle: PropTypes.func,
+};
 
-const Registration = props => {
+const Registration = () => {
     const history = useHistory();
     const [name, setName] = useState(null);
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
-  
+    const [showPassword, setShowPassword] = useState(false);
+
+
     const doRegister = async () => {
         try {
             const requestBody = JSON.stringify({username, name, password});
             const response = await api.post('/users', requestBody);
-    
+
             // Get the returned user and update a new object.
             const user = new User(response.data);
-    
+
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
             localStorage.setItem('userId', user.id);
@@ -58,28 +64,46 @@ const Registration = props => {
         history.push(`/login`);
     };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     return (
         <BaseContainer>
-            <div className="login container">
-                <div className="login form">
+            <div className="registration container">
+                <div className="registration form">
                     <FormField
-                        label="Enter your username here"
+                        label="Username:"
                         value={username}
                         onChange={un => setUsername(un)}
                     />
 
                     <FormField
-                        label="Enter your name here"
+                        label="Name:"
                         value={name}
                         onChange={n => setName(n)}
                     />
 
                     <FormField
-                        label="Enter your password here"
+                        className="registration formfield"
+                        label="Password:"
                         value={password}
-                        onChange={p => setPassword(p)}
+                        onChange={(p) => setPassword(p)}
+                        type={showPassword ? 'text' : 'password'}
+                        showPassword={showPassword}
+                        onToggle={togglePasswordVisibility}
                     />
-                    <div className="login button-container">
+
+                    <div className="registration button-container">
+                        <Button
+                            className="registration password-toggle"
+                            onClick={togglePasswordVisibility}
+                        >
+                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </Button>
+                    </div>
+
+                    <div className="registration button-container">
                         <Button
                             disabled={!username || !password || !name}
                             width="100%"
@@ -88,13 +112,13 @@ const Registration = props => {
                             Register
                         </Button>
                     </div>
-                    <div className="login button-container">
+                    <div className="registration button-container">
                         <Button
 
                             width="100%"
                             onClick={() => goToLogin()}
                         >
-                            Go back to Login
+                            Back to Login
                         </Button>
                     </div>
                 </div>

@@ -1,17 +1,40 @@
 @import 'src/styles/_theme';
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Staatliches&family=Varela+Round&display=swap');
 
 .header {
   &.container {
     @include center;
+    zoom: 0.7;
   }
 
   &.title {
+    position: relative;
     font-weight: bold;
     font-size: 80px;
-    font-family: "JetBrains Mono", serif;
-    color: #8ff361;
+    font-family: "Staatliches", sans-serif;
+    color: #ffffff;
     text-align: center;
-    text-shadow: 0 0 2px black;
+    //text-shadow: 0 0 2px black;
+
+    .text {
+      position: relative;
+      z-index: 1;
+      text-shadow: 5px 5px 0 #000000;
+      letter-spacing: 4px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #f4a460;
+      width: 105%;
+      height: 110%;
+      z-index: -1;
+      border-radius: 10px;
+    }
   }
 
   &.bg {
@@ -19,5 +42,4 @@
     filter: blur(40px);
     -webkit-filter: blur(40px);
   }
-
 }
