@@ -48,10 +48,10 @@ const Lobby = () => {
                         localStorage.setItem('gameMode', 'GuessThePrice')
                     }else if(response.data.gameMode === 'HighOrLow'){
                         localStorage.setItem('gameMode', 'HighOrLow')
-                    }else if(response.data.gameMode === 'MostExpensiveItem'){
-                        localStorage.setItem('gameMode', 'MostExpensiveItem')
+                    }else if(response.data.gameMode === 'MostExpensive'){
+                        localStorage.setItem('gameMode', 'MostExpensive')
                     }else{
-                        localStorage.setItem('gameMode', 'MashUp')
+                        localStorage.setItem('gameMode', 'Mix')
                     }
 
                     // To check the beginning of the game

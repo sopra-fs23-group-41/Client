@@ -7,6 +7,7 @@ const TimerLeaderboard = ({seconds}) => {
     const history = useHistory();
     const [countdown, setCountdown] = useState(seconds);
     const timerId = useRef();
+    const currentRound = parseInt(localStorage.getItem('currentRound'));
 
     useEffect(() => {
         timerId.current = setInterval(() => {
@@ -28,6 +29,14 @@ const TimerLeaderboard = ({seconds}) => {
             else if (countdown <= 0 && localStorage.getItem('gameMode') === 'MostExpensiveItem'){
                 clearInterval(timerId.current)
                 history.push('most-expensive-item')
+            }else if(countdown <= 0 && localStorage.getItem('gameMode') === 'Mix'){
+                if(currentRound % 3 === 1){
+                    history.push('gtpgame')
+                }else if(currentRound % 3 === 2){
+                    history.push('most-expensive-item')
+                }else{
+                    history.push('higher-or-lower-game')
+                }
             }
         }
         doCountdown();

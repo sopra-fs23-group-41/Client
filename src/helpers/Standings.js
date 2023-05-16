@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "styles/ui/Standings.scss";
 import "styles/views/Avatars.scss";
 
-import Avatar from '../components/Avatars/Avatar4.jpg'
+import Avatar from '../components/Avatars/Avatar2.jpg'
 
 const Player = ({user}) => (
     <div className="standings container">

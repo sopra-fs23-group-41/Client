@@ -1,0 +1,29 @@
+.most-expensive{
+  &.top-pics{
+    margin-top: 20px;
+    margin-left: 160px;
+    display: flex;
+    align-items: center;
+
+  }
+  &.bot-pics{
+    margin-left: 160px;
+    display: flex;
+    align-items: center;
+  }
+
+  &.item-pic{
+    margin-left: 2px;
+    margin-bottom: 2px;
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 5px;
+    transition: .33s;
+    box-shadow: black;
+  }
+
+  &.item-pic:hover{
+    transform: scale(1.2);
+
+  }
+}

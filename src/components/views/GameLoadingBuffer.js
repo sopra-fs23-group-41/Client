@@ -31,6 +31,7 @@ const GameLoadingBuffer = () => {
     const startNextRound = useCallback(async () => {
         try {
             await api.get('/lobbies/' + gameId + '/nextRound')
+            console.log("New round has been initialized")
         } catch (error) {
             console.log('Something went wrong')
         }
@@ -59,12 +60,12 @@ const GameLoadingBuffer = () => {
                             history.push('gtpgame')
                         }else if(localStorage.getItem('gameMode') === 'HighOrLow'){
                             history.push('higher-or-lower-game')
-                        }else if(localStorage.getItem('gameMode') === 'MostExpensiveItem'){
+                        }else if(localStorage.getItem('gameMode') === 'MostExpensive'){
                             history.push('most-expensive-item')
                         }else{
-                            if(parseInt(currentRound) % 3 === 0){
+                            if(parseInt(currentRound) % 3 === 1){
                                 history.push('gtpgame')
-                            }else if(parseInt(currentRound) % 3 === 1){
+                            }else if(parseInt(currentRound) % 3 === 2){
                                 history.push('most-expensive-item')
                             }else{
                                 history.push('higher-or-lower-game')
