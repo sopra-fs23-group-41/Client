@@ -10,12 +10,14 @@ import logo from '../pictures/Logo.jpg';
 import { Link } from 'react-router-dom';
 
 const Player = ({user}) => (
+    <div className={`container`}>
     <Link to={"/profilepage/" + user.id}> 
     <div className={`userlist ${user.status}`}>
         <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile" className="profileImage"/>
         <div className="username">{user.username}</div>
     </div>
     </Link>
+    </div>
   );
 
 Player.propTypes = {
@@ -55,7 +57,8 @@ const AllUsers = () => {
 
     if (users) {
       content = (
-        <div className="container">
+        <div className="alluser">
+        <h1>All Users</h1>
 
             {users.map(user => (
               <Player user={user} key={user.id}/>
@@ -86,6 +89,7 @@ const AllUsers = () => {
                 </div>
             </div>
             {content}
+            
         </BaseContainer>
     );
 }
