@@ -58,9 +58,9 @@ const ChangePassword = () => {
     
 const saveChanges = async () => {
     console.log(JSON.stringify({password}));
-    if (password == "") {
+    if (password === "") {
         alert("Input the password");
-    } else if (password == passwordCheck && password != "") {
+    } else if (password === passwordCheck && password !== "") {
         try {
             const requestBody = JSON.stringify({password});
             await api.post("/users/" + localStorage.userId, requestBody);

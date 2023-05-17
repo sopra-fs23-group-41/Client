@@ -10,12 +10,12 @@ import {useParams} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import PropTypes from "prop-types";
 
-import Avatar_ONE from '../Avatars/Avatar_ONE.jpg';
+/*import Avatar_ONE from '../Avatars/Avatar_ONE.jpg';
 import Avatar_TWO from '../Avatars/Avatar_TWO.jpg';
 import Avatar_THREE from '../Avatars/Avatar_THREE.jpg';
 import Avatar_FOUR from '../Avatars/Avatar_FOUR.jpg';
 import Avatar_FIVE from '../Avatars/Avatar_FIVE.jpg';
-import Avatar_SIX from '../Avatars/Avatar_SIX.jpg';
+import Avatar_SIX from '../Avatars/Avatar_SIX.jpg';*/
 
 const FormField = props => {
     return (
@@ -28,7 +28,7 @@ const FormField = props => {
             name = "avatar"
             
             />
-            <img src={require(`../Avatars/Avatar_${props.value}.jpg`)}/>
+            <img src={require(`../Avatars/Avatar_${props.value}.jpg`)} alt="Broken Avatar" />
         </label>
       </div>
     );
@@ -62,7 +62,7 @@ const logout = async () => {
 }
 
 const saveChanges = async () => {
-    if (profilePicture == "") {
+    if (profilePicture === "") {
         alert("Choose the avatar.");
     } else {
         try {

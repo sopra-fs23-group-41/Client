@@ -14,7 +14,7 @@ import Answer from "../../models/Answer";
 
 const GTPGame = () => {
 
-    const history = new useHistory();
+    const history = useHistory();
 
     const gameId = localStorage.getItem('gameId');
     const playerId = localStorage.getItem('playerId')
