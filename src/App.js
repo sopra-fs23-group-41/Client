@@ -7,7 +7,7 @@ import AppRouter from "components/routing/routers/AppRouter";
  */
 const App = () => {
   return (
-    <div>
+    <div class="black">
       <AppRouter/>
     </div>
   );

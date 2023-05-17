@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 
 const FormField = props => {
     return (
-      <div className="flexedit">
+      <div className="flex">
         <label>
           {props.label}
         </label>
@@ -34,24 +34,18 @@ FormField.propTypes = {
     type: PropTypes.string
 };
 
-const ProfileEdit = () => {
+const ChangePassword = () => {
   const history = useHistory();
   const idParam = useParams().id;
   const [user, setUser] = useState(null);
-  const [username, setUsername] = useState(localStorage.getItem('username'));
-  const [birthDate, setBirthDate] = useState(localStorage.getItem('birthDate'));
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
 
-const cancel= () => {
-  history.push('/profilepage/'+idParam)
-}
+  const cancel= () => {
+    history.push('/profilepage/'+idParam)
+  }
 
-const changeAvatar= () => {
-  history.push('/change-avatar/'+idParam)
-}
-
-const logout = async () => {
+/*const logout = async () => {
   try {
     await api.get('/users/'+localStorage.getItem('userId')+'/logout');
     localStorage.clear();
@@ -60,20 +54,23 @@ const logout = async () => {
     alert(`Something went wrong during the logout: \n${handleError(error)}`);
   }
 }
-
-
+*/
     
 const saveChanges = async () => {
-    try {
-      const requestBody = JSON.stringify({username, birthDate});
-      await api.put("/users/" + localStorage.userId, requestBody);
-
-      localStorage.setItem("username", username);
-      localStorage.setItem("birthDate", birthDate);
-
-      history.push(`/profilepage/` + idParam);
-    } catch (error) {
-      alert(`Something went wrong during changing user data: \n${handleError(error)}`);
+    console.log(JSON.stringify({password}));
+    if (password == "") {
+        alert("Input the password");
+    } else if (password == passwordCheck && password != "") {
+        try {
+            const requestBody = JSON.stringify({password});
+            await api.post("/users/" + localStorage.userId, requestBody);
+            history.push(`/profilepage/` + idParam);
+          } catch (error) {
+            alert(`Something went wrong during changing user data: \n${handleError(error)}`);
+            
+          }
+    } else {
+        alert("Passwords are not same.");
     }
   };
 
@@ -106,43 +103,21 @@ const saveChanges = async () => {
     content = (
       <div className='profile'>
         <div className="container">
-          <h1>Edit Profile</h1>
-          <div className="grid">
-            <div className='changeAvatar'>
-              <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile1" className="profileImage"/>
-              <Button className="changebtn" onClick={() => changeAvatar()}>change</Button>
-            </div>
-            <div>
-              <FormField
-                label="New Username:"
-                value={username}
-                onChange={a => setUsername(a)}
-                type = "text"
-                placeholder = {user.username}
-              />
-              <FormField
-                label="New Birthdate:"
-                value={birthDate}
-                onChange={b => setBirthDate(b)}
-                type = "date"
-                placeholder={user.birthDate}
-              />
-                        <FormField
+          <h1>Change Password</h1>
+          <FormField
             label="New Password:"
             value={password}
             onChange={p => setPassword(p)}
             type = "password"
-            placeholder="Leave empty if you don't want to change"
+            placeholder="Leave empty if you don't want to change the password"
           />
           <FormField
             label="Repeat New Password:"
             value={passwordCheck}
             onChange={pc => setPasswordCheck(pc)}
             type = "password"
-            placeholder="Leave empty if you don't want to change"
+            placeholder="Leave empty if you don't want to change the password"
           />
-            </div>
-          </div>
           <Button onClick={() => saveChanges()}>
             Save
           </Button>
@@ -162,21 +137,13 @@ const saveChanges = async () => {
           <ul className="nav__links">
             <li><a href="/allusers">Find User</a></li>
             <li><a href="/landing">Home</a></li>
-            <li><a href="/alltimeleaderboard">Leaderboard</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
           </ul>
         </nav>
-        <div className="landing button-container">
-          <button
-            className="button"
-            onClick={() => logout()}
-          >
-            Logout
-          </button>
-        </div>
       </div>
       {content}
     </BaseContainer>
   );
 }
 
-export default ProfileEdit;
+export default ChangePassword;

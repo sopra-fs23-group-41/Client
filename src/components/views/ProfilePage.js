@@ -6,8 +6,10 @@ import "styles/views/Landing.scss";
 import "styles/views/Profile.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
-import {useParams} from 'react-router-dom'
-import {Button} from 'components/ui/Button';;
+
+import {useParams} from 'react-router-dom';
+import {Button} from 'components/ui/Button';
+
 
 const ProfilePage = () => {
   const history = useHistory();
@@ -21,17 +23,17 @@ const ProfilePage = () => {
   const goList = () => {
       history.push('/allusers')
   }
-/*const logout = async () => {
-  try {
-    await api.get('/users/'+localStorage.getItem('userId')+'/logout');
-    localStorage.clear();
-    history.push('/login');
-  } catch (error) {
-    alert(`Something went wrong during the logout: \n${handleError(error)}`);
+  
+  const logout = async () => {
+    try {
+      await api.get('/users/'+localStorage.getItem('userId')+'/logout');
+      localStorage.clear();
+      history.push('/login');
+    } catch (error) {
+      alert(`Something went wrong during the logout: \n${handleError(error)}`);
+    }
   }
-}
-*/
-    
+
   useEffect(() => {
     async function fetchData(userId) {
       try {
@@ -45,44 +47,62 @@ const ProfilePage = () => {
   }, [userId]);
 
   let content = (<div></div>);
+  let button = (<div></div>);
 
   if (user) {
+    if (userId == localStorage.getItem('userId')) {
+      button = (
+        <div>
+          <Button onClick={() => editProfile()}>
+            Edit
+          </Button>
+          <Button onClick={() => goList()}>
+            List
+          </Button>
+        </div>
+      )
+    } else {
+      button = (
+        <div>
+          <Button onClick={() => goList()}>
+            List
+          </Button>
+        </div>
+      )
+    }
+
     content = (
       <div className="profile">
         <div className="container">
           <h1>Profile</h1>
-          <div className="flex">
-            <div>Username: </div>
-            <div>{user.username}</div>
+          <div className="grid">
+            <div>
+              <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile1" className="profileImage"/>
+            </div>
+            <div>
+              <div className="flex">
+                <div>Username: </div>
+                <div>{user.username}</div>
+              </div>
+              <div className="flex">
+                <div>Status: </div>
+                <div>{user.status}</div>
+              </div>
+              <div className="flex">
+                <div>Created: </div>
+                <div>{user.creationDate}</div>
+              </div>
+              <div className="flex">
+                <div>Birthdate: </div>
+                <div>{user.birthdate}</div>
+              </div>
+              <div className="flex">
+                <div>Number of Games Won: </div>
+                <div>{user.numOfGameWon}</div>
+              </div>
+            </div>
           </div>
-          <div className="flex">
-            <div>Name: </div>
-            <div></div>
-          </div>
-          <div className="flex">
-            <div>Status: </div>
-            <div>{user.status}</div>
-          </div>
-          <div className="flex">
-            <div>Created: </div>
-            <div>{user.creationDate}</div>
-          </div>
-          <div className="flex">
-            <div>Birthdate: </div>
-            <div>{user.birthdate}</div>
-          </div>
-          <div className="flex">
-            <div>Number of Games Won: </div>
-            <div>{user.numOfGameWon}</div>
-          </div>
-
-
-        <Button onClick={() => editProfile()}>
-          Edit
-        </Button>
-        <Button onClick={() => goList()}>
-          List
-        </Button>
+          {button}
         </div>
       </div>
     )
@@ -96,9 +116,17 @@ const ProfilePage = () => {
           <ul className="nav__links">
             <li><a href="/allusers">Find User</a></li>
             <li><a href="/landing">Home</a></li>
-            <li><a href="/leaderboard">Leaderboard</a></li>
+            <li><a href="/alltimeleaderboard">Leaderboard</a></li>
           </ul>
         </nav>
+        <div className="landing button-container">
+          <button
+            className="button"
+            onClick={() => logout()}
+          >
+            Logout
+          </button>
+        </div>
       </div>
       {content}
     </BaseContainer>

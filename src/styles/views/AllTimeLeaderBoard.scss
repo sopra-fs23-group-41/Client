@@ -4,7 +4,7 @@
   }
 
   .container {
-    width: 70%;
+    width: 95%;
     font-size: 1em;
     margin: 10px auto;
     padding: 10px 20px;
@@ -28,14 +28,17 @@
       }
     }
 
-    &:nth-of-type(1) .username:before {
+    &:nth-of-type(1) .icon:before {
       content: "1";
+      margin-right: 20px;
     }
-    &:nth-of-type(2) .username:before {
+    &:nth-of-type(2) .icon:before {
       content: "2";
+      margin-right: 20px;
     }
-    &:nth-of-type(3) .username:before {
+    &:nth-of-type(3) .icon:before {
       content: "3";
+      margin-right: 20px;
     }
 
     &:hover {
@@ -44,8 +47,19 @@
     }
 
     & .innerContainer {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr 7fr 1fr;
+      column-gap: 50px;
+      align-items: center;
+
+      & .icon {
+        display: flex;
+        align-items: center;
+      }
+
+      & img {
+        width: 100%;
+      }
     }
   }
 }

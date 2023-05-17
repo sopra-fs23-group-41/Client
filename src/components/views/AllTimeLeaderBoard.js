@@ -10,10 +10,17 @@ import logo from '../pictures/Logo.jpg';
 import { Link } from 'react-router-dom';
 
 const Player = ({user}) => (
-    <div className={`container ${user.status}`}>
+    <div className={`container`}>
         <Link to={"/profilepage/" + user.id}>
             <div className='innerContainer'>
-                <div className="username">{user.username}</div>
+                <div className='icon'>
+                    <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile1" className="profileImage"/>
+                </div>
+
+                <div className="username">
+
+                    {user.username}
+                </div>
                 <div>{user.numOfGameWon}</div>
             </div>
         </Link>
@@ -26,6 +33,7 @@ Player.propTypes = {
 
 const AllTimeLeaderBoard = () => {
     const history = useHistory();
+    const userId = localStorage.getItem('userId');
     const [users, setUsers] = useState(null);
 
     const logout = async () => {
@@ -74,8 +82,8 @@ const AllTimeLeaderBoard = () => {
                 <img className="landing img" src={logo} alt="LOL"/>
                 <nav>
                     <ul className="nav__links">
-                        <li><a href="leaderboard">Leaderboard</a></li>
-                        <li><a href="profilepage">View Profile</a></li>
+                        <li><a href="allusers">Find User</a></li>
+                        <li><a href={`profilepage/${userId}`}>View Profile</a></li>
                         <li><a href="landing">Home</a></li>
                     </ul>
                 </nav>

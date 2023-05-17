@@ -25,6 +25,7 @@ Player.propTypes = {
 const AllUsers = () => {
     const history = useHistory();
     const [users, setUsers] = useState(null);
+    const userId = localStorage.getItem('userId');
     console.log(users)
     const logout = async () => {
         try {
@@ -71,7 +72,7 @@ const AllUsers = () => {
                 <nav>
                     <ul className="nav__links">
                         <li><a href="leaderboard">Leaderboard</a></li>
-                        <li><a href="profilepage">View Profile</a></li>
+                        <li><a href={`profilepage/${userId}`}>View Profile</a></li>
                         <li><a href="landing">Home</a></li>
                     </ul>
                 </nav>

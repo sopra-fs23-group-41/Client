@@ -1,16 +1,68 @@
 .profile {
     & .container {
-        width: 85%;
+        width: 95%;
         margin: 30px auto;
         padding: 20px;
         text-align: center;
         border-color: #363B48;
         background-color: #D8504D;
-        border-radius: 20px;
+        border-radius: 10px;
 
         & h1 {
             margin: 0px 0px 20px 0px;
             color: black;
+        }
+
+        & .grid {
+            display: grid;
+            grid-template-columns: 2fr 3.3fr;
+            column-gap: 15px;
+            align-items: center;
+        }
+
+        & .changeAvatar {
+            position: relative;
+            height: 100%;
+
+            & img {
+                position: absolute;
+                top: 10px;
+                left: 0;
+            }
+
+            & .changebtn {
+                position: absolute;
+                width: fit-content;
+                right: 5px;
+                top: 15px;
+                background-color: orange;
+                color: black;
+            }
+        }
+
+
+        & .avatar-radio {
+            width: 80%;
+
+            & img {
+                width: 100%;
+                margin-top: 5px;
+                border-radius: 20px;
+            }
+        }
+
+        & .avatarList {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 15px;
+            row-gap: 30px;
+            justify-items: center;
+            margin-bottom: 20px;
+        }
+
+        & .profileImage {
+            width: 100%;
+            border-radius: 10px;
         }
 
         & .flex {
@@ -27,6 +79,24 @@
                 font-weight: bold;
             }
         }
+
+        & .flexedit {
+            margin: 10px 0px;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            align-items: center;
+            column-gap: 15px;
+            font-size: 1.2em;
+            background-color: bisque;
+            color: #363B48;
+            padding: 10px;
+            border-radius: 10px;
+
+            & label {
+                font-weight: bold;
+            }
+        }
+
 
         & button {
             width: calc(50% - 10px);

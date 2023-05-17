@@ -6,9 +6,6 @@
 
   for more information visit https://sass-lang.com/guide
  */
-.body{
-  background: grey;
-}
 
 .multiplayer {
 
@@ -21,7 +18,6 @@
     width: 1500px;
     flex-direction: column;
     box-shadow: 0 0.25em 0.25em #000000;
-    zoom: 0.7;
   }
   &.user-list {
     list-style: georgian;
@@ -170,7 +166,8 @@
 }
 
 li, a, img{
-  font-family: "JetBrains Mono", serif;
+  font-family: 'Staatliches', cursive;
+  font-size: 1.2em;
   color: antiquewhite;
   text-decoration: none;
 }
