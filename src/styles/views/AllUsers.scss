@@ -1,4 +1,4 @@
-
+.alluser {
 .container {
     width: 70%;
     margin: 0px auto;
@@ -30,14 +30,12 @@
       border-radius: 5px;
     }
   }
-
+  &:hover {
+    transform: scale(1.1);
+    transition: .5s;
+  }
 }
-
-.container:hover {
-  transform: scale(1.1);
-  transition: .5s;
 }
-
   
 
 

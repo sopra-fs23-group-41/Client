@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const Player = ({user}) => (
     <Link to={"/profilepage/" + user.id}> 
-    <div className={`userlist ${user.status}`}>
+    <div className={`alluser userlist ${user.status}`}>
         <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile" className="profileImage"/>
         <div className="username">{user.username}</div>
     </div>
