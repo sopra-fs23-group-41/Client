@@ -50,7 +50,7 @@ const ProfilePage = () => {
   let button = (<div></div>);
 
   if (user) {
-    if (userId == localStorage.getItem('userId')) {
+    if (userId === localStorage.getItem('userId')) {
       button = (
         <div>
           <Button onClick={() => editProfile()}>

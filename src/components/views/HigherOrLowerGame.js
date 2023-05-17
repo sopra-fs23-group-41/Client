@@ -28,7 +28,7 @@ Player.propTypes = {
 
 const HigherOrLowerGame = () => {
 
-    const history = new useHistory();
+    const history = useHistory();
 
     //const [users, setUsers] = useState(null);
     const [clicked, setClicked] = useState(false);

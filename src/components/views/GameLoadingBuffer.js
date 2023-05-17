@@ -15,7 +15,7 @@ import {useCallback, useEffect, useState} from "react";
 
 const GameLoadingBuffer = () => {
 
-    const history = new useHistory();
+    const history = useHistory();
 
     //const isGm = localStorage.getItem('isGm')
     let time = 5;
