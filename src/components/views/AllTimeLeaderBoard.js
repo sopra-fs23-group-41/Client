@@ -14,7 +14,7 @@ const Player = ({user}) => (
         <Link to={"/profilepage/" + user.id}>
             <div className='innerContainer'>
                 <div className='icon'>
-                    <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile1" className="profileImage"/>
+                    <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile" className="profileImage"/>
                 </div>
 
                 <div className="username">
