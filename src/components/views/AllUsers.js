@@ -55,7 +55,7 @@ const AllUsers = () => {
 
     if (users) {
       content = (
-        <div className="container">
+        <div className="not a fucking container">
 
             {users.map(user => (
               <Player user={user} key={user.id}/>

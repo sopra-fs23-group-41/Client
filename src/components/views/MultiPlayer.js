@@ -49,7 +49,6 @@ const MultiPlayer = () => {
         const request = await api.post('lobbies', requestBody)
         localStorage.setItem('gameId', request.data.gameId)
         localStorage.setItem('pincode', request.data.gamePIN)
-        console.log("XD")
     }
     const createLobby = async () =>{
 

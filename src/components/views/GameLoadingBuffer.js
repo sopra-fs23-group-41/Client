@@ -55,7 +55,7 @@ const GameLoadingBuffer = () => {
                     const begin = beginCheck.data;
                     console.log(begin);
                     if (begin === 'true') {
-                        console.log("hmmmm")
+                        console.log(begin)
                         if(localStorage.getItem('gameMode') === 'GuessThePrice'){
                             history.push('gtpgame')
                         }else if(localStorage.getItem('gameMode') === 'HighOrLow'){
