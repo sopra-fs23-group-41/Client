@@ -104,7 +104,7 @@ const saveChanges = async () => {
     content = (
       <div className='profile'>
         <div className="container">
-          <h1>Change Password</h1>
+          <h1>Change Avatar</h1>
             <div className='avatarList'>
                 <FormField
                     value="ONE"

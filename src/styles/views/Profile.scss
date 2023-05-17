@@ -1,4 +1,6 @@
 .profile {
+    height: 80%;
+
     & .container {
         width: 95%;
         margin: 30px auto;
@@ -7,6 +9,8 @@
         border-color: #363B48;
         background-color: #D8504D;
         border-radius: 10px;
+        overflow-y: auto;
+        height: 100%;
 
         & h1 {
             margin: 0px 0px 20px 0px;
