@@ -36,7 +36,7 @@ FormField.propTypes = {
 
 const ProfileEdit = () => {
   const history = useHistory();
-  const idParam = useParams().id;
+  const id = useParams().id;
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState(localStorage.getItem('username'));
   const [birthDate, setBirthDate] = useState(localStorage.getItem('birthDate'));
@@ -44,11 +44,11 @@ const ProfileEdit = () => {
   const [passwordCheck, setPasswordCheck] = useState("");
 
 const cancel= () => {
-  history.push('/profilepage/'+idParam)
+  history.push('/profilepage/'+id)
 }
 
 const changeAvatar= () => {
-  history.push('/change-avatar/'+idParam)
+  history.push('/change-avatar/'+id)
 }
 
 const logout = async () => {
@@ -65,33 +65,33 @@ const logout = async () => {
     
 const saveChanges = async () => {
     try {
-      const requestBody = JSON.stringify({username, birthDate});
-      await api.put("/users/" + localStorage.userId, requestBody);
+      const requestBody = JSON.stringify({id, username, birthDate});
+      await api.put("/users/" + id, requestBody);
 
       localStorage.setItem("username", username);
       localStorage.setItem("birthDate", birthDate);
 
-      history.push(`/profilepage/` + idParam);
+      history.push(`/profilepage/` + id);
     } catch (error) {
       alert(`Something went wrong during changing user data: \n${handleError(error)}`);
     }
   };
 
   useEffect(() => {
-    async function fetchData(idParam) {
+    async function fetchData(id) {
       try {
-        const response = await api.get("/users/" + idParam);
+        const response = await api.get("/users/" + id);
         setUser(response.data);
       } catch (error) {
         alert(`Something went wrong while fetching the User: \n${handleError(error)}`);
       }
     }
-    fetchData(idParam);
-  }, [idParam]);
+    fetchData(id);
+  }, [id]);
 
   let content = (<div></div>);
 
-  if (idParam !== localStorage.getItem('userId')) {
+  if (id !== localStorage.getItem('userId')) {
     content = (
       <div className='editProfile'>
         <p>This is not your profile so that you cannot edit it. 
@@ -127,20 +127,20 @@ const saveChanges = async () => {
                 type = "date"
                 placeholder={user.birthDate}
               />
-                        <FormField
-            label="New Password:"
-            value={password}
-            onChange={p => setPassword(p)}
-            type = "password"
-            placeholder="Leave empty if you don't want to change"
-          />
-          <FormField
-            label="Repeat New Password:"
-            value={passwordCheck}
-            onChange={pc => setPasswordCheck(pc)}
-            type = "password"
-            placeholder="Leave empty if you don't want to change"
-          />
+              <FormField
+                label="New Password:"
+                value={password}
+                onChange={p => setPassword(p)}
+                type = "password"
+                placeholder="Leave empty if you don't want to change"
+              />
+              <FormField
+                label="Repeat New Password:"
+                value={passwordCheck}
+                onChange={pc => setPasswordCheck(pc)}
+                type = "password"
+                placeholder="Leave empty if you don't want to change"
+              />
             </div>
           </div>
           <Button onClick={() => saveChanges()}>

@@ -29,7 +29,7 @@
     background: sandybrown;
     border-radius: 20px;
     display: flex;
-    min-height: 830px;
+    height: 830px;
     width: 1500px;
     flex-direction: column;
     //box-shadow: 0 0.25em 0.25em #000000;
@@ -53,7 +53,7 @@
     justify-content: center;
   }
   & p, h1, h3 {
-    font-family: 'Zen Tokyo Zoo', cursive;
+    font-family: 'Staatliches', cursive;
   }
 
   & h1 {
