@@ -139,10 +139,6 @@ const saveChanges = async () => {
                     onClick={p => setProfilePicture(p)}
                 />
                 <FormField
-                    value="ONE"
-                    onClick={p => setProfilePicture(p)}
-                />
-                <FormField
                     value="NINE"
                     onClick={p => setProfilePicture(p)}
                 />
