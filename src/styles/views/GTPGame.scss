@@ -24,7 +24,7 @@
     border-radius: 5px;
     height: 150px;
     width: 250px;
-    font-family: "JetBrains Mono", serif;
+    font-family: "Staatliches", cursive;
     font-size: 30px;
     color: #97ABFF;
     transition: .35s;
@@ -36,24 +36,30 @@
   }
 
   &.bonus-and-streak{
-    font-family: "JetBrains Mono", serif;
+    font-family: "Staatliches", cursive;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   &.bonus{
-    margin-left: 70px;
+    margin-left: 45px;
+  }
+  &.streak{
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-right: 20px;
   }
 
 }
 
 .timer{
   margin-top: 5px;
-  margin-left: auto;
   align-items: center;
   justify-content: space-evenly;
-  font-family: "JetBrains Mono", serif;
+  font-family: "Staatliches", cursive;
   font-size: 40px;
   background:floralwhite;
   width: 150px;

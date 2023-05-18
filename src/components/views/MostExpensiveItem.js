@@ -209,7 +209,7 @@ const MostExpensiveItem = () => {
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
 
-            <div className="game-status-container">
+            <div className="most-expensive game-status-container">
                 <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}><h2>Round {currentRound}/{rounds}</h2></div>
                 <div> <Timer seconds={5} /> </div>
             </div>

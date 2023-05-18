@@ -265,10 +265,10 @@ const GTPGame = () => {
 
             <div className="gtp bonus-and-streak">
                 <h2>Round {currentRound}/ {rounds}</h2>
-                {isOnStreak && <h2 className="gtp streak">🔥🔥🔥You're on a Streak!🔥🔥🔥</h2>}
                 {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round!💹💰</h2>}
                 <Timer seconds={10}/>
             </div>
+            {isOnStreak && <h2 className="gtp streak">🔥You're on a Streak of {localStorage.getItem('streak')} Rounds!🔥</h2>}
 
             <img className="gtp item-pic" src={pictureUrl} alt="broken"/>
 

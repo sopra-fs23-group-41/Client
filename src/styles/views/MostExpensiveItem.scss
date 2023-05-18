@@ -28,6 +28,11 @@
 
   &.item-pic:hover{
     transform: scale(1.2);
+  }
 
+  &.game-status-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
