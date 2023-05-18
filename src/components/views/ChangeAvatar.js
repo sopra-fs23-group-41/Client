@@ -67,7 +67,7 @@ const saveChanges = async () => {
     } else {
         try {
             const requestBody = JSON.stringify({profilePicture});
-            await api.post("/users/" + localStorage.userId, requestBody);
+            await api.put("/users/" + localStorage.getItem('userId'), requestBody);
             history.push(`/profilepage/` + idParam);
           } catch (error) {
             alert(`Something went wrong during changing user data: \n${handleError(error)}`);

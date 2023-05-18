@@ -28,6 +28,11 @@ const Lobby = () => {
     const startGame = async () => {
         await api.post('lobbies/' + gameId + '/begin')
     }
+    const closeLobby = async () => {
+        history.push('landing')
+        await api.post('lobbies/'+gameId+'/end')
+    }
+
 
 
     useEffect(() => {
@@ -108,12 +113,14 @@ const Lobby = () => {
             </div>
 
             <div className="multiplayer lower-part">
-                <div className="multiplayer settings">
-                </div>
-                <button className="multiplayer button"
+                <button className="lobby button"
                         onClick={startGame}
                         disabled={!(isGm === 'true')}
                 >Start Game</button>
+                <button className="lobby button"
+                        onClick={closeLobby}
+                        disabled={!(isGm === 'true')}
+                >Close Lobby</button>
             </div>
         </BaseContainer>
     );

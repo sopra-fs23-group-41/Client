@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const Player = ({user}) => (
     <Link to={"/profilepage/" + user.id}> 
-    <div className={`userlist ${user.status}`}>
+    <div className={`all-users-container userlist ${user.status}`}>
         <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile" className="profileImage"/>
         <div className="username">{user.username}</div>
     </div>
@@ -55,7 +55,7 @@ const AllUsers = () => {
 
     if (users) {
       content = (
-        <div className="not a fucking container">
+        <div className="all-users-container">
 
             {users.map(user => (
               <Player user={user} key={user.id}/>

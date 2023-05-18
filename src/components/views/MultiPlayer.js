@@ -108,7 +108,7 @@ const MultiPlayer = () => {
 
             <div className="multiplayer upper-part">
                 <div className="multiplayer settings">
-                    <h2>Choose Settings</h2>
+                    <h2 className="multiplayer setting-title">Choose Settings</h2>
 
                         <div className="list-choice-container">
                             <div className="list-choice">
@@ -144,10 +144,10 @@ const MultiPlayer = () => {
                             <div className="list-choice-title">Rounds</div>
                             <div className="list-choice-objects">
                                 <label>
-                                    <input value="4" type="radio" name="rounds" onClick={() => updateNrOfRounds("4")}/> <span>4</span>
+                                    <input value="4" type="radio" name="rounds" onClick={() => updateNrOfRounds("6")}/> <span>4</span>
                                 </label>
                                 <label>
-                                    <input value="8" type="radio" name="rounds" onClick={() => updateNrOfRounds("8")}/> <span>8</span>
+                                    <input value="8" type="radio" name="rounds" onClick={() => updateNrOfRounds("9")}/> <span>8</span>
                                 </label>
                                 <label>
                                     <input value="12" type="radio" name="rounds" onClick={() => updateNrOfRounds("12")}/> <span>12</span>

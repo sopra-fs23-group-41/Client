@@ -102,9 +102,9 @@ const SinglePlayer = () => {
                 <h1 className="multiplayer title">Singleplayer</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-            <div className="multiplayer upper-part">
+            <div className="singleplayer upper-part">
                 <div className="multiplayer settings">
-                    <h3>Settings</h3>
+                    <h2 className="multiplayer setting-title">Choose settings</h2>
                     <div className="list-choice-container">
                         <div className="list-choice">
                             <div className="list-choice-title">Category</div>
