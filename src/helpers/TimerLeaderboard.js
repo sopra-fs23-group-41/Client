@@ -28,12 +28,12 @@ const TimerLeaderboard = ({seconds}) => {
             }
             else if (countdown <= 0 && localStorage.getItem('gameMode') === 'MostExpensive'){
                 clearInterval(timerId.current)
-                history.push('most-expensive-item')
+                history.push('most-expensive-item-game')
             }else if(countdown <= 0 && localStorage.getItem('gameMode') === 'Mix'){
                 if(currentRound % 3 === 1){
                     history.push('gtpgame')
                 }else if(currentRound % 3 === 2){
-                    history.push('most-expensive-item')
+                    history.push('most-expensive-item-game')
                 }else{
                     history.push('higher-or-lower-game')
                 }

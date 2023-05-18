@@ -162,7 +162,7 @@ const MultiPlayer = () => {
                                     <input value="24" type="radio" name="rounds" onClick={() => updateNrOfRounds("24")}/> <span>24</span>
                                 </label>
                                 <label>
-                                    <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("28")}/> <span>28</span>
+                                    <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("2")}/> <span>28</span>
                                 </label>
 
                             </div>
@@ -181,7 +181,7 @@ const MultiPlayer = () => {
                                     <input value="MostExpensiveItem" type="radio" name="game-mode" onClick={() => updateGameMode("MostExpensive")}/> <span>Most Expensive item</span>
                                 </label>
                                 <label>
-                                    <input value="MashUp" type="radio" name="game-mode" onClick={() => updateGameMode("Mix")}/> <span>Mash Up Da Place</span>
+                                    <input value="Mix" type="radio" name="game-mode" onClick={() => updateGameMode("Mix")}/> <span>Mash Up Da Place</span>
                                 </label>
                             </div>
                         </div>

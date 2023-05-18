@@ -33,6 +33,8 @@ const Landing = () => {
             history.push('/login');
         } catch (error) {
             alert(`Something went wrong during the logout: \n${handleError(error)}`);
+            localStorage.clear();
+            history.push('/login');
         }
     }
 

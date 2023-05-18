@@ -26,7 +26,7 @@ const Lobby = () => {
     const [players, setPlayers] = useState(null);
 
     const startGame = async () => {
-        api.post('lobbies/' + gameId + '/begin')
+        await api.post('lobbies/' + gameId + '/begin')
     }
 
 
