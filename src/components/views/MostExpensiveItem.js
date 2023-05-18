@@ -107,7 +107,7 @@ const MostExpensiveItem = () => {
         } catch (error) {
             console.log('Something went wrong')
         }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+    }, [gameId, setPicture, setTrueAnswer]);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
