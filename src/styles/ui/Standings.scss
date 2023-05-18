@@ -1,6 +1,6 @@
 
 .standings{
-  font-family: "JetBrains Mono", serif;
+  font-family: "Staatliches", cursive;
 
   &.container {
     box-shadow: 2px 2px 2px grey;
@@ -14,19 +14,23 @@
     background: lighten(floralwhite, 5);
   }
   &.name {
+    font-family: "Staatliches", cursive;
     font-weight: 300;
     margin-left: 5px;
   }
   &.username {
+    font-family: "Staatliches", cursive;
     font-weight: 500;
     color: #97ABFF;
   }
 
   &.roundscore{
+    font-family: "Staatliches", cursive;
     color: #32f132;
   }
 
   &.totalscore{
+    font-family: "Staatliches", cursive;
     color: #dc0000;
   }
 
@@ -42,5 +46,5 @@
   margin-left: auto;
   margin-right: auto;
   color: #f3ddad;
-  font-family: "JetBrains Mono", serif;
+  font-family: "Staatliches", cursive;
 }
