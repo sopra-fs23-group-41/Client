@@ -144,10 +144,10 @@ const MultiPlayer = () => {
                             <div className="list-choice-title">Rounds</div>
                             <div className="list-choice-objects">
                                 <label>
-                                    <input value="4" type="radio" name="rounds" onClick={() => updateNrOfRounds("6")}/> <span>4</span>
+                                    <input value="4" type="radio" name="rounds" onClick={() => updateNrOfRounds("4")}/> <span>4</span>
                                 </label>
                                 <label>
-                                    <input value="8" type="radio" name="rounds" onClick={() => updateNrOfRounds("9")}/> <span>8</span>
+                                    <input value="8" type="radio" name="rounds" onClick={() => updateNrOfRounds("8")}/> <span>8</span>
                                 </label>
                                 <label>
                                     <input value="12" type="radio" name="rounds" onClick={() => updateNrOfRounds("12")}/> <span>12</span>
@@ -162,7 +162,7 @@ const MultiPlayer = () => {
                                     <input value="24" type="radio" name="rounds" onClick={() => updateNrOfRounds("24")}/> <span>24</span>
                                 </label>
                                 <label>
-                                    <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("2")}/> <span>28</span>
+                                    <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("28")}/> <span>28</span>
                                 </label>
 
                             </div>
@@ -178,10 +178,10 @@ const MultiPlayer = () => {
                                     <input value="HighOrLow" type="radio" name="game-mode" onClick={() => updateGameMode("HighOrLow")}/> <span>Higher or Lower</span>
                                 </label>
                                 <label>
-                                    <input value="MostExpensiveItem" type="radio" name="game-mode" onClick={() => updateGameMode("MostExpensive")}/> <span>Most Expensive item</span>
+                                    <input value="MostExpensiveItem" type="radio" name="game-mode" onClick={() => updateGameMode("MostExpensive")}/> <span>Most Expensive Item</span>
                                 </label>
                                 <label>
-                                    <input value="Mix" type="radio" name="game-mode" onClick={() => updateGameMode("Mix")}/> <span>Mash Up Da Place</span>
+                                    <input value="Mix" type="radio" name="game-mode" onClick={() => updateGameMode("Mix")}/> <span>Mix it up</span>
                                 </label>
                             </div>
                         </div>

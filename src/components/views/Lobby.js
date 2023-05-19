@@ -16,8 +16,10 @@ const Lobby = () => {
     const history = useHistory();
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
+
     localStorage.setItem('streak', '0')
     localStorage.setItem('currentRound', '1');
+    const [activateLoading, setActivateLoading] = useState(false);
 
     const [rounds, setRounds] = useState(null);
     const [pin, setPin] = useState(null);
@@ -26,6 +28,7 @@ const Lobby = () => {
     const [players, setPlayers] = useState(null);
 
     const startGame = async () => {
+        setActivateLoading(true);
         await api.post('lobbies/' + gameId + '/begin')
     }
     const closeLobby = async () => {
@@ -114,14 +117,22 @@ const Lobby = () => {
 
             <div className="multiplayer lower-part">
                 <button className="lobby button"
-                        onClick={startGame}
-                        disabled={!(isGm === 'true')}
-                >Start Game</button>
-                <button className="lobby button"
                         onClick={closeLobby}
                         disabled={!(isGm === 'true')}
                 >Close Lobby</button>
+                <button className="lobby button"
+                        onClick={startGame}
+                        disabled={!(isGm === 'true')}
+                >Start Game</button>
             </div>
+
+            {activateLoading && <div className="loading ring">Loading
+                <span></span>
+            </div>}
+            {!(isGm === 'true') && <div className="loading ring">Waiting
+                <span></span>
+            </div>}
+
         </BaseContainer>
     );
 }
