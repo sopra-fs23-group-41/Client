@@ -29,7 +29,12 @@ const Lobby = () => {
 
     const startGame = async () => {
         setActivateLoading(true);
-        await api.post('lobbies/' + gameId + '/begin')
+        try{
+            await api.post('lobbies/' + gameId + '/begin')
+
+        }catch(error){
+            alert(error.response.data.message)
+        }
     }
     const closeLobby = async () => {
         history.push('landing')
