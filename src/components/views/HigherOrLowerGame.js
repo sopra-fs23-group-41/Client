@@ -114,6 +114,7 @@ const HigherOrLowerGame = () => {
                     if (canBegin === true) {
                         if (currRound >= rounds) {
                             if(onlyOnce4){
+                                setOnlyOnce4(false);
                                 history.push('endofgame');
                             }
                         }

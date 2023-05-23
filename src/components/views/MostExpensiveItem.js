@@ -127,7 +127,10 @@ const MostExpensiveItem = () => {
                     let currRound = parseInt(localStorage.getItem('currentRound'));
                     if (canBegin === true) {
                         if (currRound >= rounds) {
-                            history.push('endofgame');
+                            if(onlyOnce4){
+                                setOnlyOnce4(false);
+                                history.push('endofgame');
+                            }
                         }
                         else if(onlyOnce4){
                             setOnlyOnce4(false);

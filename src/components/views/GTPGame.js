@@ -202,7 +202,10 @@ const GTPGame = () => {
                     let currRound = parseInt(localStorage.getItem('currentRound'));
                     if (canBegin === true) {
                         if (currRound >= rounds) {
-                            history.push('endofgame');
+                            if(onlyOnce5){
+                                setOnlyOnce5(false);
+                                history.push('endofgame');
+                            }
                         }
                         else if(onlyOnce5){
                             setOnlyOnce5(false);
@@ -211,7 +214,7 @@ const GTPGame = () => {
                                 currRound = currRound.toString();
                                 localStorage.setItem('currentRound', currRound);
                                 history.push('leaderboard');
-                            }, 5000);
+                            }, 2000);
                         }
                     }
 
