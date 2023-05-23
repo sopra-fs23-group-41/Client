@@ -6,10 +6,6 @@ import "styles/views/MultiPlayer.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 
-const Players = ({user}) => (
-    <div className="player">{user.playerName}</div>
-);
-
 const LobbySingle = () => {
     const history = useHistory();
     const gameId = localStorage.getItem('gameId');
@@ -20,10 +16,8 @@ const LobbySingle = () => {
     const [activateLoading, setActivateLoading] = useState(false);
 
     const [rounds, setRounds] = useState(null);
-    const [pin, setPin] = useState(null);
     const [category, setCategory] = useState(null);
     const [gameMode, setGameMode] = useState(null);
-    const [players, setPlayers] = useState(null);
 
     const startGame = async () => {
         setActivateLoading(true);
