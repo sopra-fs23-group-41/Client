@@ -1,46 +1,68 @@
-# SoPra FS23 - Client Template with build pack
+# README: Show Me The Money
 
-## Getting started
-
-Read and go through these Tutorials. It will make your life easier:)
-
-- Read the React [Docs](https://reactjs.org/docs/getting-started.html)
-- Do this React [Getting Started](https://reactjs.org/tutorial/tutorial.html) Tutorial (it doesn’t assume any existing React knowledge)
-- Get an Understanding of [CSS](https://www.w3schools.com/Css/), [SCSS](https://sass-lang.com/documentation/syntax), and [HTML](https://www.w3schools.com/html/html_intro.asp)!
-
-Next, there are two other technologies that you should look at:
-
-* [react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start) offers declarative routing for React. It is a collection of navigational components that fit nicely with the application. 
-* [react-hooks](https://reactrouter.com/web/api/Hooks) let you access the router's state and perform navigation from inside your components.
-
-## Prerequisites and Installation
-For your local development environment, you will need Node.js. You can download it [here](https://nodejs.org). All other dependencies, including React, get installed with:
-
-```npm install```
-
-Run this command before you start your application for the first time. Next, you can start the app with:
-
-```npm run dev```
-
-Now you can open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-Notice that the page will reload if you make any edits. You will also see any lint errors in the console (use Google Chrome).
-
-### Testing
-Testing is optional, and you can run the tests with `npm run test`.
-This launches the test runner in an interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-> For macOS user running into a 'fsevents' error: https://github.com/jest-community/vscode-jest/issues/423
-
-### Build
-Finally, `npm run build` builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance: the build is minified, and the filenames include hashes.<br>
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Introduction
 
 
-> Thanks to Lucas Pelloni and Kyrill Hux for working on the template.
+## Technologies
++ Gradle
++ React
++ Spring Boot
++ SonarCube
++ GoogleCloud
++ GitHub
++ Npm
++ Jsx
++ Java
+
+## High-level components
+
+
+## Launch & Deployment
+1)	Copy both codes locally to your machine
+2)	Start the server by running the application
+3)	Start the client by running the following command in the terminal:
+
+    ```
+    npm run dev
+    ```
+
+## Illustrations
+First a user needs to register, where the username, name and password have to be typed in. After registering a user is on the main menu. From there on the possibilities are almost endless.<br>
+One great option would be to start a new multiplayer game, to play with friends. On the multiplayer page the user is considered the Game Master and can therefore choose the settings of the game: game type, number of rounds, category of products and number of players. After choosing your preferred settings, you land on the game lobby. With the pin code given there, any registered user can join. The Game Master can start the game, once the lobby is full.
+<br>The user experience is completely different, depending on the game modes. So here’s a short explanation for each one:
+
+**Guess The Price**<br>
+One item is displayed, and the players have to guess the correct, corresponding price out of four given options.
+<br><br>**Higher or Lower**<br>
+The players have to guess whether the price of the article at the right, is higher or lower than the price of the article on the left. The price of the item to the left is shown to get an idea.
+<br><br>**Most Expensive Item**<br>
+Four items with the corresponding brand are shown and the player has to figure out which one is the most expensive item. 
+*image of one round in GTP, MEI, HoL & MIU* 
+
+In between the rounds the current leaderboard is displayed.
+*image of leaderboard*
+
+After the game has ended, the winner(s) is highlighted and the users can either leave the lobby or look at the items, that were displayed during the game, and potentially buy them.
+*end game screen & view items*
+
+Users can also take a look on their profile, via the menu. On the profile page you can change your credentials and even have the possibility to choose between ten cool avatars, to reflect your personality in the game! *image of profile & possible avatars*
+
+## Roadmap
++ Version of Guess The Price, where players have to type in a price
++ Stronger authentication
++ Top notch synchronization (WebSocket, viel spass)
++ Multiplayer all-time leaderboard, based on points snatched during games
++ Possibility to add friends
++ Permanently store registered users
+
+## Authors and acknowledgment
++ Eunji Lee ([@EunjiLee-dev](https://github.com/EunjiLee-dev)): Front-end
++ Laurent Le Febve ([@LaurentLeFebve](https://github.com/LaurentLeFebve)): Front-end
++ Tiago Ferreiro Matos ([@tyagos](https://github.com/tyagos)): Front-end
++ Timo Tietje ([@TimoTietje](https://github.com/TimoTietje)): Back-end
++ Yuqing Huang ([@DarleneQing](https://github.com/DarleneQing)): Back-end
+
+  and special thanks to our personal TA: Dennys Huber ([@devnnys](https://github.com/devnnys))
+
+## License
+[MIT](LICENSE)
