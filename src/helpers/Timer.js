@@ -45,11 +45,12 @@ const Timer = ({seconds}) => {
                         playerAnswer.playerAnswer = 0;
 
                         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
+                        let tempCurrentRound = currentRound + 1;
+                        tempCurrentRound = tempCurrentRound.toString();
+                        localStorage.setItem('currentRound', tempCurrentRound);
+                        history.push('leaderboard');
                     }
-                    currentRound = currentRound + 1;
-                    currentRound = currentRound.toString();
-                    localStorage.setItem('currentRound', currentRound);
-                    history.push('leaderboard');
+
                 }
             }
         }
