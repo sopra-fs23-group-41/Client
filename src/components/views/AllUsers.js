@@ -60,11 +60,12 @@ const AllUsers = () => {
     if (users) {
       content = (
         <div className="all-users-container">
-
-            {users.map(user => (
-              <Player user={user} key={user.id}/>
-            ))}
-
+            <div className='content'>
+                <h1>All Users</h1>
+                {users.map(user => (
+                <Player user={user} key={user.id}/>
+                ))}
+            </div>
         </div>
       );
     }

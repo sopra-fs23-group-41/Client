@@ -1,10 +1,28 @@
 
 .all-users-container {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
-
+    height: 80%;
   
+  & .content {
+    width: 95%;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: center;
+    border-color: #363B48;
+    background-color: #D8504D;
+    border-radius: 10px;
+    overflow-y: auto;
+    height: 100%;
+
+    & h1 {
+      margin: 0px 0px 20px 0px;
+      color: black;
+    }
+  }
+
   &.userlist {
+    width: 85%;
     height: 3em;
     margin: 10px auto;
     padding: 5px 30px;
@@ -14,6 +32,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: .3s;
+
+    &:hover{
+      transform: scale(1.1);
+    }
   
     &.ONLINE {
       background-color: greenyellow;
