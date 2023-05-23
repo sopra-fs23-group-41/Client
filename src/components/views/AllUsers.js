@@ -48,7 +48,11 @@ const AllUsers = () => {
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
-        fetchData();
+        fetchData().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     }, []);
 
     let content = (<div></div>);

@@ -71,7 +71,11 @@ const LeaderBoard = () => {
                 alert("Something went wrong while fetching the players in leaderboard! See the console for details.");
             }
         };
-        fetchPlayers();
+        fetchPlayers().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     }, [gameId]);
 
     return (
