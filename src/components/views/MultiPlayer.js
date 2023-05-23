@@ -107,120 +107,120 @@ const MultiPlayer = () => {
                 <h1 className="multiplayer title">Multiplayer</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
+            <div className='multiplayer content'>
+                <div className="singleplayer upper-part">
+                    <div className="multiplayer settings">
+                        <h2 className="multiplayer setting-title">Choose Settings</h2>
 
-            <div className="multiplayer upper-part">
-                <div className="multiplayer settings">
-                    <h2 className="multiplayer setting-title">Choose Settings:</h2>
+                            <div className="list-choice-container">
+                                <div className="list-choice">
+                                    <div className="list-choice-title">Category</div>
+                                    <div className="list-choice-objects">
+                                        <label>
+                                            <input value="SNEAKERS" type="radio" name="category" onClick={() => updateCategory("SNEAKERS")} /> <span>Sneakers</span>
+                                        </label>
+                                        <label>
+                                            <input value="JEANS" type="radio" name="category" onClick={() => updateCategory("JEANS")} /> <span>Jeans</span>
+                                        </label>
+                                        <label>
+                                            <input value="ACCESSORIES" type="radio" name="category" onClick={() => updateCategory("ACCESSORIES")} /> <span>Accessories</span>
+                                        </label>
+                                        <label>
+                                            <input value="JACKETS" type="radio" name="category" onClick={() => updateCategory("JACKETS")} /> <span>Jackets</span>
+                                        </label>
+                                        <label>
+                                            <input value="HOODIES" type="radio" name="category" onClick={() => updateCategory("HOODIES")} /> <span>Hoodies</span>
+                                        </label>
+                                        <label>
+                                            <input value="JEWELRY" type="radio" name="category" onClick={() => updateCategory("JEWELRY")} /> <span>Jewelry</span>
+                                        </label>
+                                        <label>
+                                            <input value="T_SHIRTS" type="radio" name="category" onClick={() => updateCategory("T_SHIRTS")} /> <span>T-Shirts</span>
+                                        </label>
+                                    </div>
+                                </div>
 
-                        <div className="list-choice-container">
+
                             <div className="list-choice">
-                                <div className="list-choice-title">Category</div>
+                                <div className="list-choice-title">Rounds</div>
                                 <div className="list-choice-objects">
                                     <label>
-                                        <input value="SNEAKERS" type="radio" name="category" onClick={() => updateCategory("SNEAKERS")} /> <span>Sneakers</span>
+                                        <input value="4" type="radio" name="rounds" onClick={() => updateNrOfRounds("4")}/> <span>4</span>
                                     </label>
                                     <label>
-                                        <input value="JEANS" type="radio" name="category" onClick={() => updateCategory("JEANS")} /> <span>Jeans</span>
+                                        <input value="8" type="radio" name="rounds" onClick={() => updateNrOfRounds("8")}/> <span>8</span>
                                     </label>
                                     <label>
-                                        <input value="ACCESSORIES" type="radio" name="category" onClick={() => updateCategory("ACCESSORIES")} /> <span>Accessories</span>
+                                        <input value="12" type="radio" name="rounds" onClick={() => updateNrOfRounds("12")}/> <span>12</span>
                                     </label>
                                     <label>
-                                        <input value="JACKETS" type="radio" name="category" onClick={() => updateCategory("JACKETS")} /> <span>Jackets</span>
+                                        <input value="16" type="radio" name="rounds" onClick={() => updateNrOfRounds("16")}/> <span>16</span>
                                     </label>
                                     <label>
-                                        <input value="HOODIES" type="radio" name="category" onClick={() => updateCategory("HOODIES")} /> <span>Hoodies</span>
+                                        <input value="20" type="radio" name="rounds" onClick={() => updateNrOfRounds("20")}/> <span>20</span>
                                     </label>
                                     <label>
-                                        <input value="JEWELRY" type="radio" name="category" onClick={() => updateCategory("JEWELRY")} /> <span>Jewelry</span>
+                                        <input value="24" type="radio" name="rounds" onClick={() => updateNrOfRounds("24")}/> <span>24</span>
                                     </label>
                                     <label>
-                                        <input value="T_SHIRTS" type="radio" name="category" onClick={() => updateCategory("T_SHIRTS")} /> <span>T-Shirts</span>
+                                        <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("28")}/> <span>28</span>
                                     </label>
                                 </div>
                             </div>
 
+                            <div className="list-choice">
+                                <div className="list-choice-title">Game Mode</div>
+                                <div className="list-choice-objects">
+                                    <label>
+                                        <input value="GuessThePrice" type="radio" name="game-mode" onClick={() => updateGameMode("GuessThePrice")}/> <span>Guess the Price</span>
+                                    </label>
+                                    <label>
+                                        <input value="HighOrLow" type="radio" name="game-mode" onClick={() => updateGameMode("HighOrLow")}/> <span>Higher or Lower</span>
+                                    </label>
+                                    <label>
+                                        <input value="MostExpensiveItem" type="radio" name="game-mode" onClick={() => updateGameMode("MostExpensive")}/> <span>Most Expensive Item</span>
+                                    </label>
+                                    <label>
+                                        <input value="Mix" type="radio" name="game-mode" onClick={() => updateGameMode("Mix")}/> <span>Mix it up</span>
+                                    </label>
+                                </div>
+                            </div>
 
-                        <div className="list-choice">
-                            <div className="list-choice-title">Rounds</div>
-                            <div className="list-choice-objects">
-                                <label>
-                                    <input value="4" type="radio" name="rounds" onClick={() => updateNrOfRounds("4")}/> <span>4</span>
-                                </label>
-                                <label>
-                                    <input value="8" type="radio" name="rounds" onClick={() => updateNrOfRounds("8")}/> <span>8</span>
-                                </label>
-                                <label>
-                                    <input value="12" type="radio" name="rounds" onClick={() => updateNrOfRounds("12")}/> <span>12</span>
-                                </label>
-                                <label>
-                                    <input value="16" type="radio" name="rounds" onClick={() => updateNrOfRounds("16")}/> <span>16</span>
-                                </label>
-                                <label>
-                                    <input value="20" type="radio" name="rounds" onClick={() => updateNrOfRounds("20")}/> <span>20</span>
-                                </label>
-                                <label>
-                                    <input value="24" type="radio" name="rounds" onClick={() => updateNrOfRounds("24")}/> <span>24</span>
-                                </label>
-                                <label>
-                                    <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("28")}/> <span>28</span>
-                                </label>
+                            <div className="list-choice">
+                                <div className="list-choice-title">Players</div>
+                                <div className="list-choice-objects">
+                                    <label>
+                                        <input value="1" type="radio" name="players" onClick={() => updateNrOfPlayer("1")}/> <span>1</span>
+                                    </label>
+                                    <label>
+                                        <input value="2" type="radio" name="players" onClick={() => updateNrOfPlayer("2")}/> <span>2</span>
+                                    </label>
+                                    <label>
+                                        <input value="3" type="radio" name="players" onClick={() => updateNrOfPlayer("3")}/> <span>3</span>
+                                    </label>
+                                    <label>
+                                        <input value="4" type="radio" name="players" onClick={() => updateNrOfPlayer("4")}/> <span>4</span>
+                                    </label>
+                                    <label>
+                                        <input value="5" type="radio" name="players" onClick={() => updateNrOfPlayer("5")}/> <span>5</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="list-choice">
-                            <div className="list-choice-title">Game Mode</div>
-                            <div className="list-choice-objects">
-                                <label>
-                                    <input value="GuessThePrice" type="radio" name="game-mode" onClick={() => updateGameMode("GuessThePrice")}/> <span>Guess the Price</span>
-                                </label>
-                                <label>
-                                    <input value="HighOrLow" type="radio" name="game-mode" onClick={() => updateGameMode("HighOrLow")}/> <span>Higher or Lower</span>
-                                </label>
-                                <label>
-                                    <input value="MostExpensiveItem" type="radio" name="game-mode" onClick={() => updateGameMode("MostExpensive")}/> <span>Most Expensive Item</span>
-                                </label>
-                                <label>
-                                    <input value="Mix" type="radio" name="game-mode" onClick={() => updateGameMode("Mix")}/> <span>Mix it up</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div className="list-choice">
-                            <div className="list-choice-title">Players</div>
-                            <div className="list-choice-objects">
-                                <label>
-                                    <input value="1" type="radio" name="players" onClick={() => updateNrOfPlayer("1")}/> <span>1</span>
-                                </label>
-                                <label>
-                                    <input value="2" type="radio" name="players" onClick={() => updateNrOfPlayer("2")}/> <span>2</span>
-                                </label>
-                                <label>
-                                    <input value="3" type="radio" name="players" onClick={() => updateNrOfPlayer("3")}/> <span>3</span>
-                                </label>
-                                <label>
-                                    <input value="4" type="radio" name="players" onClick={() => updateNrOfPlayer("4")}/> <span>4</span>
-                                </label>
-                                <label>
-                                    <input value="5" type="radio" name="players" onClick={() => updateNrOfPlayer("5")}/> <span>5</span>
-                                </label>
-                            </div>
-                        </div>
                     </div>
+                </div>
 
+                <div className="multiplayer lower-part center">
+                    <div>
+                    <button className="multiplayer button"
+                            onClick={createLobby}
+                    >
+                        Create Lobby
+                    </button>
+                    </div>
                 </div>
             </div>
-
-            <div className="multiplayer lower-part">
-                <div className="multiplayer settings">
-                </div>
-                <button className="multiplayer button"
-                        onClick={createLobby}
-                >
-                    Create Lobby
-                </button>
-            </div>
-
         </BaseContainer>
     );
 }

@@ -19,6 +19,7 @@ import EndOfGame from "../../views/EndOfGame";
 import ItemList from "../../views/ItemList";
 import HigherOrLowerGame from "../../views/HigherOrLowerGame";
 import Lobby from "../../views/Lobby";
+import LobbySingle from "../../views/LobbySingle";
 import GameLoadingBuffer from "../../views/GameLoadingBuffer";
 import MostExpensiveItem from "../../views/MostExpensiveItem";
 import {LoginGuard} from "../routeProtectors/LoginGuard";
@@ -121,6 +122,12 @@ const AppRouter = () => {
                 <Route exact path="/lobby">
                     <GameGuard>
                         <Lobby/>
+                    </GameGuard>
+                </Route>
+
+                <Route exact path="/lobby-single">
+                    <GameGuard>
+                        <LobbySingle/>
                     </GameGuard>
                 </Route>
 

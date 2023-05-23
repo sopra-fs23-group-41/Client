@@ -10,7 +10,7 @@ const Players = ({user}) => (
     <div className="player">{user.playerName}</div>
 );
 
-const Lobby = () => {
+const LobbySingle = () => {
     const history = useHistory();
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
@@ -84,16 +84,6 @@ const Lobby = () => {
         return () => clearInterval(interval);
     }, [gameId, history, rounds]);
 
-    let content = (<div></div>);
-    if (players) {
-        content = (
-            <div className="playerlist">
-                {players.map(user => (
-                    <Players user={user} key={user.id}/>
-                ))}
-            </div>
-        );
-    }
 
     return (
         <BaseContainer className="multiplayer container">
@@ -115,12 +105,8 @@ const Lobby = () => {
                             <p>Game Mode: {gameMode}</p>
                             <p>Rounds: {rounds}</p>
                             <p>Category: {category}</p>
-                            <p>Pincode: {pin}</p>
                         </div>
-                        <div className="multiplayer players">
-                            <h2 className="multiplayer list-of-players">Players:</h2>
-                            {content}
-                        </div>
+=
 
                 </div>
 
@@ -150,4 +136,4 @@ const Lobby = () => {
     );
 }
 
-export default Lobby;
+export default LobbySingle;
