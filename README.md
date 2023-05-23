@@ -1,5 +1,7 @@
 # README: Show Me The Money
 
+<!-- TABLE OF CONTENTS -->
+
 ## Introduction
 
 
@@ -65,4 +67,4 @@ Users can also take a look on their profile, via the menu. On the profile page y
   and special thanks to our personal TA: Dennys Huber ([@devnnys](https://github.com/devnnys))
 
 ## License
-[MIT](LICENSE)
+[Apache License 2.0](LICENSE)
