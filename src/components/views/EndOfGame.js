@@ -110,7 +110,7 @@ const EndOfGame = () => {
             )}
 
             <div className="end-of-game buttons">
-                <button className="end-of-game btn"><a href="item-list">View Items</a></button>
+                <button className="end-of-game btn"><a className="end-of-game ref" href="item-list">View Items</a></button>
                 <button className="end-of-game btn"
                         onClick={endGame}
                         disabled={!(isGm === 'true')}

@@ -9,7 +9,7 @@
     /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
     @include center;
     flex-direction: column;
-    zoom: 0.7;
+    zoom: 0.9;
   }
   &.form {
     display: flex;

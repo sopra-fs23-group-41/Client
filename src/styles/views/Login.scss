@@ -9,7 +9,7 @@
     /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
     @include center;
     flex-direction: column;
-    zoom: 0.7;
+    zoom: 0.9;
   }
   &.form {
     display: flex;
@@ -37,7 +37,7 @@
   &.input {
     width: 100%;
     height: 35px;
-    padding: 0px 15px;
+    padding: 0 15px;
     margin-left: -4px;
     border: none;
     border-radius: 0.75em;
