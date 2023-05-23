@@ -1,22 +1,39 @@
 .leaderboard {
-  h1 {
+  width: 100%;
+  margin: 0 auto;
+  height: 80%;
+
+  & .content {
+    width: 95%;
+    margin: 30px auto;
+    padding: 20px;
     text-align: center;
+    border-color: #363B48;
+    background-color: #D8504D;
+    border-radius: 10px;
+    overflow-y: auto;
+    height: 100%;
+
+    & h1 {
+      margin: 0px 0px 20px 0px;
+      color: black;
+    }
   }
 
-  .container {
-    width: 95%;
+  & .container {
+    width: 85%;
     font-size: 1em;
     margin: 10px auto;
     padding: 10px 20px;
     border-radius: 10px;
-    background-color: #363B48;
-    color: white;
+    background-color: bisque;
+    color: black;
 
     &:nth-of-type(1),&:nth-of-type(2),&:nth-of-type(3) {
       padding: 25px 20px;
       font-size: 1.5em;
       font-weight: bold;
-      background-color: #D8504D;
+      background-color: black;
       & .username:before {
         color: gold;
         border-radius: 30px;
@@ -24,7 +41,9 @@
         margin-right: 20px;
         display: inline-block;
         text-align: center;
-
+      }
+      & .innerContainer {
+        color: gold;
       }
     }
 
@@ -51,6 +70,7 @@
       grid-template-columns: 1fr 7fr 1fr;
       column-gap: 50px;
       align-items: center;
+      color:black;
 
       & .icon {
         display: flex;

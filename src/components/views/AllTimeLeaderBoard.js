@@ -8,7 +8,6 @@ import "styles/views/AllTimeLeaderBoard.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 
-
 const Player = ({user}) => (
     <div className={`container`}>
         <Link to={"/profilepage/" + user.id}>
@@ -16,11 +15,7 @@ const Player = ({user}) => (
                 <div className='icon'>
                     <img src={require(`../Avatars/Avatar_${user.profilePicture}.jpg`)} alt="profile" className="profileImage"/>
                 </div>
-
-                <div className="username">
-
-                    {user.username}
-                </div>
+                <div className="username">{user.username}</div>
                 <div>{user.numOfGameWon}</div>
             </div>
         </Link>
@@ -68,14 +63,13 @@ const AllTimeLeaderBoard = () => {
 
     if (users) {
       content = (
-        <div className="game">
-
-          <div className="leaderboard">
-          <h1>LeaderBoard</h1>
-            {users.map(user => (
-              <Player user={user} key={user.id} />
-            ))}
-          </div>
+        <div className="leaderboard">
+            <div className='content'>
+                <h1>LeaderBoard</h1>
+                {users.map(user => (
+                    <Player user={user} key={user.id} />
+                ))}
+            </div>
         </div>
       );
     }
