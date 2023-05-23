@@ -6,7 +6,6 @@ import "styles/views/Landing.scss";
 import "styles/views/Profile.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
-
 import {useParams} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 

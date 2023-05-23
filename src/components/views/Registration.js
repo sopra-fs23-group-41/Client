@@ -35,7 +35,6 @@ FormField.propTypes = {
 
 const Registration = () => {
     const history = useHistory();
-    const [name, setName] = useState(null);
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
@@ -43,7 +42,7 @@ const Registration = () => {
 
     const doRegister = async () => {
         try {
-            const requestBody = JSON.stringify({username, name, password});
+            const requestBody = JSON.stringify({username, password});
             const response = await api.post('/users', requestBody);
 
             // Get the returned user and update a new object.
@@ -52,6 +51,9 @@ const Registration = () => {
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
             localStorage.setItem('userId', user.id);
+            localStorage.setItem('password', user.password);
+            localStorage.setItem('profilePicture', user.profilePicture);
+            localStorage.setItem('username', user.username);
 
             // Login successfully worked --> navigate to the route /landing in the GameRouter
             history.push(`/landing`);
@@ -79,12 +81,6 @@ const Registration = () => {
                     />
 
                     <FormField
-                        label="Name:"
-                        value={name}
-                        onChange={n => setName(n)}
-                    />
-
-                    <FormField
                         className="registration formfield"
                         label="Password:"
                         value={password}
@@ -105,7 +101,7 @@ const Registration = () => {
 
                     <div className="registration button-container">
                         <Button
-                            disabled={!username || !password || !name}
+                            disabled={!username || !password}
                             width="100%"
                             onClick={() => doRegister()}
                         >
@@ -114,7 +110,6 @@ const Registration = () => {
                     </div>
                     <div className="registration button-container">
                         <Button
-
                             width="100%"
                             onClick={() => goToLogin()}
                         >
@@ -127,8 +122,4 @@ const Registration = () => {
     );
 };
 
-/**
- * You can get access to the history object's properties via the withRouter.
- * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
- */
 export default Registration;

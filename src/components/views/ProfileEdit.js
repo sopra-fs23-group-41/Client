@@ -39,38 +39,45 @@ const ProfileEdit = () => {
   const id = useParams().id;
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState(localStorage.getItem('username'));
-  const [birthDate, setBirthDate] = useState(localStorage.getItem('birthDate'));
-  const [password, setPassword] = useState("");
+  const [birthdate, setBirthdate] = useState(localStorage.getItem('birthdate'));
+  const [newPassword, setNewPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
+  const profilePicture = localStorage.getItem('profilePicture');
+  const oldPassword = localStorage.getItem('password');
 
-const cancel= () => {
-  history.push('/profilepage/'+id)
-}
-
-const changeAvatar= () => {
-  history.push('/change-avatar/'+id)
-}
-
-const logout = async () => {
-  try {
-    await api.get('/users/'+localStorage.getItem('userId')+'/logout');
-    localStorage.clear();
-    history.push('/login');
-  } catch (error) {
-    alert(`Something went wrong during the logout: \n${handleError(error)}`);
+  const cancel= () => {
+    history.push('/profilepage/'+id)
   }
-}
 
+  const changeAvatar= () => {
+    history.push('/change-avatar/'+id)
+  }
 
-    
-const saveChanges = async () => {
+  const logout = async () => {
     try {
-      const requestBody = JSON.stringify({id, username, birthDate});
+      await api.get('/users/'+localStorage.getItem('userId')+'/logout');
+      localStorage.clear();
+      history.push('/login');
+    } catch (error) {
+      alert(`Something went wrong during the logout: \n${handleError(error)}`);
+    }
+  }
+
+  const saveChanges = async () => {
+    let password = "";
+    if (newPassword == "") {
+      password = oldPassword;
+    } else {
+      password = newPassword;
+    }
+
+    try {
+      const requestBody = JSON.stringify({username, birthdate, profilePicture, password});
       await api.put("/users/" + id, requestBody);
-
       localStorage.setItem("username", username);
-      localStorage.setItem("birthDate", birthDate);
-
+      localStorage.setItem("birthdate", birthdate);
+      localStorage.setItem("profilePicture", profilePicture);
+      localStorage.setItem("password", password);
       history.push(`/profilepage/` + id);
     } catch (error) {
       alert(`Something went wrong during changing user data: \n${handleError(error)}`);
@@ -127,15 +134,15 @@ const saveChanges = async () => {
               />
               <FormField
                 label="New Birthdate:"
-                value={birthDate}
-                onChange={b => setBirthDate(b)}
+                value={birthdate}
+                onChange={b => setBirthdate(b)}
                 type = "date"
-                placeholder={user.birthDate}
+                placeholder={user.birthdate}
               />
               <FormField
                 label="New Password:"
-                value={password}
-                onChange={p => setPassword(p)}
+                value={newPassword}
+                onChange={p => setNewPassword(p)}
                 type = "password"
                 placeholder="Leave empty if you don't want to change"
               />
