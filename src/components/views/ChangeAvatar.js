@@ -18,27 +18,26 @@ import Avatar_FIVE from '../Avatars/Avatar_FIVE.jpg';
 import Avatar_SIX from '../Avatars/Avatar_SIX.jpg';*/
 
 const FormField = props => {
-    return (
-      <div className="avatar-radio">
-        <label>
-            <input
-            value={props.value}
-            onClick={e => props.onClick(e.target.value)}
-            type = "radio"
-            name = "avatar"
-            
-            />
-            <img src={require(`../Avatars/Avatar_${props.value}.jpg`)} alt="Broken Avatar" />
-        </label>
-      </div>
-    );
-  };
+  return (
+    <div className="avatar-radio">
+      <label>
+        <input
+        value={props.value}
+        onClick={e => props.onClick(e.target.value)}
+        type = "radio"
+        name = "avatar"
+        />
+        <img src={require(`../Avatars/Avatar_${props.value}.jpg`)} alt="Broken Avatar" />
+      </label>
+    </div>
+  );
+};
   
 FormField.propTypes = {
-    label: PropTypes.string,
-    value: PropTypes.string,
-    onClick: PropTypes.func,
-    type: PropTypes.string
+  label: PropTypes.string,
+  value: PropTypes.string,
+  onClick: PropTypes.func,
+  type: PropTypes.string
 };
 
 const ChangeAvatar = () => {
@@ -46,32 +45,36 @@ const ChangeAvatar = () => {
   const idParam = useParams().id;
   const [user, setUser] = useState(null);
   const [profilePicture, setProfilePicture] = useState("");
+  const password = localStorage.getItem('password');
+  const birthdate = localStorage.getItem('birthdate');
+  const username = localStorage.getItem('username');
 
   const cancel= () => {
     history.push('/profileedit/'+idParam)
   }
 
-const logout = async () => {
-  try {
-    await api.get('/users/'+localStorage.getItem('userId')+'/logout');
-    localStorage.clear();
-    history.push('/login');
-  } catch (error) {
-    alert(`Something went wrong during the logout: \n${handleError(error)}`);
+  const logout = async () => {
+    try {
+      await api.get('/users/'+localStorage.getItem('userId')+'/logout');
+      localStorage.clear();
+      history.push('/login');
+    } catch (error) {
+      alert(`Something went wrong during the logout: \n${handleError(error)}`);
+    }
   }
-}
 
-const saveChanges = async () => {
+  const saveChanges = async () => {
     if (profilePicture === "") {
-        alert("Choose the avatar.");
+      alert("Choose the avatar.");
     } else {
-        try {
-            const requestBody = JSON.stringify({profilePicture});
-            await api.put("/users/" + localStorage.getItem('userId'), requestBody);
-            history.push(`/profilepage/` + idParam);
-          } catch (error) {
-            alert(`Something went wrong during changing user data: \n${handleError(error)}`);
-          }
+      try {
+        const requestBody = JSON.stringify({username, birthdate, profilePicture, password});
+        await api.put("/users/" + idParam, requestBody);
+        localStorage.setItem("profilePicture", profilePicture);
+        history.push(`/profilepage/` + idParam);
+      } catch (error) {
+        alert(`Something went wrong during changing user data: \n${handleError(error)}`);
+      }
     }
   };
 
@@ -84,11 +87,11 @@ const saveChanges = async () => {
         alert(`Something went wrong while fetching the User: \n${handleError(error)}`);
       }
     }
-      fetchData(idParam).catch((error) => {
-          console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
-          console.error("Details:", error);
-          alert("An error occurred while executing the fetchData function! See the console for details.");
-      });
+    fetchData(idParam).catch((error) => {
+        console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+        console.error("Details:", error);
+        alert("An error occurred while executing the fetchData function! See the console for details.");
+    });
   }, [idParam]);
 
   let content = (<div></div>);
