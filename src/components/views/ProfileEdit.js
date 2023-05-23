@@ -65,7 +65,7 @@ const ProfileEdit = () => {
 
   const saveChanges = async () => {
     let password = "";
-    if (newPassword == "") {
+    if (newPassword === "") {
       password = oldPassword;
     } else {
       password = newPassword;
