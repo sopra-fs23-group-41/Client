@@ -53,9 +53,7 @@ const GameLoadingBuffer = () => {
                     // To check if the nextRound has been initialized
                     const beginCheck = await api.get('/lobbies/'+gameId+'/QuestionStatus/'+playerId);
                     const begin = beginCheck.data;
-                    console.log(begin);
                     if (begin === 'true') {
-                        console.log(begin)
                         if(localStorage.getItem('gameMode') === 'GuessThePrice'){
                             history.push('gtpgame')
                         }else if(localStorage.getItem('gameMode') === 'HighOrLow'){

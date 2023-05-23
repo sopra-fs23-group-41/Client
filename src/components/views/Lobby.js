@@ -29,7 +29,12 @@ const Lobby = () => {
 
     const startGame = async () => {
         setActivateLoading(true);
-        await api.post('lobbies/' + gameId + '/begin')
+        try{
+            await api.post('lobbies/' + gameId + '/begin')
+
+        }catch(error){
+            alert(error.response.data.message)
+        }
     }
     const closeLobby = async () => {
         history.push('landing')
@@ -65,7 +70,6 @@ const Lobby = () => {
                     // To check the beginning of the game
                     const beginCheck = await api.get('/lobbies/'+gameId+'/beginStatus');
                     const begin = beginCheck.data;
-                    console.log(begin);
                     if (begin === true) {
                         history.push('game-loading-buffer')
                     }

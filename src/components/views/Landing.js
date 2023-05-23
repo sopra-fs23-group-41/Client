@@ -46,10 +46,8 @@ const Landing = () => {
                 <img className="landing img" src={logo} alt="LOL"/>
                 <nav>
                     <ul className="nav__links">
-                        <li><a href="endofgame">EndOfGame</a></li>
                         <li><a href="allusers">Find User</a></li>
                         <li><a href={`profilepage/${userId}`}>View Profile</a></li>
-                        <li><a href="most-expensive-item-game">MostExpensive</a></li>
                     </ul>
                 </nav>
                 <div className="landing button-container">
