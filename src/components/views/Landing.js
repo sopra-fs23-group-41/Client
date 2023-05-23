@@ -48,6 +48,7 @@ const Landing = () => {
                     <ul className="nav__links">
                         <li><a href="allusers">Find User</a></li>
                         <li><a href={`profilepage/${userId}`}>View Profile</a></li>
+                        <li><a href="/alltimeleaderboard">Leaderboard</a></li>
                     </ul>
                 </nav>
                 <div className="landing button-container">
