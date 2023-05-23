@@ -1,29 +1,24 @@
-# README: Show Me The Money
+# README
 
 <!-- TABLE OF CONTENTS -->
 
 ## Introduction
+Our project began from the keyword online shopping, which has various merits like lower price, more products and so on.
+But it's still quite tedious, boring, and hard to get an intuitive understanding on price.
+So, we wanted to create an intuitive and fun quiz game where the users have to guess the price of Asos products.
+Show me the money.
 
 
 ## Technologies
-+ Gradle
 + React
-+ Spring Boot
-+ SonarCube
-+ GoogleCloud
-+ GitHub
 + Npm
 + Jsx
-+ Java
 
 ## High-level components
 
 
 ## Launch & Deployment
-1)	Copy both codes locally to your machine
-2)	Start the server by running the application
-3)	Start the client by running the following command in the terminal:
-
+Start the client by running the following command in the terminal:
     ```
     npm run dev
     ```
@@ -52,9 +47,9 @@ Users can also take a look on their profile, via the menu. On the profile page y
 ## Roadmap
 + Version of Guess The Price, where players have to type in a price
 + Stronger authentication
-+ Top notch synchronization (WebSocket, viel spass)
++ Top-notch synchronization (WebSockets)
 + Multiplayer all-time leaderboard, based on points snatched during games
-+ Possibility to add friends
++ Friends feature
 + Permanently store registered users
 
 ## Authors and acknowledgment
