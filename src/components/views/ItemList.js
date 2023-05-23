@@ -11,7 +11,7 @@ import "helpers/Timer.js";
 const DisplayItem = ({item}) => (
     <div className="item-list items">
         <div className="item-list container">
-            <h3 className="item-list price">Price: {item.price} CHF</h3>
+            <h3 className="item-list price">Price: {item.price} USD</h3>
             <h3 className="item-list name">Name: {item.name}</h3>
             <img className="item-list picture" src={`https://${item.imageUrl}`} alt="Lol"/>
             <h3 className="item-list link"><a href={`https://asos.com/us/${item.url}`} target="_blank" rel="noreferrer">Link to Website</a></h3>
@@ -21,7 +21,6 @@ const DisplayItem = ({item}) => (
 
 const ItemList = () => {
     const gameId = localStorage.getItem('gameId');
-    console.log(gameId);
     const [items, setItems] = useState(null);
 
     useEffect(() => {
@@ -29,12 +28,16 @@ const ItemList = () => {
             try {
                 const response = await api.get('/lobbies/'+gameId+'/articles');
                 setItems(response.data);
-                console.log(response);
             } catch (error) {
                 alert(`Something went wrong while fetching the items: \n${handleError(error)}`);
             }
         }
-        fetchData(gameId);
+
+        fetchData(gameId).catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     }, [gameId]);
 
     let content = (<div></div>);

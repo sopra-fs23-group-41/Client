@@ -25,6 +25,8 @@ const GTPGame = () => {
     const [onlyOnce, setOnlyOnce] = useState(true);
     const [onlyOnce2, setOnlyOnce2] = useState(true);
     const [onlyOnce3, setOnlyOnce3] = useState(true);
+    const [onlyOnce5, setOnlyOnce5] = useState(true);
+
 
     const [isOnStreak, setIsOnStreak] = useState(false);
     const [isBonusRound, setIsBonusRound] = useState(false);
@@ -37,30 +39,14 @@ const GTPGame = () => {
 
     //Question-Data
     const [trueAnswer, setTrueAnswer] = useState(0);
-    const [falseAnswers, setFalseAnswers] = useState([0, 0, 0]);
     const [picture, setPicture] = useState(guccishoe);
     const [answers, setAnswers] = useState([0, 0, 0, 0]);
     const [randomizedAnswers, setRandomizedAnswers] = useState([0, 0, 0, 0]);
 
-    console.log(falseAnswers)
 
     //Measuring time
     const [startTime, setStartTime] = useState(null);
 
-    //Load the next question if the player is the GM
-    /*const startNextRound = useCallback(async () => {
-        try {
-            const request = await api.get('/lobbies/' + gameId + '/nextRound')
-            console.log(request)
-            setPicture("https://" + request.data.picUrls);
-            setTrueAnswer(request.data.trueAnswer);
-            setFalseAnswers(request.data.falseAnswers);
-            setAnswers([request.data.trueAnswer, request.data.falseAnswers[0], request.data.falseAnswers[1], request.data.falseAnswers[2]])
-        } catch (error) {
-            console.log('Something went wrong')
-        }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
-    */
 
     //Load the next question if the player is not the GM
     const getNextQuestion = useCallback(async () => {
@@ -68,21 +54,12 @@ const GTPGame = () => {
             const request = await api.get('/lobbies/' + gameId + '/nextQuestion')
             setPicture(request.data.picUrls);
             setTrueAnswer(request.data.trueAnswer);
-            setFalseAnswers(request.data.falseAnswers);
             setAnswers([request.data.trueAnswer, request.data.falseAnswers[0], request.data.falseAnswers[1], request.data.falseAnswers[2]])
         } catch (error) {
             console.log('Something went wrong')
         }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+    }, [gameId, setPicture, setTrueAnswer]);
 
-
-    /*useEffect(() => {
-        if(isGm === 'true' && onlyOnce) {
-            setOnlyOnce(false);
-            startNextRound();
-        }
-    },[isGm, onlyOnce, startNextRound, answers]);
-    */
 
     useEffect(() => {
         if(onlyOnce) {
@@ -222,21 +199,19 @@ const GTPGame = () => {
                     // To check if the nextRound has been initialized
                     const allAnsweredCheck = await api.get('/lobbies/'+gameId+'/allAnswered');
                     const canBegin = allAnsweredCheck.data;
-                    console.log(canBegin)
                     let currRound = parseInt(localStorage.getItem('currentRound'));
                     if (canBegin === true) {
                         if (currRound >= rounds) {
                             history.push('endofgame');
                         }
-                        else{
-
+                        else if(onlyOnce5){
+                            setOnlyOnce5(false);
                             setTimeout(() => {
                                 currRound = currRound + 1;
                                 currRound = currRound.toString();
-                                console.log(currRound)
                                 localStorage.setItem('currentRound', currRound);
                                 history.push('leaderboard');
-                            }, 1400);
+                            }, 5000);
                         }
                     }
 
@@ -244,10 +219,14 @@ const GTPGame = () => {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
             }
-            hasEveryoneAnswered(gameId);
+            hasEveryoneAnswered(gameId).catch((error) => {
+                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("An error occurred while executing the fetchData function! See the console for details.");
+            });
         }, 1000);
         return () => clearInterval(interval);
-    }, [gameId, currentRound, rounds, history]);
+    }, [gameId, currentRound, rounds, history, onlyOnce5]);
 
 
     return (
@@ -276,50 +255,50 @@ const GTPGame = () => {
                 {clicked && (randomizedAnswers[0] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}
                 {clicked2 && (randomizedAnswers[1] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}
                 {clicked && (randomizedAnswers[0] !== trueAnswer) && (randomizedAnswers[0] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. Let's do {trueAnswer} CHF</h1>}
-                {clicked && (randomizedAnswers[0] !== trueAnswer) && (randomizedAnswers[0] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? I'd do {trueAnswer} CHF</h1>}
-                {clicked2 && (randomizedAnswers[1] !== trueAnswer) && (randomizedAnswers[1] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. Let's do {trueAnswer} CHF</h1>}
+                {clicked && (randomizedAnswers[0] !== trueAnswer) && (randomizedAnswers[0] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? It's only {trueAnswer} CHF</h1>}
+                {clicked2 && (randomizedAnswers[1] !== trueAnswer) && (randomizedAnswers[1] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. It's only {trueAnswer} CHF</h1>}
                 {clicked2 && (randomizedAnswers[1] !== trueAnswer) && (randomizedAnswers[1] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? I'd do {trueAnswer} CHF</h1>}
                 {!(clicked2 || clicked3 || clicked4) && <button
 
                     className="gtp answer-button"
                     onClick={firstAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked ? (trueAnswer === randomizedAnswers[0] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px', marginLeft: clicked ? (randomizedAnswers[0] !== trueAnswer ? (randomizedAnswers[0] < trueAnswer ? '185px' : '220px'): '80px') : '0px', color: clicked? 'floralwhite' : '#8BA1FAFF'}}
+                    style ={{backgroundColor: clicked ? (trueAnswer === randomizedAnswers[0] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px', marginLeft: clicked ? (randomizedAnswers[0] !== trueAnswer ? (randomizedAnswers[0] < trueAnswer ? '135px' : '180px'): '40px') : '0px', color: clicked? 'floralwhite' : '#8BA1FAFF'}}
                 >
-                    {randomizedAnswers[0]} CHF
+                    {randomizedAnswers[0]} USD
                 </button>}
                 {!(clicked || clicked3 || clicked4) && <button
                     className="gtp answer-button"
                     onClick={secondAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked2 ? (trueAnswer === randomizedAnswers[1] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px', marginLeft: clicked2 ? (randomizedAnswers[1] === trueAnswer ? '80px': (randomizedAnswers[1] < trueAnswer ? '185px' : '220px')) : '0px', color: clicked2? 'floralwhite' : '#8BA1FAFF'}}
+                    style ={{backgroundColor: clicked2 ? (trueAnswer === randomizedAnswers[1] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px', marginLeft: clicked2 ? (randomizedAnswers[1] === trueAnswer ? '40px': (randomizedAnswers[1] < trueAnswer ? '135px' : '180px')) : '0px', color: clicked2? 'floralwhite' : '#8BA1FAFF'}}
                 >
-                    {randomizedAnswers[1]} CHF
+                    {randomizedAnswers[1]} USD
                 </button>}
 
             </div>
             <div className="gtp answer-container">
                 {clicked3 && (randomizedAnswers[2] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}
                 {clicked4 && (randomizedAnswers[3] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}
-                {clicked3 && (randomizedAnswers[2] !== trueAnswer) && (randomizedAnswers[2] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. Let's do {trueAnswer} CHF</h1>}
-                {clicked3 && (randomizedAnswers[2] !== trueAnswer) && (randomizedAnswers[2] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? I'd do {trueAnswer} CHF</h1>}
-                {clicked4 && (randomizedAnswers[3] !== trueAnswer) && (randomizedAnswers[3] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. Let's do {trueAnswer} CHF</h1>}
-                {clicked4 && (randomizedAnswers[3] !== trueAnswer) && (randomizedAnswers[3] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? I'd do {trueAnswer} CHF</h1>}
+                {clicked3 && (randomizedAnswers[2] !== trueAnswer) && (randomizedAnswers[2] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. Let's do {trueAnswer} USD</h1>}
+                {clicked3 && (randomizedAnswers[2] !== trueAnswer) && (randomizedAnswers[2] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? It's only {trueAnswer} USD</h1>}
+                {clicked4 && (randomizedAnswers[3] !== trueAnswer) && (randomizedAnswers[3] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. Let's do {trueAnswer} USD</h1>}
+                {clicked4 && (randomizedAnswers[3] !== trueAnswer) && (randomizedAnswers[3] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? It's only {trueAnswer} USD</h1>}
                 {!(clicked || clicked2 || clicked4) && <button
                     className="gtp answer-button"
                     onClick={thirdAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                        style ={{backgroundColor: clicked3 ? (trueAnswer === randomizedAnswers[2] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px', marginLeft: clicked3 ? (randomizedAnswers[2] === trueAnswer ? '80px': (randomizedAnswers[2] < trueAnswer ? '185px' : '220px')) : '0px', color: clicked3? 'floralwhite' : '#8BA1FAFF'}}
+                        style ={{backgroundColor: clicked3 ? (trueAnswer === randomizedAnswers[2] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px', marginLeft: clicked3 ? (randomizedAnswers[2] === trueAnswer ? '40px': (randomizedAnswers[2] < trueAnswer ? '135px' : '180px')) : '0px', color: clicked3? 'floralwhite' : '#8BA1FAFF'}}
                 >
-                    {randomizedAnswers[2]} CHF
+                    {randomizedAnswers[2]} USD
                 </button>}
                 {!(clicked || clicked3 || clicked2) && <button
                     className="gtp answer-button"
                     onClick={forthAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked4 ? (trueAnswer === randomizedAnswers[3] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px', marginLeft: clicked4 ? (randomizedAnswers[3] === trueAnswer ? '80px': (randomizedAnswers[3] < trueAnswer ? '185px' : '220px')): '0px', color: clicked4? 'floralwhite' : '#8BA1FAFF'}}
+                    style ={{backgroundColor: clicked4 ? (trueAnswer === randomizedAnswers[3] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px', marginLeft: clicked4 ? (randomizedAnswers[3] === trueAnswer ? '40px': (randomizedAnswers[3] < trueAnswer ? '135px' : '180px')): '0px', color: clicked4? 'floralwhite' : '#8BA1FAFF'}}
                 >
-                    {randomizedAnswers[3]} CHF
+                    {randomizedAnswers[3]} USD
                 </button>}
             </div>
 

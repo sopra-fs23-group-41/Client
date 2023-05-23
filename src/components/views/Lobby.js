@@ -70,7 +70,6 @@ const Lobby = () => {
                     // To check the beginning of the game
                     const beginCheck = await api.get('/lobbies/'+gameId+'/beginStatus');
                     const begin = beginCheck.data;
-                    console.log(begin);
                     if (begin === true) {
                         history.push('game-loading-buffer')
                     }
@@ -78,7 +77,11 @@ const Lobby = () => {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
             }
-            fetchData(gameId);
+            fetchData(gameId).catch((error) => {
+                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("An error occurred while executing the fetchData function! See the console for details.");
+            });
         }, 1000);
         return () => clearInterval(interval);
     }, [gameId, history, rounds]);

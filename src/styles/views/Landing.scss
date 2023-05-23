@@ -6,6 +6,7 @@
 
   for more information visit https://sass-lang.com/guide
  */
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Staatliches&family=Varela+Round&display=swap');
 
 .button {
   padding: 9px 25px;
@@ -106,7 +107,7 @@
     align-items: center;
     font-size: 200px;
     color: #ffeb17;
-    font-family: "JetBrains Mono", serif;
+    font-family: "Staatliches", serif;
   }
 
   &.img{
@@ -164,7 +165,7 @@
   }
 
   &.title{
-    font-family: "JetBrains Mono", serif;
+    font-family: "Staatliches", serif;
     text-align: center;
     color: #2f332e;
     font-size: 35px;
@@ -193,7 +194,7 @@
 }
 
 li, a, img{
-  font-family: "JetBrains Mono", serif;
+  font-family: "Staatliches", serif;
   color: antiquewhite;
   text-decoration: none;
 }

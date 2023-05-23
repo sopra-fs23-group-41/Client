@@ -37,7 +37,7 @@ const LeaderBoard = () => {
     const startNextRound = useCallback(async () => {
         try {
             await api.get('/lobbies/' + gameId + '/nextRound')
-            console.log("next round")
+            console.log("Next round has been initialized")
         } catch (error) {
             console.log('Something went wrong')
         }
@@ -57,7 +57,6 @@ const LeaderBoard = () => {
                 let temporaryPlayers = [];
                 for(let i=0; i<response.data.players.length; i++){
                     const tempPlayer = new Player();
-                    console.log(response.data.players[i].roundScore)
                     tempPlayer.playerName = response.data.players[i].playerName;
                     tempPlayer.roundScore = response.data.players[i].roundScore;
                     tempPlayer.totalScore = response.data.players[i].totalScore;
@@ -72,10 +71,13 @@ const LeaderBoard = () => {
                 alert("Something went wrong while fetching the players in leaderboard! See the console for details.");
             }
         };
-        fetchPlayers();
+        fetchPlayers().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     }, [gameId]);
 
-    console.log(players)
     return (
         <BaseContainer className="multiplayer container">
 
@@ -92,7 +94,7 @@ const LeaderBoard = () => {
             </div>
 
             <div className="gtp rounds" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <h2>Round {currentRound}/ {rounds}</h2>
+                <h2>Round {currentRound} / {rounds}</h2>
             </div>
             <h1 className="next-question-title">Next question starts in:</h1>
             <div className="next-question-timer">

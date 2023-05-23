@@ -29,7 +29,6 @@ const PinCode = () => {
         try {
             const requestBody = JSON.stringify({id:userId});
             const response = await api.post('/lobbies/joinGame/'+pincode, requestBody)
-            console.log(response);
             const gameId = response.data.gameId;
             const playerId = response.data.playerId
             localStorage.setItem('playerId', playerId)
@@ -37,7 +36,6 @@ const PinCode = () => {
             localStorage.setItem('gameId', gameId);
             history.push('/lobby');
         } catch (error) {
-            console.log(pincode);
             alert(`Something went wrong with the pincode: \n${handleError(error)}`);
         }
     };

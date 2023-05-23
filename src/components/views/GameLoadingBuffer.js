@@ -53,9 +53,7 @@ const GameLoadingBuffer = () => {
                     // To check if the nextRound has been initialized
                     const beginCheck = await api.get('/lobbies/'+gameId+'/QuestionStatus/'+playerId);
                     const begin = beginCheck.data;
-                    console.log(begin);
                     if (begin === 'true') {
-                        console.log(begin)
                         if(localStorage.getItem('gameMode') === 'GuessThePrice'){
                             history.push('gtpgame')
                         }else if(localStorage.getItem('gameMode') === 'HighOrLow'){
@@ -77,7 +75,11 @@ const GameLoadingBuffer = () => {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
             }
-            isNewRoundStarted(gameId);
+            isNewRoundStarted(gameId).catch((error) => {
+                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("An error occurred while executing the fetchData function! See the console for details.");
+            });
         }, 1000);
         return () => clearInterval(interval);
     }, [gameId, history, playerId, currentRound]);
@@ -112,7 +114,11 @@ const GameLoadingBuffer = () => {
                 }
             }
         }
-        doCountdown();
+        doCountdown().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     })
 
     return (

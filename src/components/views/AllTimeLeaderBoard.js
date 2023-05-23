@@ -1,13 +1,13 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Landing.scss";
 import "styles/views/AllTimeLeaderBoard.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
-import { Link } from 'react-router-dom';
+
 
 const Player = ({user}) => (
     <div className={`container`}>
@@ -57,7 +57,11 @@ const AllTimeLeaderBoard = () => {
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
-        fetchData();
+        fetchData().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     }, []);
 
     let content = (<div></div>);

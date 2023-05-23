@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import {useHistory} from "react-router-dom";
-import {api} from "./api";
+import {api, handleError} from "./api";
 import Answer from "../models/Answer";
 
 const Timer = ({seconds}) => {
@@ -45,15 +45,20 @@ const Timer = ({seconds}) => {
                         playerAnswer.playerAnswer = 0;
 
                         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
+                        let tempCurrentRound = currentRound + 1;
+                        tempCurrentRound = tempCurrentRound.toString();
+                        localStorage.setItem('currentRound', tempCurrentRound);
+                        history.push('leaderboard');
                     }
-                    currentRound = currentRound + 1;
-                    currentRound = currentRound.toString();
-                    localStorage.setItem('currentRound', currentRound);
-                    history.push('leaderboard');
+
                 }
             }
         }
-        handleCountdown();
+        handleCountdown().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     }, [countdown, history, timerId]);
 
     return (

@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import {useHistory} from "react-router-dom";
+import {handleError} from "./api";
 //import {api} from "./api";
 
 const TimerLeaderboard = ({seconds}) => {
@@ -39,7 +40,11 @@ const TimerLeaderboard = ({seconds}) => {
                 }
             }
         }
-        doCountdown();
+        doCountdown().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     })
 
     return (

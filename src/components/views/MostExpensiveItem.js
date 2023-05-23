@@ -32,6 +32,7 @@ const MostExpensiveItem = () => {
 
     const history = useHistory();
 
+    //Interactive Boolean Flags
     const [clicked, setClicked] = useState(false);
     const [blurPic1, setBlur1] = useState(false);
     const [blurPic2, setBlur2] = useState(false);
@@ -44,9 +45,15 @@ const MostExpensiveItem = () => {
     const [onlyOnce, setOnlyOnce] = useState(true);
     const [onlyOnce2, setOnlyOnce2] = useState(true);
     const [onlyOnce3, setOnlyOnce3] = useState(true);
+    const [onlyOnce4, setOnlyOnce4] = useState(true);
+    const [onlyOnce5, setOnlyOnce5] = useState(true);
 
 
+    //Streak and Bonus Round Hooks
+    const [isOnStreak, setIsOnStreak] = useState(false);
+    const [isBonusRound, setIsBonusRound] = useState(false);
 
+    //Game and Player Information
     const gameId = localStorage.getItem('gameId');
     const playerId = localStorage.getItem('playerId')
     const currentRound = localStorage.getItem('currentRound')
@@ -88,7 +95,6 @@ const MostExpensiveItem = () => {
     const getNextQuestion = useCallback(async () => {
         try {
             const request = await api.get('/lobbies/' + gameId + '/nextQuestion')
-            console.log(request)
             setPicture(request.data.picUrls);
             setTrueAnswer(request.data.trueAnswer);
             setAnswers([request.data.trueAnswer, request.data.falseAnswers[0]])
@@ -123,8 +129,8 @@ const MostExpensiveItem = () => {
                         if (currRound >= rounds) {
                             history.push('endofgame');
                         }
-                        else{
-
+                        else if(onlyOnce4){
+                            setOnlyOnce4(false);
                             setTimeout(() => {
                                 currRound = currRound + 1;
                                 currRound = currRound.toString();
@@ -138,13 +144,32 @@ const MostExpensiveItem = () => {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
             }
-            hasEveryoneAnswered(gameId);
+            hasEveryoneAnswered(gameId).catch((error) => {
+                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("An error occurred while executing the fetchData function! See the console for details.");
+            });
         }, 1000);
         return () => clearInterval(interval);
-    }, [gameId, currentRound, rounds, history]);
+    }, [gameId, currentRound, rounds, history, onlyOnce4]);
 
 
-    //console.log(falseAnswers)
+    //Activate Streak Display
+    useEffect(() => {
+        if (onlyOnce5) {
+            setOnlyOnce5(false);
+            if (parseInt(localStorage.getItem('streak')) >= 3) {
+                setIsOnStreak(true);
+            }
+        }
+    }, [onlyOnce5])
+
+    //Activate Bonus Round Display
+    useEffect(() => {
+        if (parseInt(currentRound) % 3 === 0) {
+            setIsBonusRound(true);
+        }
+    }, [currentRound])
 
 
     useEffect(() => {
@@ -174,21 +199,53 @@ const MostExpensiveItem = () => {
                 setBlur2(true);
                 setBlur3(true);
                 setBlur4(true);
+                if(productId1.toString() === trueAnswer){
+                    let currentStreak = parseInt(localStorage.getItem('streak'))
+                    currentStreak = currentStreak + 1;
+                    currentStreak = currentStreak.toString();
+                    localStorage.setItem('streak', currentStreak);
+                }else{
+                    localStorage.setItem('streak', '0')
+                }
             }else if(choice === 2){
                 playerAnswer.playerAnswer = productId2;
                 setBlur1(true);
                 setBlur3(true);
                 setBlur4(true);
+                if(productId2.toString() === trueAnswer){
+                    let currentStreak = parseInt(localStorage.getItem('streak'))
+                    currentStreak = currentStreak + 1;
+                    currentStreak = currentStreak.toString();
+                    localStorage.setItem('streak', currentStreak);
+                }else{
+                    localStorage.setItem('streak', '0')
+                }
             }else if(choice === 3){
                 playerAnswer.playerAnswer = productId3;
                 setBlur1(true);
                 setBlur2(true);
                 setBlur4(true);
+                if(productId3.toString() === trueAnswer){
+                    let currentStreak = parseInt(localStorage.getItem('streak'))
+                    currentStreak = currentStreak + 1;
+                    currentStreak = currentStreak.toString();
+                    localStorage.setItem('streak', currentStreak);
+                }else{
+                    localStorage.setItem('streak', '0')
+                }
             }else{
                 playerAnswer.playerAnswer = productId4;
                 setBlur1(true);
                 setBlur2(true);
                 setBlur3(true);
+                if(productId4.toString() === trueAnswer){
+                    let currentStreak = parseInt(localStorage.getItem('streak'))
+                    currentStreak = currentStreak + 1;
+                    currentStreak = currentStreak.toString();
+                    localStorage.setItem('streak', currentStreak);
+                }else{
+                    localStorage.setItem('streak', '0')
+                }
             }
             api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
         }
@@ -208,11 +265,14 @@ const MostExpensiveItem = () => {
                 <h1 className="multiplayer title">Most Expensive Item</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-
-            <div className="most-expensive game-status-container">
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}><h2>Round {currentRound}/{rounds}</h2></div>
-                <div> <Timer seconds={5} /> </div>
+            <div className="gtp bonus-and-streak">
+                <h2>Round {currentRound}/ {rounds}</h2>
+                {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round!💹💰</h2>}
+                <Timer seconds={10}/>
             </div>
+            {isOnStreak && <h2 className="gtp streak">🔥You're on a Streak of {localStorage.getItem('streak')} Rounds!🔥</h2>}
+
+
 
             <div className="most-expensive top-pics">
                 <div className="most-expensive brand-and-pic">

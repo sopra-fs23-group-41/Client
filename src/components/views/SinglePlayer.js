@@ -31,7 +31,11 @@ const SinglePlayer = () => {
 
     useEffect(() =>{
         if(onlyOnce){
-            initializeLobby();
+            initializeLobby().catch((error) => {
+                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("An error occurred while executing the fetchData function! See the console for details.");
+            });
             setOnlyOnce(false);
         }
     }, [onlyOnce])
@@ -46,7 +50,6 @@ const SinglePlayer = () => {
         const request = await api.post('lobbies', requestBody)
         localStorage.setItem('gameId', request.data.gameId)
         localStorage.setItem('pincode', request.data.gamePIN)
-        console.log("XD")
     }
     const createLobby = async () =>{
 
@@ -57,8 +60,7 @@ const SinglePlayer = () => {
         const gameId = localStorage.getItem('gameId')
         localStorage.setItem('isGm', 'true')
 
-        const update = await api.put('/lobbies/'+gameId, requestBody)
-        console.log(update)
+        await api.put('/lobbies/'+gameId, requestBody)
         const pincode = localStorage.getItem('pincode')
         const userId = localStorage.getItem('userId');
 
@@ -71,7 +73,6 @@ const SinglePlayer = () => {
 
             history.push('/lobby');
         } catch (error) {
-            console.log(pincode);
             alert(`Something went wrong with the pincode: \n${handleError(error)}`);
         }
 

@@ -42,6 +42,7 @@ const EndOfGame = () => {
 
     const endGame = async () => {
         history.push('landing')
+        await api.get('lobbies/'+gameId+'/end')
         await api.post('lobbies/'+gameId+'/end')
     }
     useEffect(() => {
@@ -51,7 +52,6 @@ const EndOfGame = () => {
                 let temporaryPlayers = [];
                 for(let i=0; i<response.data.players.length; i++){
                     const tempPlayer = new Player();
-                    console.log(response.data.players[i].roundScore)
                     tempPlayer.playerName = response.data.players[i].playerName;
                     tempPlayer.roundScore = response.data.players[i].roundScore;
                     tempPlayer.totalScore = response.data.players[i].totalScore;
@@ -66,7 +66,11 @@ const EndOfGame = () => {
                 alert("Something went wrong while fetching the players in leaderboard! See the console for details.");
             }
         };
-        fetchPlayers();
+        fetchPlayers().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     }, [gameId]);
 
 

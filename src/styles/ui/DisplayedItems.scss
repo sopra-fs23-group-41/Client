@@ -1,5 +1,5 @@
 .item-list{
-  font-family: "JetBrains Mono", serif;
+  font-family: "Staatliches", cursive;
   color: floralwhite;
   &.items{
     margin-top: 30px;
@@ -17,4 +17,14 @@
     align-items: center;
     justify-content: flex-start;
   }
+
+  &.price{
+    font-family: "Staatliches", cursive;
+  }
+
+  &.name{
+    font-family: "Staatliches", cursive;
+  }
+
+
 }
