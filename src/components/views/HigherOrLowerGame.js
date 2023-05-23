@@ -39,7 +39,12 @@ const HigherOrLowerGame = () => {
     const [onlyOnce, setOnlyOnce] = useState(true);
     const [onlyOnce2, setOnlyOnce2] = useState(true);
     const [onlyOnce3, setOnlyOnce3] = useState(true);
+    const [onlyOnce4, setOnlyOnce4] = useState(true);
+    const [onlyOnce5, setOnlyOnce5] = useState(true);
 
+    //Streak and Bonus Round Hooks
+    const [isOnStreak, setIsOnStreak] = useState(false);
+    const [isBonusRound, setIsBonusRound] = useState(false);
 
 
     const gameId = localStorage.getItem('gameId');
@@ -49,10 +54,8 @@ const HigherOrLowerGame = () => {
 
     //Question-Data
     const [trueAnswer, setTrueAnswer] = useState(null);
-    const [falseAnswers, setFalseAnswers] = useState(0);
     const [picture, setPicture] = useState(guccishoe);
     const [answers, setAnswers] = useState([0, 0]);
-    const [randomizedAnswers, setRandomizedAnswers] = useState([0, 0]);
     const [prices, setPrices] = useState([0, 0]);
 
     //Used to avoid returning multiple answers to the Back-end
@@ -62,6 +65,7 @@ const HigherOrLowerGame = () => {
     }
     //Measure time
     const [startTime, setStartTime] = useState(null);
+
     if(onlyOnce2){
         setOnlyOnce2(false);
         setStartTime(Date.now())
@@ -72,13 +76,30 @@ const HigherOrLowerGame = () => {
             const request = await api.get('/lobbies/' + gameId + '/nextQuestion')
             setPicture(request.data.picUrls);
             setTrueAnswer(request.data.trueAnswer);
-            setFalseAnswers(request.data.falseAnswers);
             setAnswers([request.data.trueAnswer, request.data.falseAnswers[0]])
             setPrices([request.data.articles[0].price, request.data.articles[1].price])
         } catch (error) {
             console.log('Something went wrong')
         }
-    }, [gameId, setPicture, setTrueAnswer, setFalseAnswers]);
+    }, [gameId, setPicture, setTrueAnswer]);
+
+
+    //Activate Streak Display
+    useEffect(() => {
+        if (onlyOnce5) {
+            setOnlyOnce5(false);
+            if (parseInt(localStorage.getItem('streak')) >= 3) {
+                setIsOnStreak(true);
+            }
+        }
+    }, [onlyOnce5])
+
+    //Activate Bonus Round Display
+    useEffect(() => {
+        if (parseInt(currentRound) % 3 === 0) {
+            setIsBonusRound(true);
+        }
+    }, [currentRound])
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
@@ -89,18 +110,18 @@ const HigherOrLowerGame = () => {
                     // To check if the nextRound has been initialized
                     const allAnsweredCheck = await api.get('/lobbies/'+gameId+'/allAnswered');
                     const canBegin = allAnsweredCheck.data;
-                    console.log(canBegin)
                     let currRound = parseInt(localStorage.getItem('currentRound'));
                     if (canBegin === true) {
                         if (currRound >= rounds) {
-                            history.push('endofgame');
+                            if(onlyOnce4){
+                                history.push('endofgame');
+                            }
                         }
-                        else{
-
+                        else if(onlyOnce4){
+                            setOnlyOnce4(false);
                             setTimeout(() => {
                                 currRound = currRound + 1;
                                 currRound = currRound.toString();
-                                console.log(currRound)
                                 localStorage.setItem('currentRound', currRound);
                                 history.push('leaderboard');
                             }, 2000);
@@ -114,10 +135,8 @@ const HigherOrLowerGame = () => {
             hasEveryoneAnswered(gameId);
         }, 1000);
         return () => clearInterval(interval);
-    }, [gameId, currentRound, rounds, history]);
+    }, [gameId, currentRound, rounds, history, onlyOnce4]);
 
-
-    console.log(falseAnswers)
 
 
     useEffect(() => {
@@ -141,28 +160,34 @@ const HigherOrLowerGame = () => {
         playerAnswer.numOfRound = currentRound;
         playerAnswer.playerAnswer = 'Higher';
         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
+        if('Higher' === trueAnswer){
+            let currentStreak = parseInt(localStorage.getItem('streak'))
+            currentStreak = currentStreak + 1;
+            currentStreak = currentStreak.toString();
+            localStorage.setItem('streak', currentStreak);
+        }else{
+            localStorage.setItem('streak', '0')
+        }
     }
 
     const secondAnswer = () => {
         localStorage.setItem('hasAnswered', 'true')
-        console.log(randomizedAnswers)
         setClicked2(true);
         playerAnswer.playerId = playerId;
         playerAnswer.timeUsed = (Date.now() - startTime)/1000;
         playerAnswer.numOfRound = currentRound;
         playerAnswer.playerAnswer = 'Lower';
         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
+        if('Lower' === trueAnswer){
+            let currentStreak = parseInt(localStorage.getItem('streak'))
+            currentStreak = currentStreak + 1;
+            currentStreak = currentStreak.toString();
+            localStorage.setItem('streak', currentStreak);
+        }else{
+            localStorage.setItem('streak', '0')
+        }
     }
 
-    useEffect(() => {
-
-        let randomAnswers = [0, 0];
-        for (let i = 0; i < 2; i++) {
-            randomAnswers[i] = answers[i]
-        }
-
-        setRandomizedAnswers(randomAnswers);
-    }, [answers]);
 
 
 
@@ -178,11 +203,13 @@ const HigherOrLowerGame = () => {
                 <h1 className="multiplayer title">Higher or Lower</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-
-            <div className="game-status-container">
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}><h2>Round {currentRound}/{rounds}</h2></div>
-                <div> <Timer seconds={5} /> </div>
+            <div className="gtp bonus-and-streak">
+                <h2>Round {currentRound}/ {rounds}</h2>
+                {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round!💹💰</h2>}
+                <Timer seconds={10}/>
             </div>
+            {isOnStreak && <h2 className="gtp streak">🔥You're on a Streak of {localStorage.getItem('streak')} Rounds!🔥</h2>}
+
 
             <div className="h-or-l prices">
                 <h1 className="h-or-l left-price">{prices[0]} USD</h1>

@@ -59,8 +59,7 @@ const MultiPlayer = () => {
         const gameId = localStorage.getItem('gameId')
         localStorage.setItem('isGm', 'true')
 
-        const update = await api.put('/lobbies/'+gameId, requestBody)
-        console.log(update)
+        await api.put('/lobbies/'+gameId, requestBody)
         const pincode = localStorage.getItem('pincode')
         const userId = localStorage.getItem('userId');
 
@@ -73,7 +72,6 @@ const MultiPlayer = () => {
 
                 history.push('/lobby');
             } catch (error) {
-                console.log(pincode);
                 alert(`Something went wrong with the pincode: \n${handleError(error)}`);
             }
 
