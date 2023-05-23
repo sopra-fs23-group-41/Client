@@ -6,10 +6,9 @@ export const LoginGuard = props => {
     return props.children;
   }
   // if user is already logged in, redirects to the main /app
-  return <Redirect to="/landing"/>;
+  return <Redirect to="/registration"/>;
 };
 
 LoginGuard.propTypes = {
   children: PropTypes.node
 }
-//bruh

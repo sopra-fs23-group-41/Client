@@ -109,14 +109,18 @@ const Lobby = () => {
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
             <div className="multiplayer upper-part">
-                <div className="multiplayer settings">
-                    <h2>Settings</h2>
-                    <p>Game Mode: {gameMode} </p>
-                    <p>Rounds: {rounds} </p>
-                    <p>Category: {category} </p>
-                    <p>Pincode: {pin} </p>
-                    <h2 className="multiplayer list-of-players">Players</h2>
-                    <p>{content}</p>
+                <div className="multiplayer settings-players-container">
+                    <div className="multiplayer settings">
+                        <h2>Settings:</h2>
+                        <p>Game Mode: {gameMode}</p>
+                        <p>Rounds: {rounds}</p>
+                        <p>Category: {category}</p>
+                        <p>Pincode: {pin}</p>
+                    </div>
+                    <div className="multiplayer players">
+                        <h2 className="multiplayer list-of-players">Players:</h2>
+                        {content}
+                    </div>
                 </div>
             </div>
 

@@ -108,7 +108,7 @@ const MultiPlayer = () => {
 
             <div className="multiplayer upper-part">
                 <div className="multiplayer settings">
-                    <h2 className="multiplayer setting-title">Choose Settings</h2>
+                    <h2 className="multiplayer setting-title">Choose Settings:</h2>
 
                         <div className="list-choice-container">
                             <div className="list-choice">
@@ -139,7 +139,6 @@ const MultiPlayer = () => {
                             </div>
 
 
-
                         <div className="list-choice">
                             <div className="list-choice-title">Rounds</div>
                             <div className="list-choice-objects">
@@ -164,7 +163,6 @@ const MultiPlayer = () => {
                                 <label>
                                     <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("28")}/> <span>28</span>
                                 </label>
-
                             </div>
                         </div>
 

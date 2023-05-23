@@ -1,11 +1,12 @@
 @import 'src/styles/_theme';
 
-  @import url('https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap');
 
-  @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Source+Sans+Pro:wght@200&family=Staatliches&family=Varela+Round&display=swap');
 
 .base-container {
-  font-family: 'Staatliches', cursive;
+  font-family: 'Varela Round', cursive;
   margin-left: auto;
   padding-left: 15px;
   margin-right: auto;

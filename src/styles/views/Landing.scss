@@ -7,20 +7,23 @@
   for more information visit https://sass-lang.com/guide
  */
 
-.button{
+.button {
   padding: 9px 25px;
-  background-color: sandybrown;
+  background-color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease 0s;
   color: #000000;
-  font-family: 'Staatliches', cursive;
+  font-family: 'Varela Round', cursive;
+  font-weight: bold;
+  font-size: 20px;
 }
 
-.button:hover{
-  background-color: rgba(0, 136, 169, 0);
-  color: antiquewhite;
+.button:hover {
+  //background-color: rgba(255, 255, 255, 0);
+  //color: antiquewhite;
+  transform: scale(1.1);
 }
 
 .landing {
@@ -32,8 +35,8 @@
     height: 830px;
     width: 1500px;
     flex-direction: column;
-    //box-shadow: 0 0.25em 0.25em #000000;
-    zoom: 0.7;
+    justify-content: center;
+    zoom: 0.6;
     //disable scrolling:
     overflow: hidden;
     /* Center the container */
@@ -41,6 +44,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px 20px rgba(0, 0, 0, .4);
   }
   &.user-list {
     list-style: georgian;
@@ -52,15 +56,25 @@
     align-items: center;
     justify-content: center;
   }
-  & p, h1, h3 {
-    font-family: 'Staatliches', cursive;
+  & p, h3 {
+    font-family: 'Varela Round', cursive;
   }
 
   & h1 {
     margin-bottom: 10px;
+    font-family: 'Staatliches', cursive;
+    color: $textColor;
+    text-shadow: 5px 5px 0 #000000;
   }
-  & p,h2 {
+
+  & h3 {
+    font-family: "Varela Round", sans-serif;
+    //letter-spacing: 2px;
+
+  }
+  & p {
     margin: 0.5em 0;
+    font-size: 30px;
   }
   &.button-container {
     display: compact;
@@ -68,19 +82,29 @@
   }
 
   &.navbar {
-    margin-top: 5px;
-    background-color: #414349;
-    border-radius: 4px;
-    width: 1130px;
+    //margin-top: -40px;
+    background-color: #000000;
+    border-radius: 40px;
+    width: 90%;
     height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: "Varela Round", sans-serif;
+
+    margin: -30px auto; /* Add this line to center the navbar horizontally */
+    //transform: translateX(0%); /* Add this line to fine-tune the centering */
+    transform: translateY(-20%);
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, .4);
+  }
+
+  &.navbar * {
+    font-family: inherit !important;
   }
 
   &.logo{
     align-items: center;
-    font-size: 20px;
+    font-size: 200px;
     color: #ffeb17;
     font-family: "JetBrains Mono", serif;
   }
@@ -88,15 +112,31 @@
   &.img{
     height: 80px;
     width: 80px;
-    border-radius: 3px;
+    border-radius: 40px;
   }
 
   &.icon{
     width: 300px;
     height: 300px;
-    border-radius: 20px;
+    border-radius: 40px;
+    border: 7px solid #c0671f;
     //box-shadow: 0 0 20px 2px rgba(0, 0, 0, .4);
     transition: .3s;
+    position: relative;
+
+    // this does not change anything :(
+    .icon-description {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 20px; /* Adjust the font size as needed */
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+    }
   }
 
   &.icons{
@@ -108,7 +148,6 @@
   }
 
   &.icon-description{
-
     color: floralwhite;
     font-size: 35px;
     margin-top: 50px;
@@ -116,7 +155,7 @@
   }
 
   &.icon:hover{
-    transform: scale(1.4) rotate(355deg);
+    transform: scale(1.25) rotate(355deg);
     z-index: 2;
   }
 
@@ -131,13 +170,12 @@
     font-size: 35px;
     transition: .5s;
   }
-
-
 }
-
 
 .nav__links{
   list-style: none;
+  font-family: "Varela Round", sans-serif;
+  font-size: 20px;
 }
 
 .nav__links li{
