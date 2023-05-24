@@ -3,11 +3,11 @@
   letter-spacing: 1px;
   color: floralwhite;
   font-size: 1.05em;
-
+/*
   &.items{
-  }
+  }*/
   &.picture{
-    height: 400px;
+    height: 330px;
     border-radius: 30px;
     transition: .3s;
   }
@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 100%;
+    height: 88%;
     column-gap: 40px;
   }
 
