@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Press+Start+2P&family=Source+Sans+Pro:wght@200&family=Staatliches&family=Tangerine&family=Varela+Round&display=swap');
 $bgColor: #32386D;
 
 $numOfColBlocks: 3; // must be higher than 2
@@ -215,6 +215,21 @@ $totalLen: $num1Len + $num2Len + $num3Len + $numJoin1-2 + $numJoin2-3 + $numJoin
     transform: rotate(1440deg);
   }
 }
+
+.loading-wisdom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+
+  h1 {
+    font-family: "Tangerine", sans-serif;
+    font-size: 80px;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
 
 @keyframes hideText {
   15%, 100% {

@@ -15,7 +15,8 @@ Show me the money.
 + Jsx
 
 ## High-level components
-
+The most important components are GTPGame, HigherOrLowerGame and MostExpensiveItem, since there the game logic of the different game modes are implemented.
+EndOfGame is also essential, because there the final ranking of the game are displayed.
 
 ## Launch & Deployment
 Start the client by running the following command in the terminal:
