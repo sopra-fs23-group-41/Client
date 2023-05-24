@@ -48,7 +48,7 @@ const PinCode = () => {
                         <a className="multiplayer home-button-color" href="landing"><button className="multiplayer home-button">Home</button></a>
                     </ul>
                 </nav>
-                <h1 className="multiplayer title">Pincode</h1>
+                <h1 className="multiplayer title2">Pincode</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
 

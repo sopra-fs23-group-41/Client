@@ -104,7 +104,7 @@ const MultiPlayer = () => {
                         <button className="multiplayer home-button"><a className="multiplayer home-button-color" href="landing">Home</a></button>
                     </ul>
                 </nav>
-                <h1 className="multiplayer title">Multiplayer</h1>
+                <h1 className="multiplayer title2">Multiplayer</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
             <div className='multiplayer content'>

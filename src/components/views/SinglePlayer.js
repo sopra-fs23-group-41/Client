@@ -100,7 +100,7 @@ const SinglePlayer = () => {
                         <a className="multiplayer home-button-color" href="landing"><button className="multiplayer home-button">Home</button></a>
                     </ul>
                 </nav>
-                <h1 className="multiplayer title">Singleplayer</h1>
+                <h1 className="multiplayer title2">Singleplayer</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
             <div className='multiplayer content'>

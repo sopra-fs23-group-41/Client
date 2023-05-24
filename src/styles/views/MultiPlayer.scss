@@ -176,7 +176,16 @@ body
 
   &.title{
     font-family: 'Staatliches', cursive;
-    margin-right: 65px;
+    text-align: center;
+    color: floralwhite;
+    font-size: 35px;
+    transition: .5s;
+    letter-spacing: 2px;
+  }
+
+  &.title2{
+    font-family: 'Staatliches', cursive;
+    margin-right: 88px;
     text-align: center;
     color: floralwhite;
     font-size: 35px;
