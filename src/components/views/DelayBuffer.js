@@ -12,11 +12,33 @@ import {useHistory} from "react-router-dom";
 
 const DelayBuffer = () => {
 
+    const wisdoms =["Time is money.",
+                    "Time is money and I don't have either.",
+                    "The axe forgets, but the tree remembers.",
+                    "Money, like time, is a good servant but a bad master.",
+                    "Money can't buy happiness",
+                    "Money talks.",
+                    "Money makes the world go round.",
+                    "Money isn't everything, but it helps.",
+                    "Money is money.",
+                    "A bird in hand is worth two in the bush.",
+                    "Action speaks louder than words.",
+                    "After victory, tighten your helmet chord.",
+                    "A journey of thousand miles begins with a single step.",
+                    "A leopard doesn’t change its spots.",
+                    "Among the blind, one-eyed man is king."];
+
+    const [randomWisdom, setRandomWisdom] = useState('');
+
+    function getRandom(max) { // The maximum is inclusive and the minimum is inclusive
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max + 1));
+    }
 
     const timerId = useRef();
     const history = useHistory();
 
-    const [countdown, setCountdown] = useState(3);
+    const [countdown, setCountdown] = useState(300);
 
     useEffect(() => {
         timerId.current = setInterval(() => {
@@ -35,7 +57,9 @@ const DelayBuffer = () => {
         doCountdown();
     })
 
-
+    useEffect(() => {
+        setRandomWisdom(wisdoms[getRandom(wisdoms.length)]);
+    }, []);
 
     return (
         <BaseContainer className="multiplayer container">
@@ -44,6 +68,10 @@ const DelayBuffer = () => {
                 <img className="multiplayer img" src={logo} alt="LOL"/>
                 <h1 className="multiplayer title">Buffer</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
+            </div>
+
+            <div className="loading-wisdom">
+                <h1>{randomWisdom}</h1>
             </div>
 
             <div className="loading ring">Loading
