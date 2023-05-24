@@ -63,7 +63,7 @@ const DelayBuffer = () => {
             setRandomWisdom(wisdoms[getRandom(wisdoms.length)]);
             setOnlyOnce(false);
         }
-    }, [wisdoms]);
+    }, [wisdoms], onlyOnce);
 
     return (
         <BaseContainer className="multiplayer container">
