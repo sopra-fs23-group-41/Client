@@ -11,7 +11,6 @@ import "helpers/Timer.js";
 import Standings from "../../helpers/Standings";
 import Player from "../../models/Player";
 import "styles/views/Avatars.scss"
-import Avatar from "components/Avatars/Avatar_FOUR.jpg";
 
 
 
@@ -93,7 +92,7 @@ const EndOfGame = () => {
                         {winners.map((winner) => (
                             <div key={winner.playerName} className="end-of-game winner">
                                 <h1 className="end-of-game crown">👑</h1>
-                                <img className="avatar" src={Avatar} alt="broken"/>
+                                <img className="avatar" src={require(`../helpers/AvatarsStandings/Avatar_${winner.profilePicture}.jpg`)} alt="broken"/>
                                 <h1>{winner.playerName}</h1>
                                 <h1>{winner.totalScore}</h1>
                             </div>
