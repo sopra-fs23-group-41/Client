@@ -41,7 +41,7 @@ const DelayBuffer = () => {
         }
         doCountdown();
     })
-
+    //hmm
     useEffect(() => {
         const wisdoms =["Time is money.",
             "Time is money and I don't have either.",
