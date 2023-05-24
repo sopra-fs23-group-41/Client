@@ -55,6 +55,7 @@ const EndOfGame = () => {
                     tempPlayer.playerName = response.data.players[i].playerName;
                     tempPlayer.roundScore = response.data.players[i].roundScore;
                     tempPlayer.totalScore = response.data.players[i].totalScore;
+                    tempPlayer.profilePicture = response.data.players[i].profilePicture;
                     temporaryPlayers[i] = tempPlayer;
                 }
                 setPlayers(temporaryPlayers);
