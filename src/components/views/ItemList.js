@@ -11,8 +11,8 @@ import "helpers/Timer.js";
 const DisplayItem = ({item}) => (
     <div className="item-list items">
         <div className="item-list container">
-            <h3 className="item-list price">Price: {item.price} USD</h3>
-            <h3 className="item-list name">Name: {item.name}</h3>
+            <h3 className="item-list price">{item.price} USD</h3>
+            <h3 className="item-list name">{item.name}</h3>
             <img className="item-list picture" src={`https://${item.imageUrl}`} alt="Lol"/>
             <h3 className="item-list link"><a href={`https://asos.com/us/${item.url}`} target="_blank" rel="noreferrer">Link to Website</a></h3>
         </div>
@@ -43,13 +43,13 @@ const ItemList = () => {
     let content = (<div></div>);
     if (items) {
         content = (
-
-            <div className="item-list structure">
+            <div className='multiplayer content'>
+                <div className="item-list structure">
                     {items.map(item => (
                         <DisplayItem item={item} key={item.id}/>
                     ))}
                 </div>
-
+            </div>
         );
     }
 
