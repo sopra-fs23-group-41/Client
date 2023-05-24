@@ -11,7 +11,7 @@ import "helpers/Timer.js";
 import Standings from "../../helpers/Standings";
 import Player from "../../models/Player";
 import "styles/views/Avatars.scss"
-import Avatar from "components/Avatars/Avatar4.jpg";
+import Avatar from "components/Avatars/Avatar_FOUR.jpg";
 
 
 
