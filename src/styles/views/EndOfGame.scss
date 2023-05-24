@@ -8,9 +8,6 @@
   &.winner{
     font-family: "Staatliches", serif;
     margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
@@ -18,6 +15,10 @@
     width: 650px;
     background-color: #f3ddad;
     padding: 0px 30px;
+    display: grid;
+    grid-template-columns: 0.7fr 1fr 2fr 1fr;
+    align-items: center;
+    align-content: center;
   }
 
   &.buttons{
