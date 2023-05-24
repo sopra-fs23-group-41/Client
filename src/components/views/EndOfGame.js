@@ -11,6 +11,7 @@ import "helpers/Timer.js";
 import Standings from "../../helpers/Standings";
 import Player from "../../models/Player";
 import "styles/views/Avatars.scss"
+import Avatar from "components/Avatars/Avatar4.jpg";
 
 
 
@@ -40,14 +41,9 @@ const EndOfGame = () => {
     const isGm = localStorage.getItem('isGm');
 
     const endGame = async () => {
-        if(isGm === 'true'){
-            await api.get('lobbies/'+gameId+'/end')
-            await api.post('lobbies/'+gameId+'/end')
-            history.push('landing')
-
-        }else{
-            history.push('landing')
-        }
+        history.push('landing')
+        await api.get('lobbies/'+gameId+'/end')
+        await api.post('lobbies/'+gameId+'/end')
     }
     useEffect(() => {
         const fetchPlayers = async () => {
@@ -92,33 +88,38 @@ const EndOfGame = () => {
                 <h1 className="multiplayer title">End of Game</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-
+            <div className='multiplayer content'>
             {winners.length > 0 && (
-                <div className="end-of-game leaderboard">
-                    <h2 className="end-of-game subtitle">Winners:</h2>
-                    {winners.map((winner) => (
-                        <div key={winner.playerName} className="end-of-game winner">
-                            <h1 className="end-of-game crown">👑</h1>
-                            <img className="avatar" src={require(`../Avatars/Avatar_${localStorage.getItem('profilePic')}.jpg`)} alt="broken"/>
-                            <h1>{winner.playerName}</h1>
-                            <h1>{winner.totalScore}</h1>
-                        </div>
-                    ))}
-                    {players.length > winners.length && (
-                        <div className="end-of-game non-winners">
-                            <h2 className="end-of-game subtitle">Losers:</h2>
-                            <Standings players={players.filter((player) => !winners.includes(player))} />
-                        </div>
-                    )}
-                </div>
+                    <div className="end-of-game leaderboard">
+                        <h2 className="end-of-game subtitle">Winners:</h2>
+                        {winners.map((winner) => (
+                            <div key={winner.playerName} className="end-of-game winner">
+                                <h1 className="end-of-game crown">👑</h1>
+                                <img className="avatar" src={Avatar} alt="broken"/>
+                                <h1>{winner.playerName}</h1>
+                                <h1>{winner.totalScore}</h1>
+                            </div>
+                        ))}
+                        {players.length > winners.length && (
+                            <div className="end-of-game non-winners">
+                                <h2 className="end-of-game subtitle">Losers:</h2>
+                                <Standings players={players.filter((player) => !winners.includes(player))} />
+                            </div>
+                        )}
+                    </div>
             )}
 
-            <div className="end-of-game buttons">
-                <button className="end-of-game btn"><a className="end-of-game ref" href="item-list">View Items</a></button>
-                <button className="end-of-game btn"
-                        onClick={endGame}
-                >Close Game</button>
-
+                <div className="multiplayer lower-part center">
+                    <div>
+                        <button className="end-of-game btn"><a className="end-of-game ref" href="item-list">View Items</a></button>
+                    </div>
+                    <div>
+                        <button className="end-of-game btn"
+                            onClick={endGame}
+                            disabled={!(isGm === 'true')}
+                        >Close Game</button>
+                    </div>
+                </div>
             </div>
         </BaseContainer>
     );

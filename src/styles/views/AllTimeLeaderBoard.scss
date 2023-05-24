@@ -18,9 +18,9 @@
       margin: 0px 0px 20px 0px;
       color: black;
     }
-  }
 
-  & .container {
+
+  &>.container {
     width: 85%;
     font-size: 1em;
     margin: 10px auto;
@@ -82,4 +82,5 @@
       }
     }
   }
+}
 }
