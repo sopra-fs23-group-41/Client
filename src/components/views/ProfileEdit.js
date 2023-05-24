@@ -93,11 +93,7 @@ const ProfileEdit = () => {
         alert(`Something went wrong while fetching the User: \n${handleError(error)}`);
       }
     }
-    fetchData(id).catch((error) => {
-      console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
-      console.error("Details:", error);
-      alert("An error occurred while executing the fetchData function! See the console for details.");
-    });
+    fetchData(id).then();
 
   }, [id]);
 

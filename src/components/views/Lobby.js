@@ -76,11 +76,7 @@ const Lobby = () => {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
             }
-            fetchData(gameId).catch((error) => {
-                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("An error occurred while executing the fetchData function! See the console for details.");
-            });
+            fetchData(gameId).then();
         }, 1000);
         return () => clearInterval(interval);
     }, [gameId, history, rounds]);

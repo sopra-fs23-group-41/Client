@@ -34,11 +34,7 @@ const MultiPlayer = () => {
 
     useEffect(() =>{
         if(onlyOnce){
-            initializeLobby().catch((error) => {
-                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("An error occurred while executing the fetchData function! See the console for details.");
-            });
+            initializeLobby().then();
             setOnlyOnce(false);
         }
     }, [onlyOnce])
