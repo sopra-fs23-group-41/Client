@@ -29,6 +29,7 @@ const DelayBuffer = () => {
                     "Among the blind, one-eyed man is king."];
 
     const [randomWisdom, setRandomWisdom] = useState('');
+    const [onlyOnce, setOnlyOnce] = useState(true);
 
     function getRandom(max) { // The maximum is inclusive and the minimum is inclusive
         max = Math.floor(max);
@@ -58,8 +59,11 @@ const DelayBuffer = () => {
     })
 
     useEffect(() => {
-        setRandomWisdom(wisdoms[getRandom(wisdoms.length)]);
-    }, wisdoms);
+        if (onlyOnce) {
+            setRandomWisdom(wisdoms[getRandom(wisdoms.length)]);
+            setOnlyOnce(false);
+        }
+    }, [wisdoms]);
 
     return (
         <BaseContainer className="multiplayer container">
