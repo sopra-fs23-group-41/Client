@@ -10,6 +10,7 @@ class User {
     this.token = null;
     this.status = null;
     this.realName = null;
+    this.profilePicture = null;
     Object.assign(this, data);
   }
 }

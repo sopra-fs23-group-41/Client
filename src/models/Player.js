@@ -7,6 +7,7 @@ class Player {
         this.gameId = null;
         this.totalScore = null;
         this.roundScore = null;
+        this.profilePicture = null;
         this.answers = null;
         this.isGameMaster = false;
 

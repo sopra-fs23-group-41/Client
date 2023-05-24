@@ -6,7 +6,7 @@ import {useEffect} from "react";
 
 const Player = ({user}) => (
     <div className="standings container">
-        <img src={require(`../helpers/AvatarsStandings/Avatar_${localStorage.getItem('profilePic')}.jpg`)} alt="profile1" className="avatar"/>
+        <img src={require(`../helpers/AvatarsStandings/Avatar_${user.profilePicture}.jpg`)} alt="profile1" className="avatar"/>
         <div className="standings username">{user.playerName}</div>
         <div className="standings roundscore">+{user.roundScore}</div>
         <div className="standings totalscore">{user.totalScore}</div>

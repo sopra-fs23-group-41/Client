@@ -314,7 +314,7 @@ const MostExpensiveItem = () => {
                     />
                 </div>
                 <div className="most-expensive brand-and-pic">
-                    <h1 className="most-expensive brandName" style={{opacity: blurPic4? 0.3 : 1}}>{brandName4}</h1>
+                    <h1 className="most-expensive brandName" style={{opacity: blurPic4? 0.3 : 1}}>Brand: {brandName4}</h1>
                     {clicked && <h1 className="most-expensive brandName" style={{opacity: blurPic4? 0.3 : 1}}>Price: {price4} USD</h1>}
                     <img
                         className="most-expensive item-pic"

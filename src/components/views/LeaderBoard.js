@@ -39,7 +39,7 @@ const LeaderBoard = () => {
             await api.get('/lobbies/' + gameId + '/nextRound')
             console.log("Next round has been initialized")
         } catch (error) {
-            console.log('Something went wrong')
+            console.log(error.response.data.message)
         }
     }, [gameId]);
 
@@ -60,6 +60,7 @@ const LeaderBoard = () => {
                     tempPlayer.playerName = response.data.players[i].playerName;
                     tempPlayer.roundScore = response.data.players[i].roundScore;
                     tempPlayer.totalScore = response.data.players[i].totalScore;
+                    tempPlayer.profilePicture = response.data.players[i].profilePicture;
                     temporaryPlayers[i] = tempPlayer;
                 }
                 //const playersTemp = playersJson.map(playerJson => Player.fromJson(playerJson));
@@ -94,7 +95,7 @@ const LeaderBoard = () => {
             </div>
 
             <div className="gtp rounds" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <h2>Round {currentRound} / {rounds}</h2>
+                <h2>Round {currentRound-1} / {rounds}</h2>
             </div>
             <h1 className="next-question-title">Next question starts in:</h1>
             <div className="next-question-timer">
