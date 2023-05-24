@@ -18,7 +18,7 @@ const DelayBuffer = () => {
                     "The axe forgets, but the tree remembers.",
                     "Money, like time, is a good servant but a bad master.",
                     "Money can't buy happiness",
-                    "Money talks.",
+                    "Money talks. Talk louder.",
                     "Money makes the world go round.",
                     "Money isn't everything, but it helps.",
                     "Money is money.",
@@ -39,7 +39,7 @@ const DelayBuffer = () => {
     const timerId = useRef();
     const history = useHistory();
 
-    const [countdown, setCountdown] = useState(300);
+    const [countdown, setCountdown] = useState(5);
 
     useEffect(() => {
         timerId.current = setInterval(() => {
@@ -64,7 +64,7 @@ const DelayBuffer = () => {
 
     useEffect(() => {
         setRandomWisdom(wisdoms[getRandom(wisdoms.length)]);
-    }, []);
+    }, wisdoms);
 
     return (
         <BaseContainer className="multiplayer container">
