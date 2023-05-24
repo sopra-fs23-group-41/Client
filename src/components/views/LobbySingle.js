@@ -100,7 +100,7 @@ const LobbySingle = () => {
                             <p>Rounds: {rounds}</p>
                             <p>Category: {category}</p>
                         </div>
-=
+
 
                 </div>
 
