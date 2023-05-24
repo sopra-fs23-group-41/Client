@@ -44,7 +44,7 @@ const MultiPlayer = () => {
     }, [onlyOnce])
 
     const initializeLobby = async () => {
-        game.rounds = 0;
+        game.rounds = 3;
         game.numOfPlayer = 1;
         game.category = "SNEAKERS";
         game.gameMode = "GuessThePrice";
@@ -141,32 +141,32 @@ const MultiPlayer = () => {
                                 </div>
 
 
-                            <div className="list-choice">
-                                <div className="list-choice-title">Rounds</div>
-                                <div className="list-choice-objects">
-                                    <label>
-                                        <input value="4" type="radio" name="rounds" onClick={() => updateNrOfRounds("4")}/> <span>4</span>
-                                    </label>
-                                    <label>
-                                        <input value="8" type="radio" name="rounds" onClick={() => updateNrOfRounds("8")}/> <span>8</span>
-                                    </label>
-                                    <label>
-                                        <input value="12" type="radio" name="rounds" onClick={() => updateNrOfRounds("12")}/> <span>12</span>
-                                    </label>
-                                    <label>
-                                        <input value="16" type="radio" name="rounds" onClick={() => updateNrOfRounds("16")}/> <span>16</span>
-                                    </label>
-                                    <label>
-                                        <input value="20" type="radio" name="rounds" onClick={() => updateNrOfRounds("20")}/> <span>20</span>
-                                    </label>
-                                    <label>
-                                        <input value="24" type="radio" name="rounds" onClick={() => updateNrOfRounds("24")}/> <span>24</span>
-                                    </label>
-                                    <label>
-                                        <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("28")}/> <span>28</span>
-                                    </label>
-                                </div>
+                        <div className="list-choice">
+                            <div className="list-choice-title">Rounds</div>
+                            <div className="list-choice-objects">
+                                <label>
+                                    <input value="4" type="radio" name="rounds" onClick={() => updateNrOfRounds("3")}/> <span>3</span>
+                                </label>
+                                <label>
+                                    <input value="8" type="radio" name="rounds" onClick={() => updateNrOfRounds("6")}/> <span>6</span>
+                                </label>
+                                <label>
+                                    <input value="12" type="radio" name="rounds" onClick={() => updateNrOfRounds("9")}/> <span>9</span>
+                                </label>
+                                <label>
+                                    <input value="16" type="radio" name="rounds" onClick={() => updateNrOfRounds("12")}/> <span>12</span>
+                                </label>
+                                <label>
+                                    <input value="20" type="radio" name="rounds" onClick={() => updateNrOfRounds("15")}/> <span>15</span>
+                                </label>
+                                <label>
+                                    <input value="24" type="radio" name="rounds" onClick={() => updateNrOfRounds("18")}/> <span>18</span>
+                                </label>
+                                <label>
+                                    <input value="28" type="radio" name="rounds" onClick={() => updateNrOfRounds("21")}/> <span>21</span>
+                                </label>
                             </div>
+                        </div>
 
                             <div className="list-choice">
                                 <div className="list-choice-title">Game Mode</div>

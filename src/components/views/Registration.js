@@ -51,9 +51,6 @@ const Registration = () => {
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
             localStorage.setItem('userId', user.id);
-            localStorage.setItem('password', user.password);
-            localStorage.setItem('profilePicture', user.profilePicture);
-            localStorage.setItem('username', user.username);
 
             // Login successfully worked --> navigate to the route /landing in the GameRouter
             history.push(`/landing`);

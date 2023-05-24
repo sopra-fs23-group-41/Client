@@ -257,10 +257,10 @@ const GTPGame = () => {
             <div className="gtp answer-container">
                 {clicked && (randomizedAnswers[0] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}
                 {clicked2 && (randomizedAnswers[1] === trueAnswer) && <h1 className="gtp reply">Right on the Money, baby!🤑</h1>}
-                {clicked && (randomizedAnswers[0] !== trueAnswer) && (randomizedAnswers[0] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. Let's do {trueAnswer} CHF</h1>}
-                {clicked && (randomizedAnswers[0] !== trueAnswer) && (randomizedAnswers[0] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? It's only {trueAnswer} CHF</h1>}
-                {clicked2 && (randomizedAnswers[1] !== trueAnswer) && (randomizedAnswers[1] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. It's only {trueAnswer} CHF</h1>}
-                {clicked2 && (randomizedAnswers[1] !== trueAnswer) && (randomizedAnswers[1] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? I'd do {trueAnswer} CHF</h1>}
+                {clicked && (randomizedAnswers[0] !== trueAnswer) && (randomizedAnswers[0] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. Let's do {trueAnswer} USD</h1>}
+                {clicked && (randomizedAnswers[0] !== trueAnswer) && (randomizedAnswers[0] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? It's only {trueAnswer} USD</h1>}
+                {clicked2 && (randomizedAnswers[1] !== trueAnswer) && (randomizedAnswers[1] < trueAnswer) && <h1 className="gtp reply">Hell nah, that's too cheap. It's only {trueAnswer} USD</h1>}
+                {clicked2 && (randomizedAnswers[1] !== trueAnswer) && (randomizedAnswers[1] > trueAnswer) && <h1 className="gtp reply">You really wanna pay that much? I'd do {trueAnswer} USD</h1>}
                 {!(clicked2 || clicked3 || clicked4) && <button
 
                     className="gtp answer-button"
