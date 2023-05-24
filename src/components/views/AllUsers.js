@@ -76,7 +76,7 @@ const AllUsers = () => {
                 <img className="landing img" src={logo} alt="LOL"/>
                 <nav>
                     <ul className="nav__links">
-                        <li><a href="leaderboard">Leaderboard</a></li>
+                    <li><a href="/alltimeleaderboard">Leaderboard</a></li>
                         <li><a href={`profilepage/${userId}`}>View Profile</a></li>
                         <li><a href="landing">Home</a></li>
                     </ul>
