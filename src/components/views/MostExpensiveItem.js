@@ -265,7 +265,7 @@ const MostExpensiveItem = () => {
                         <a className="multiplayer home-button-color" href="landing"><button className="multiplayer home-button">Home</button></a>
                     </ul>
                 </nav>
-                <h1 className="multiplayer title">Most Expensive Item</h1>
+                <h1 className="multiplayer title">Most Expensive Item: {localStorage.getItem('category')}</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
             <div className="gtp bonus-and-streak">

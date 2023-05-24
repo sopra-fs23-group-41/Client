@@ -50,6 +50,7 @@ const Lobby = () => {
                     setRounds(response.data.rounds);
                     localStorage.setItem('rounds', response.data.rounds)
                     setCategory(response.data.category);
+                    localStorage.setItem('category', response.data.category)
                     setPin(response.data.gamePIN);
                     setPlayers(response.data.players);
                     if (rounds !== null) {

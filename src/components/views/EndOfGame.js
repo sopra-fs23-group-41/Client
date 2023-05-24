@@ -38,12 +38,13 @@ const EndOfGame = () => {
     const [winners, setWinners] = useState([]);
 
     const gameId = localStorage.getItem('gameId');
-    const isGm = localStorage.getItem('isGm');
+    const playerId = localStorage.getItem('playerId');
+
 
     const endGame = async () => {
-        history.push('landing')
         await api.get('lobbies/'+gameId+'/end')
-        await api.post('lobbies/'+gameId+'/end')
+        await api.post('lobbies/'+gameId+playerId+'/end')
+        history.push('landing')
     }
     useEffect(() => {
         const fetchPlayers = async () => {
@@ -117,7 +118,6 @@ const EndOfGame = () => {
                     <div>
                         <button className="end-of-game btn"
                             onClick={endGame}
-                            disabled={!(isGm === 'true')}
                         >Close Game</button>
                     </div>
                 </div>

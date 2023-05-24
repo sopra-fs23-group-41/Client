@@ -241,7 +241,7 @@ const GTPGame = () => {
                         <a className="multiplayer home-button-color" href="landing"><button className="multiplayer home-button">Home</button></a>
                     </ul>
                 </nav>
-                <h1 className="multiplayer title">Guess The Price</h1>
+                <h1 className="multiplayer title">Guess The Price: {localStorage.getItem('category')}</h1>
                 <img className="multiplayer img" src={logo} alt="broken"/>
             </div>
 
