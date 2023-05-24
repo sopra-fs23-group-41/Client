@@ -211,7 +211,7 @@ const MultiPlayer = () => {
                     </div>
                 </div>
 
-                <div className="multiplayer lower-part center">
+                <div className="multiplayer lower-part center below">
                     <div>
                     <button className="multiplayer button"
                             onClick={createLobby}

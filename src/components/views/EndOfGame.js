@@ -87,7 +87,7 @@ const EndOfGame = () => {
             </div>
             <div className='multiplayer content'>
             {winners.length > 0 && (
-                    <div className="end-of-game leaderboard">
+                    <div className="end-of-game">
                         <h2 className="end-of-game subtitle">Winners:</h2>
                         {winners.map((winner) => (
                             <div key={winner.playerName} className="end-of-game winner">

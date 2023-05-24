@@ -39,11 +39,11 @@ const Standings = ({players}) => {
 
     let content = (
         <div className="standings">
-            <ul className="standings user-list">
+
                    {players.map(user => (
                         <Player user={user} key={user.id}/>
                    ))}
-            </ul>
+
         </div>
     );
 
