@@ -42,9 +42,9 @@ const EndOfGame = () => {
 
 
     const endGame = async () => {
+        history.push('landing')
         await api.get('lobbies/'+gameId+'/end')
         await api.post('lobbies/'+gameId + '/' + playerId+'/end')
-        history.push('landing')
     }
     useEffect(() => {
         const fetchPlayers = async () => {

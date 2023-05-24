@@ -22,7 +22,10 @@ import Lobby from "../../views/Lobby";
 import LobbySingle from "../../views/LobbySingle";
 import GameLoadingBuffer from "../../views/GameLoadingBuffer";
 import MostExpensiveItem from "../../views/MostExpensiveItem";
+import DelayBuffer from "../../views/DelayBuffer";
+
 import {LoginGuard} from "../routeProtectors/LoginGuard";
+import DelayBufferAfterLobby from "../../views/DelayBufferAfterLobby";
 
 const AppRouter = () => {
     return (
@@ -116,6 +119,18 @@ const AppRouter = () => {
                 <Route exact path="/most-expensive-item-game">
                     <GameGuard>
                         <MostExpensiveItem/>
+                    </GameGuard>
+                </Route>
+
+                <Route exact path="/delay-buffer">
+                    <GameGuard>
+                        <DelayBuffer/>
+                    </GameGuard>
+                </Route>
+
+                <Route exact path="/delay-buffer-after-lobby">
+                    <GameGuard>
+                        <DelayBufferAfterLobby/>
                     </GameGuard>
                 </Route>
 

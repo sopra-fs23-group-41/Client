@@ -138,8 +138,8 @@ const MostExpensiveItem = () => {
                                 currRound = currRound + 1;
                                 currRound = currRound.toString();
                                 localStorage.setItem('currentRound', currRound);
-                                history.push('leaderboard');
-                            }, 4000);
+                                history.push('delay-buffer');
+                            }, 2000);
                         }
                     }
 

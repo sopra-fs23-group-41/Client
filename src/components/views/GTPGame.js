@@ -213,7 +213,7 @@ const GTPGame = () => {
                                 currRound = currRound + 1;
                                 currRound = currRound.toString();
                                 localStorage.setItem('currentRound', currRound);
-                                history.push('leaderboard');
+                                history.push('delay-buffer');
                             }, 2000);
                         }
                     }

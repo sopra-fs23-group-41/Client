@@ -49,6 +49,8 @@ const Landing = () => {
                         <li><a href="allusers">All Users</a></li>
                         <li><a href={`profilepage/${userId}`}>View Profile</a></li>
                         <li><a href="/alltimeleaderboard">Leaderboard</a></li>
+                        <li><a href="/delay-buffer">delay-buffer</a></li>
+
                     </ul>
                 </nav>
                 <div className="landing button-container">

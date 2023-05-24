@@ -48,7 +48,7 @@ const Timer = ({seconds}) => {
                         let tempCurrentRound = currentRound + 1;
                         tempCurrentRound = tempCurrentRound.toString();
                         localStorage.setItem('currentRound', tempCurrentRound);
-                        history.push('leaderboard');
+                        history.push('delay-buffer');
                     }
 
                 }
