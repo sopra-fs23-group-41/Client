@@ -100,7 +100,7 @@ const LobbySingle = () => {
 
                 </div>
 
-                <div className="multiplayer lower-part">
+                <div className="multiplayer lower-part below">
                     <div>
                     <button className="lobby button"
                             onClick={closeLobby}

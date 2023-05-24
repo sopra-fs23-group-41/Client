@@ -200,8 +200,6 @@ body
     color: floralwhite;
     font-family: 'Varela Round', cursive;
     font-size: 20px;
-    position: absolute;
-    bottom: 50px;
     display: flex;
     width: 93%;
     justify-content: space-between;
@@ -210,6 +208,11 @@ body
     &.center {
       justify-content: center;
       column-gap: 50px;
+    }
+
+    &.below {
+      position: absolute;
+      bottom: 50px;
     }
   }
 

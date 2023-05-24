@@ -188,7 +188,7 @@ const SinglePlayer = () => {
 
                 </div>
 
-                <div className="multiplayer lower-part center">
+                <div className="multiplayer lower-part center below">
                     <div>
                     <button
                         className="singleplayer button"
