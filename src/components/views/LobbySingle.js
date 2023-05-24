@@ -83,11 +83,7 @@ const LobbySingle = () => {
         <BaseContainer className="multiplayer container">
 
             <div className="multiplayer navbar">
-                <nav>
-                    <ul className="nav__links">
-                        <button className="multiplayer home-button"><a className="multiplayer home-button-color" href="landing">Home</a></button>
-                    </ul>
-                </nav>
+                <img className="multiplayer img" src={logo} alt="LOL"/>
                 <h1 className="multiplayer title">Game Lobby</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>

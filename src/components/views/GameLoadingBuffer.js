@@ -125,13 +125,7 @@ const GameLoadingBuffer = () => {
         <BaseContainer className="multiplayer container">
 
             <div className="multiplayer navbar">
-                <nav>
-                    <ul className="nav__links">
-                        <a className="multiplayer home-button-color" href="landing">
-                            <button className="multiplayer home-button">Home</button>
-                        </a>
-                    </ul>
-                </nav>
+                <img className="multiplayer img" src={logo} alt="LOL"/>
                 <h1 className="multiplayer title">Wait to load into Game...</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>

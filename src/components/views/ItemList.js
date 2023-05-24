@@ -7,6 +7,7 @@ import "styles/views/GTPGame.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 import "helpers/Timer.js";
+import {useHistory} from 'react-router-dom';
 
 const DisplayItem = ({item}) => (
     <div className="item-list items">
@@ -20,8 +21,16 @@ const DisplayItem = ({item}) => (
 );
 
 const ItemList = () => {
+    const history = useHistory();
     const gameId = localStorage.getItem('gameId');
+    const playerId = localStorage.getItem('playerId');
     const [items, setItems] = useState(null);
+
+    const endGame = async () => {
+        await api.get('lobbies/'+gameId+'/end')
+        await api.post('lobbies/'+gameId + '/' + playerId+'/end')
+        history.push('landing')
+    }
 
     useEffect(() => {
         async function fetchData(gameId) {
@@ -57,18 +66,18 @@ const ItemList = () => {
         <BaseContainer className="multiplayer container">
 
             <div className="multiplayer navbar">
-                <nav>
-                    <ul className="nav__links">
-                        <button className="multiplayer home-button"><a className="multiplayer home-button-color" href="landing">Home</a></button>
-                    </ul>
-                </nav>
+                <img className="multiplayer img" src={logo} alt="LOL"/>
                 <h1 className="multiplayer title">Displayed Products</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-            
-                {content}
-
-
+            {content}
+            <div className="multiplayer lower-part center">
+                <div>
+                    <button className="end-of-game btn"
+                        onClick={endGame}
+                    >Close Game</button>
+                </div>
+            </div>
         </BaseContainer>
     );
 }
