@@ -206,7 +206,7 @@ const HigherOrLowerGame = () => {
                         <a className="multiplayer home-button-color" href="landing"><button className="multiplayer home-button">Home</button></a>
                     </ul>
                 </nav>
-                <h1 className="multiplayer title">Higher or Lower</h1>
+                <h1 className="multiplayer title">Higher or Lower: {localStorage.getItem('category')}</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
             <div className="gtp bonus-and-streak">
