@@ -94,7 +94,7 @@ const LeaderBoard = () => {
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
 
-            <div className="gtp rounds" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div className="gtp rounds">
                 <h2>Round {currentRound-1} / {rounds}</h2>
             </div>
             <h1 className="next-question-title">Next question starts in:</h1>

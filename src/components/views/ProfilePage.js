@@ -117,7 +117,7 @@ const ProfilePage = () => {
         <img className="landing img" src={logo} alt="LOL"/>
         <nav>
           <ul className="nav__links">
-            <li><a href="/allusers">Find User</a></li>
+            <li><a href="/allusers">All Users</a></li>
             <li><a href="/landing">Home</a></li>
             <li><a href="/alltimeleaderboard">Leaderboard</a></li>
           </ul>

@@ -51,11 +51,21 @@ const PinCode = () => {
                 <h1 className="multiplayer title">Pincode</h1>
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
-            <h1 className="pin-title">Enter PIN here</h1>
+
+            <h1 className="pin-title">Enter the PIN here:</h1>
             <div className="pin-code">
-                <PinInput length={6} focus type="text" inputMode="text" value={pincode} onChange={a => setPincode(a.toLowerCase())}/>
+                <PinInput
+                    length={6}
+                    focus type="text"
+                    inputMode="text"
+                    value={pincode}
+                    onChange={a => setPincode(a.toLowerCase())}/>
             </div>
-            <Button className="pin-code-button" onClick={() => joinGame()}>
+            <Button
+                className="pin-code-button"
+                onClick={() => joinGame()}
+                disabled={!pincode || pincode.length !== 6}
+            >
                 Join Game
             </Button>
         </BaseContainer>

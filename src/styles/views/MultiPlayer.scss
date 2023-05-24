@@ -205,7 +205,7 @@ body
     display: flex;
     width: 93%;
     justify-content: space-between;
-    margin: 0px auto;
+    margin: 0 auto;
 
     &.center {
       justify-content: center;
@@ -279,7 +279,7 @@ body
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    font-family: 'Staatliches', cursive;
+    font-family: 'Varela Round', cursive;
     transition: .3s;
     padding: 9px 36px;
   }
