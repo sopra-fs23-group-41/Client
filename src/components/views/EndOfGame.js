@@ -25,6 +25,8 @@ function playerSort(players) {
             winners.push(players[i]);
         }
     }
+
+    players.sort((a, b) => b.totalScore - a.totalScore);
     return winners;
 }
 
@@ -100,7 +102,7 @@ const EndOfGame = () => {
                         {players.length > winners.length && (
                             <div className="end-of-game non-winners">
                                 <h2 className="end-of-game subtitle">Losers:</h2>
-                                <Standings players={players.filter((player) => !winners.includes(player)).reverse()} />
+                                <Standings players={players.filter((player) => !winners.includes(player))} />
                             </div>
                         )}
                     </div>
