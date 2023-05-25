@@ -27,7 +27,6 @@ const ItemList = () => {
     const [items, setItems] = useState(null);
 
     const endGame = async () => {
-        await api.get('lobbies/'+gameId+'/end')
         await api.post('lobbies/'+gameId + '/' + playerId+'/end')
         history.push('landing')
     }
