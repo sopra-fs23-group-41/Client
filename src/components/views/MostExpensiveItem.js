@@ -144,7 +144,7 @@ const MostExpensiveItem = () => {
                     }
 
                 } catch (error) {
-                    await hasEveryoneAnswered();
+                    await hasEveryoneAnswered(gameId);
                     Location.reload();
                 }
             }

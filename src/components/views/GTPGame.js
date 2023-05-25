@@ -219,7 +219,7 @@ const GTPGame = () => {
                     }
 
                 } catch (error) {
-                    await hasEveryoneAnswered();
+                    await hasEveryoneAnswered(gameId);
                     Location.reload();
                 }
             }

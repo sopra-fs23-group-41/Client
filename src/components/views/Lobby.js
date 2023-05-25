@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
+import {api} from 'helpers/api';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/MultiPlayer.scss";
@@ -75,8 +75,8 @@ const Lobby = () => {
                     if (begin === true) {
                         history.push('game-loading-buffer')
                     }
-                } catch (error) {
-                    alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
+                } catch(error) {
+                    Location.reload();
                 }
             }
             fetchData(gameId).then();
