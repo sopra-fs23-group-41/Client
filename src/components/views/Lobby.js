@@ -7,7 +7,7 @@ import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 
 const Players = ({user}) => (
-    <div className="player">{ localStorage.getItem('isGm')==='true'? '👑 ' : '' }{user.playerName}</div>
+    <div className="player">{user.playerName}</div>
 );
 
 const Lobby = () => {
