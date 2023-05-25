@@ -15,8 +15,8 @@ Show me the money.
 + Jsx
 
 ## High-level components
-The most important components are GTPGame, HigherOrLowerGame and MostExpensiveItem, since there the game logic of the different game modes are implemented.
-EndOfGame is also essential, because there the final ranking of the game are displayed.
+The most important components are [GTPGame](https://github.com/sopra-fs23-group-41/Client/blob/main/src/components/views/GTPGame.js), [HigherOrLowerGame](https://github.com/sopra-fs23-group-41/Client/blob/main/src/components/views/HigherOrLowerGame.js) and [MostExpensiveItem](https://github.com/sopra-fs23-group-41/Client/blob/main/src/components/views/MostExpensiveItem.js), since there the game logic of the different game modes are implemented.
+[EndOfGame](https://github.com/sopra-fs23-group-41/Client/blob/main/src/components/views/EndOfGame.js) is also essential, because there the final ranking of the game are displayed.
 
 ## Launch & Deployment
 Start the client by running the following command in the terminal:
