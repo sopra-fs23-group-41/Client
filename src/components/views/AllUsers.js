@@ -9,6 +9,8 @@ import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 import { Link } from 'react-router-dom';
 
+
+//Helper Function to create the Player-Instances
 const Player = ({user}) => (
     <Link to={"/profilepage/" + user.id}> 
     <div className={`all-users-container userlist ${user.status}`}>
@@ -22,11 +24,16 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
+
+//Main Function
 const AllUsers = () => {
     const history = useHistory();
     const [users, setUsers] = useState(null);
     const userId = localStorage.getItem('userId');
-    console.log(users)
+
+
+
+    //Logout Functionality
     const logout = async () => {
         try {
             await api.get('/users/'+localStorage.getItem('userId')+'/logout');

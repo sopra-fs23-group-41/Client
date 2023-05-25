@@ -8,6 +8,8 @@ import "styles/views/AllTimeLeaderBoard.scss";
 import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 
+
+//Helper Function to create the Player-Instances
 const Player = ({user}) => (
     <div className={`container`}>
         <Link to={"/profilepage/" + user.id}>
@@ -26,11 +28,14 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
+
+//Main Function
 const AllTimeLeaderBoard = () => {
     const history = useHistory();
     const userId = localStorage.getItem('userId');
     const [users, setUsers] = useState(null);
 
+    //Logout Functionality
     const logout = async () => {
         try {
             await api.get('/users/'+localStorage.getItem('userId')+'/logout');
@@ -40,6 +45,7 @@ const AllTimeLeaderBoard = () => {
             alert(`Something went wrong during the logout: \n${handleError(error)}`);
         }
     }
+
 
     useEffect(() => {
         async function fetchData() {
@@ -58,6 +64,7 @@ const AllTimeLeaderBoard = () => {
             alert("An error occurred while executing the fetchData function! See the console for details.");
         });
     }, []);
+
 
     let content = (<div></div>);
 

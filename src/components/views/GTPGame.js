@@ -255,7 +255,12 @@ const GTPGame = () => {
                     className="gtp answer-button"
                     onClick={firstAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked ? (trueAnswer === randomizedAnswers[0] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked ? '1.5' : '1', marginTop: clicked? '20px' : '0px', marginLeft: clicked ? (randomizedAnswers[0] !== trueAnswer ? (randomizedAnswers[0] < trueAnswer ? '135px' : '180px'): '40px') : '0px', color: clicked? 'floralwhite' : '#8BA1FAFF'}}
+                    style ={{
+                        backgroundColor: clicked ? (trueAnswer === randomizedAnswers[0] ? '#1ff11f' : '#ee3030') : 'floralwhite',
+                        scale: clicked ? '1.5' : '1',
+                        marginTop: clicked? '20px' : '0px',
+                        marginLeft: clicked ? (randomizedAnswers[0] !== trueAnswer ? (randomizedAnswers[0] < trueAnswer ? '135px' : '180px'): '40px') : '0px', color: clicked? 'floralwhite' : '#8BA1FAFF'
+                    }}
                 >
                     {randomizedAnswers[0]} USD
                 </button>}
@@ -263,7 +268,12 @@ const GTPGame = () => {
                     className="gtp answer-button"
                     onClick={secondAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked2 ? (trueAnswer === randomizedAnswers[1] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked2 ? '1.5' : '1', marginTop: clicked2? '20px' : '0px', marginLeft: clicked2 ? (randomizedAnswers[1] === trueAnswer ? '40px': (randomizedAnswers[1] < trueAnswer ? '135px' : '180px')) : '0px', color: clicked2? 'floralwhite' : '#8BA1FAFF'}}
+                    style ={{
+                        backgroundColor: clicked2 ? (trueAnswer === randomizedAnswers[1] ? '#1ff11f' : '#ee3030') : 'floralwhite',
+                        scale: clicked2 ? '1.5' : '1',
+                        marginTop: clicked2? '20px' : '0px',
+                        marginLeft: clicked2 ? (randomizedAnswers[1] === trueAnswer ? '40px': (randomizedAnswers[1] < trueAnswer ? '135px' : '180px')) : '0px', color: clicked2? 'floralwhite' : '#8BA1FAFF'
+                }}
                 >
                     {randomizedAnswers[1]} USD
                 </button>}
@@ -280,7 +290,12 @@ const GTPGame = () => {
                     className="gtp answer-button"
                     onClick={thirdAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                        style ={{backgroundColor: clicked3 ? (trueAnswer === randomizedAnswers[2] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked3 ? '1.5' : '1', marginTop: clicked3? '20px' : '0px', marginLeft: clicked3 ? (randomizedAnswers[2] === trueAnswer ? '40px': (randomizedAnswers[2] < trueAnswer ? '135px' : '180px')) : '0px', color: clicked3? 'floralwhite' : '#8BA1FAFF'}}
+                        style ={{
+                            backgroundColor: clicked3 ? (trueAnswer === randomizedAnswers[2] ? '#1ff11f' : '#ee3030') : 'floralwhite',
+                            scale: clicked3 ? '1.5' : '1',
+                            marginTop: clicked3? '20px' : '0px',
+                            marginLeft: clicked3 ? (randomizedAnswers[2] === trueAnswer ? '40px': (randomizedAnswers[2] < trueAnswer ? '135px' : '180px')) : '0px', color: clicked3? 'floralwhite' : '#8BA1FAFF'
+                        }}
                 >
                     {randomizedAnswers[2]} USD
                 </button>}
@@ -288,7 +303,11 @@ const GTPGame = () => {
                     className="gtp answer-button"
                     onClick={forthAnswer}
                     disabled={clicked || clicked2 || clicked3 || clicked4}
-                    style ={{backgroundColor: clicked4 ? (trueAnswer === randomizedAnswers[3] ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked4 ? '1.5' : '1', marginTop: clicked4? '20px' : '0px', marginLeft: clicked4 ? (randomizedAnswers[3] === trueAnswer ? '40px': (randomizedAnswers[3] < trueAnswer ? '135px' : '180px')): '0px', color: clicked4? 'floralwhite' : '#8BA1FAFF'}}
+                    style ={{
+                        backgroundColor: clicked4 ? (trueAnswer === randomizedAnswers[3] ? '#1ff11f' : '#ee3030') : 'floralwhite',
+                        scale: clicked4 ? '1.5' : '1',
+                        marginTop: clicked4? '20px' : '0px',
+                        marginLeft: clicked4 ? (randomizedAnswers[3] === trueAnswer ? '40px': (randomizedAnswers[3] < trueAnswer ? '135px' : '180px')): '0px', color: clicked4? 'floralwhite' : '#8BA1FAFF'}}
                 >
                     {randomizedAnswers[3]} USD
                 </button>}

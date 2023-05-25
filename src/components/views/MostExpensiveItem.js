@@ -274,25 +274,36 @@ const MostExpensiveItem = () => {
 
             <div className="most-expensive top-pics">
                 <div className="most-expensive brand-and-pic">
-                    <h1 className="most-expensive brandName" style={{opacity: blurPic1? 0.3 : 1}}>Brand: {brandName1}</h1>
+                    <h1 className="most-expensive brandName"
+                        style={{opacity: blurPic1? 0.3 : 1}}
+                    >
+                        Brand: {brandName1}
+                    </h1>
                     {clicked && <h1 className="most-expensive brandName" style={{opacity: blurPic1? 0.3 : 1}}>Price: {price1} USD</h1>}
                     <img
                         className="most-expensive item-pic"
                         src={pictureUrl1}
-                        alt="LOL"
+                        alt="Broken Image"
                         onClick={() => handleAnswer(1)}
-                        style={{opacity: blurPic1? 0.7 : 1, border: clicked? ((productId1.toString() === trueAnswer)? '10px solid #1FF11FFF' : '10px solid #EE3030FF'): '0px'}}
+                        style={{
+                            opacity: blurPic1? 0.7 : 1,
+                            border: clicked? ((productId1.toString() === trueAnswer)? '10px solid #1FF11FFF' : '10px solid #EE3030FF'): '0px'
+                        }}
                     />
                 </div>
                 <div className="most-expensive brand-and-pic">
-                    <h1 className="most-expensive brandName" style={{opacity: blurPic2? 0.3 : 1}}>Brand: {brandName2}</h1>
+                    <h1 className="most-expensive brandName"
+                        style={{opacity: blurPic2? 0.3 : 1}}>Brand: {brandName2}</h1>
                     {clicked && <h1 className="most-expensive brandName" style={{opacity: blurPic2? 0.3 : 1}}>Price: {price2} USD</h1>}
                     <img
                         className="most-expensive item-pic"
                         src={pictureUrl2}
-                        alt="LOL"
+                        alt="Broken Image"
                         onClick={() => handleAnswer(2)}
-                        style={{opacity: blurPic2? 0.7 : 1, border: clicked? ((productId2.toString() === trueAnswer)? '10px solid #1FF11FFF' : '10px solid #EE3030FF'): '0px'}}
+                        style={{
+                            opacity: blurPic2? 0.7 : 1,
+                            border: clicked? ((productId2.toString() === trueAnswer)? '10px solid #1FF11FFF' : '10px solid #EE3030FF'): '0px'
+                        }}
                     />
                 </div>
             </div>
@@ -303,9 +314,12 @@ const MostExpensiveItem = () => {
                     <img
                         className="most-expensive item-pic"
                         src={pictureUrl3}
-                        alt="LOL"
+                        alt="Broken Image"
                         onClick={() => handleAnswer(3)}
-                        style={{opacity: blurPic3? 0.7 : 1, border: clicked? ((productId3.toString() === trueAnswer)? '10px solid #1FF11FFF' : '10px solid #EE3030FF'): '0px'}}
+                        style={{
+                            opacity: blurPic3? 0.7 : 1,
+                            border: clicked? ((productId3.toString() === trueAnswer)? '10px solid #1FF11FFF' : '10px solid #EE3030FF'): '0px'
+                        }}
                     />
                 </div>
                 <div className="most-expensive brand-and-pic">
@@ -314,9 +328,12 @@ const MostExpensiveItem = () => {
                     <img
                         className="most-expensive item-pic"
                         src={pictureUrl4}
-                        alt="LOL"
+                        alt="Broken Image"
                         onClick={() => handleAnswer(4)}
-                        style={{opacity: blurPic4? 0.7 : 1, border: clicked? ((productId4.toString() === trueAnswer)? '10px solid #1FF11FFF' : '10px solid #EE3030FF'): '0px'}}
+                        style={{
+                            opacity: blurPic4? 0.7 : 1,
+                            border: clicked? ((productId4.toString() === trueAnswer)? '10px solid #1FF11FFF' : '10px solid #EE3030FF'): '0px'
+                        }}
                     />
                 </div>
             </div>

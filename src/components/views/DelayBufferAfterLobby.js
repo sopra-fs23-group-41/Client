@@ -28,6 +28,8 @@ const DelayBufferAfterLobby = () => {
 
     const [countdown, setCountdown] = useState(3);
 
+
+    //Countdown that decided the length of the Buffer
     useEffect(() => {
         timerId.current = setInterval(() => {
             setCountdown(prev => prev -1)
@@ -65,6 +67,8 @@ const DelayBufferAfterLobby = () => {
         });
     })
 
+
+    //A list of wisdoms that shall keep the players entertained while waiting!
     useEffect(() => {
         const wisdoms =["Time is money.",
             "Time is money and I don't have either.",

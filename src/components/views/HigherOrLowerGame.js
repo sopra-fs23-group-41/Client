@@ -228,7 +228,12 @@ const HigherOrLowerGame = () => {
                     className="gtp answer-button"
                     onClick={firstAnswer}
                     disabled={clicked || clicked2}
-                    style ={{backgroundColor: clicked ? (trueAnswer === 'Higher' ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked ? '1.4' : '1', marginTop: clicked? '20px' : '0px', marginRight: clicked? '10px' : '0px', color: clicked? 'floralwhite' : '#8BA1FAFF'}}
+                    style ={{
+                        backgroundColor: clicked ? (trueAnswer === 'Higher' ? '#1ff11f' : '#ee3030') : 'floralwhite',
+                        scale: clicked ? '1.4' : '1',
+                        marginTop: clicked? '20px' : '0px',
+                        marginRight: clicked? '10px' : '0px',
+                        color: clicked? 'floralwhite' : '#8BA1FAFF'}}
                 >
                     Higher
                 </button>}
@@ -236,7 +241,12 @@ const HigherOrLowerGame = () => {
                     className="gtp answer-button"
                     onClick={secondAnswer}
                     disabled={clicked || clicked2}
-                    style ={{backgroundColor: clicked2 ? (trueAnswer === 'Lower' ? '#1ff11f' : '#ee3030') : 'floralwhite', scale: clicked2 ? '1.4' : '1', marginTop: clicked2? '20px' : '0px', marginRight: clicked2? '10px' : '0px', color: clicked2? 'floralwhite' : '#8BA1FAFF'}}
+                    style ={{
+                        backgroundColor: clicked2 ? (trueAnswer === 'Lower' ? '#1ff11f' : '#ee3030') : 'floralwhite',
+                        scale: clicked2 ? '1.4' : '1',
+                        marginTop: clicked2? '20px' : '0px',
+                        marginRight: clicked2? '10px' : '0px',
+                        color: clicked2? 'floralwhite' : '#8BA1FAFF'}}
                 >
                     Lower
                 </button>}
