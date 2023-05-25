@@ -79,7 +79,9 @@ const Lobby = () => {
                     Location.reload();
                 }
             }
-            fetchData(gameId).then();
+            fetchData(gameId).catch(() => {
+                Location.reload();
+            });
         }, 1000);
         return () => clearInterval(interval);
     }, [gameId, history, rounds]);

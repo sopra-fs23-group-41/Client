@@ -24,7 +24,7 @@ const DelayBuffer = () => {
     const timerId = useRef();
     const history = useHistory();
 
-    const [countdown, setCountdown] = useState(5);
+    const [countdown, setCountdown] = useState(3);
 
     useEffect(() => {
         timerId.current = setInterval(() => {
