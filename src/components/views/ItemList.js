@@ -71,7 +71,7 @@ const ItemList = () => {
                 <img className="multiplayer img" src={logo} alt="LOL"/>
             </div>
             {content}
-            <div className="multiplayer lower-part center">
+            <div className="multiplayer lower-part center below">
                 <div>
                     <button className="end-of-game btn"
                         onClick={endGame}

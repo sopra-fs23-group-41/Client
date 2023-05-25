@@ -27,6 +27,7 @@
     background-color: sandybrown;
     transition: opacity 0.5s ease, transform 0.5s ease;
     font-family: "Varela Round", sans-serif;
+    position: relative;
   }
   &.field {
     display: flex;
@@ -67,8 +68,8 @@
 
   &.password-toggle {
     position: absolute;
-    top: 34.5%;
-    left: 827px;
+    top: 34%;
+    right: 8.5%;
     font-size: 30px; // Increase the font size
     transform: translateY(-50%);
     background: transparent;

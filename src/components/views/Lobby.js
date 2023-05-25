@@ -7,7 +7,7 @@ import '../pictures/2.jpg';
 import logo from '../pictures/Logo.jpg';
 
 const Players = ({user}) => (
-    <div className="player">{user.playerName}</div>
+    <div className="player">{ localStorage.getItem('isGm')==='true'? '👑 ' : '' }{user.playerName}</div>
 );
 
 const Lobby = () => {
@@ -24,6 +24,7 @@ const Lobby = () => {
     const [category, setCategory] = useState(null);
     const [gameMode, setGameMode] = useState(null);
     const [players, setPlayers] = useState(null);
+    const [numOfPlayer, setNumOfPlayer] = useState(null);
 
     const startGame = async () => {
         setActivateLoading(true);
@@ -53,6 +54,7 @@ const Lobby = () => {
                     localStorage.setItem('category', response.data.category)
                     setPin(response.data.gamePIN);
                     setPlayers(response.data.players);
+                    setNumOfPlayer(response.data.numOfPlayer);
                     if (rounds !== null) {
                         localStorage.setItem('rounds', rounds.toString());
                     }
@@ -76,11 +78,7 @@ const Lobby = () => {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
             }
-            fetchData(gameId).catch((error) => {
-                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("An error occurred while executing the fetchData function! See the console for details.");
-            });
+            fetchData(gameId).then();
         }, 1000);
         return () => clearInterval(interval);
     }, [gameId, history, rounds]);
@@ -94,6 +92,18 @@ const Lobby = () => {
                 ))}
             </div>
         );
+    }
+
+    let begin = (<div></div>);
+    if (isGm === 'true') {
+        begin = (
+            <div>
+                <button className="lobby button"
+                        onClick={startGame}
+                        disabled={!(isGm === 'true')}
+                >Start Game</button>
+            </div>
+        )
     }
 
     return (
@@ -111,6 +121,7 @@ const Lobby = () => {
                             <h2>Settings:</h2>
                             <p>Game Mode: {gameMode}</p>
                             <p>Rounds: {rounds}</p>
+                            <p>No. of Players: {numOfPlayer}</p>
                             <p>Category: {category}</p>
                             <p>Pincode: {pin}</p>
                         </div>
@@ -128,12 +139,7 @@ const Lobby = () => {
                             disabled={!(isGm === 'true')}
                     >Close Lobby</button>
                     </div>
-                    <div>
-                    <button className="lobby button"
-                            onClick={startGame}
-                            disabled={!(isGm === 'true')}
-                    >Start Game</button>
-                    </div>
+                    {begin}
                 </div>
 
                 {activateLoading && <div className="loading ring">Loading
