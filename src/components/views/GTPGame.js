@@ -232,7 +232,7 @@ const GTPGame = () => {
 
 
     return (
-        <BaseContainer className="multiplayer container">
+        <BaseContainer className="multiplayer container bottompadding">
 
             <div className="multiplayer navbar">
                 <img className="multiplayer img" src={logo} alt="LOL"/>
@@ -241,7 +241,7 @@ const GTPGame = () => {
             </div>
 
             <div className="gtp bonus-and-streak">
-                <h2>Round {currentRound}/ {rounds}</h2>
+                <h2>Round {currentRound} / {rounds}</h2>
                 {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round!💹💰</h2>}
                 <Timer seconds={10}/>
             </div>
