@@ -37,11 +37,9 @@ const Timer = ({seconds}) => {
                         localStorage.setItem('hasAnswered', 'true')
                         const gameId = localStorage.getItem('gameId');
                         const playerId = localStorage.getItem('playerId')
-                        const currentRound = localStorage.getItem('currentRound')
                         const playerAnswer = new Answer();
                         playerAnswer.playerId = playerId;
                         playerAnswer.timeUsed = 30;
-                        playerAnswer.numOfRound = currentRound;
                         playerAnswer.playerAnswer = 0;
 
                         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
