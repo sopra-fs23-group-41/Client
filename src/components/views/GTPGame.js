@@ -13,7 +13,6 @@ import Answer from "../../models/Answer";
 
 
 const GTPGame = () => {
-
     const history = useHistory();
 
     const gameId = localStorage.getItem('gameId');
@@ -26,7 +25,6 @@ const GTPGame = () => {
     const [onlyOnce2, setOnlyOnce2] = useState(true);
     const [onlyOnce3, setOnlyOnce3] = useState(true);
     const [onlyOnce5, setOnlyOnce5] = useState(true);
-
 
     const [isOnStreak, setIsOnStreak] = useState(false);
     const [isBonusRound, setIsBonusRound] = useState(false);
@@ -43,10 +41,8 @@ const GTPGame = () => {
     const [answers, setAnswers] = useState([0, 0, 0, 0]);
     const [randomizedAnswers, setRandomizedAnswers] = useState([0, 0, 0, 0]);
 
-
     //Measuring time
     const [startTime, setStartTime] = useState(null);
-
 
     //Load the next question if the player is not the GM
     const getNextQuestion = useCallback(async () => {
@@ -62,7 +58,7 @@ const GTPGame = () => {
 
 
     useEffect(() => {
-        if(onlyOnce) {
+        if (onlyOnce) {
             setOnlyOnce(false);
             getNextQuestion();
         }
@@ -98,7 +94,6 @@ const GTPGame = () => {
     //Add https to the picture link
     const pictureUrl = "https://"+picture[0]
 
-
     //Randomize the answers regarding their position on the screen
     useEffect(() => {
         function getRandomInt(max) {
@@ -125,7 +120,7 @@ const GTPGame = () => {
         playerAnswer.numOfRound = currentRound;
         playerAnswer.playerAnswer = randomizedAnswers[0];
         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
-        if(randomizedAnswers[0] === trueAnswer){
+        if (randomizedAnswers[0] === trueAnswer){
             let currentStreak = parseInt(localStorage.getItem('streak'))
             currentStreak = currentStreak + 1;
             currentStreak = currentStreak.toString();
@@ -143,12 +138,12 @@ const GTPGame = () => {
         playerAnswer.numOfRound = currentRound;
         playerAnswer.playerAnswer = randomizedAnswers[1];
         api.post('lobbies/'+gameId+'/player/'+playerId+'/answered', playerAnswer)
-        if(randomizedAnswers[1] === trueAnswer){
+        if (randomizedAnswers[1] === trueAnswer){
             let currentStreak = parseInt(localStorage.getItem('streak'))
             currentStreak = currentStreak + 1;
             currentStreak = currentStreak.toString();
             localStorage.setItem('streak', currentStreak);
-        }else{
+        } else {
             localStorage.setItem('streak', '0')
         }
     }
@@ -195,7 +190,6 @@ const GTPGame = () => {
         const interval = setInterval(() => {
             async function hasEveryoneAnswered(gameId) {
                 try {
-
                     // To check if the nextRound has been initialized
                     const allAnsweredCheck = await api.get('/lobbies/'+gameId+'/allAnswered');
                     const canBegin = allAnsweredCheck.data;
@@ -242,11 +236,8 @@ const GTPGame = () => {
 
             <div className="gtp bonus-and-streak">
                 <h2>Round {currentRound}/ {rounds}</h2>
-
                 {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round!💹💰</h2>}
-
                 {isOnStreak && <h2 className="gtp streak">🔥You're on a Streak of {localStorage.getItem('streak')} Rounds!🔥</h2>}
-
                 <Timer seconds={10}/>
             </div>
 
