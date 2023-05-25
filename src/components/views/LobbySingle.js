@@ -30,7 +30,7 @@ const LobbySingle = () => {
     }
     const closeLobby = async () => {
         history.push('landing')
-        await api.post('lobbies/'+gameId+'/end')
+        await api.post('lobbies/'+gameId + '/' + playerId+'/end')
     }
 
 
