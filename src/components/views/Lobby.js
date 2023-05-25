@@ -14,6 +14,7 @@ const Lobby = () => {
     const history = useHistory();
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
+    const playerId = localStorage.getItem('playerId')
 
     localStorage.setItem('streak', '0')
     localStorage.setItem('currentRound', '1');
@@ -29,8 +30,7 @@ const Lobby = () => {
     const startGame = async () => {
         setActivateLoading(true);
         try{
-            await api.post('lobbies/' + gameId + '/begin')
-
+            await api.post('lobbies/'+gameId + '/' + playerId+'/end')
         }catch(error){
             alert(error.response.data.message)
         }
@@ -136,7 +136,6 @@ const Lobby = () => {
                     <div>
                     <button className="lobby button"
                             onClick={closeLobby}
-                            disabled={!(isGm === 'true')}
                     >Close Lobby</button>
                     </div>
                     {begin}
