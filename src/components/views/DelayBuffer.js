@@ -7,6 +7,7 @@ import logo from '../pictures/Logo.jpg';
 import "helpers/Timer.js";
 import "styles/ui/Standings.scss";
 import {useHistory} from "react-router-dom";
+import {handleError} from "../../helpers/api";
 
 
 
@@ -39,9 +40,13 @@ const DelayBuffer = () => {
                 history.push('leaderboard')
             }
         }
-        doCountdown();
+        doCountdown().catch((error) => {
+            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("An error occurred while executing the fetchData function! See the console for details.");
+        });
     })
-    //hmm
+
     useEffect(() => {
         const wisdoms =["Time is money.",
             "Time is money and I don't have either.",

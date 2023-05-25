@@ -147,7 +147,11 @@ const MostExpensiveItem = () => {
                     alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
                 }
             }
-            hasEveryoneAnswered(gameId).then();
+            hasEveryoneAnswered(gameId).catch((error) => {
+                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("An error occurred while executing the fetchData function! See the console for details.");
+            });
         }, 1000);
         return () => clearInterval(interval);
     }, [gameId, currentRound, rounds, history, onlyOnce4]);
