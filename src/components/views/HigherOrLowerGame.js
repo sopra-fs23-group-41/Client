@@ -206,10 +206,9 @@ const HigherOrLowerGame = () => {
             <div className="gtp bonus-and-streak">
                 <h2>Round {currentRound} / {rounds}</h2>
                 {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round!💹💰</h2>}
+                {isOnStreak && <h2 className="gtp streak">🔥You're on a Streak of {localStorage.getItem('streak')} Rounds!🔥</h2>}
                 <Timer seconds={10}/>
             </div>
-            {isOnStreak && <h2 className="gtp streak">🔥You're on a Streak of {localStorage.getItem('streak')} Rounds!🔥</h2>}
-
 
             <div className="h-or-l prices">
                 <h1 className="h-or-l left-price">{prices[0]} USD</h1>

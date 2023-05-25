@@ -266,9 +266,9 @@ const MostExpensiveItem = () => {
             <div className="gtp bonus-and-streak">
                 <h2>Round {currentRound} / {rounds}</h2>
                 {isBonusRound && <h2 className="gtp bonus">💰💹Bonus Round!💹💰</h2>}
+                {isOnStreak && <h2 className="gtp streak">🔥You're on a Streak of {localStorage.getItem('streak')} Rounds!🔥</h2>}
                 <Timer seconds={10}/>
             </div>
-            {isOnStreak && <h2 className="gtp streak">🔥You're on a Streak of {localStorage.getItem('streak')} Rounds!🔥</h2>}
 
 
 
