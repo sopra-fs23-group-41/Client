@@ -100,7 +100,7 @@ const EndOfGame = () => {
                         {players.length > winners.length && (
                             <div className="end-of-game non-winners">
                                 <h2 className="end-of-game subtitle">Losers:</h2>
-                                <Standings players={players.filter((player) => !winners.includes(player))} />
+                                <Standings players={players.filter((player) => !winners.includes(player)).reverse()} />
                             </div>
                         )}
                     </div>
