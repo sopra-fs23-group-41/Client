@@ -259,9 +259,9 @@ const MostExpensiveItem = () => {
         <BaseContainer className="multiplayer container bottompadding">
 
             <div className="multiplayer navbar">
-                <img className="multiplayer img" src={logo} alt="LOL"/>
+                <img className="multiplayer img" src={logo} alt="Broken"/>
                 <h1 className="multiplayer title">Most Expensive Item: {localStorage.getItem('category')}</h1>
-                <img className="multiplayer img" src={logo} alt="LOL"/>
+                <img className="multiplayer img" src={logo} alt="Broken"/>
             </div>
             <div className="gtp bonus-and-streak">
                 <h2>Round {currentRound} / {rounds}</h2>
@@ -283,7 +283,7 @@ const MostExpensiveItem = () => {
                     <img
                         className="most-expensive item-pic"
                         src={pictureUrl1}
-                        alt="Broken Image"
+                        alt="Broken"
                         onClick={() => handleAnswer(1)}
                         style={{
                             opacity: blurPic1? 0.7 : 1,
@@ -298,7 +298,7 @@ const MostExpensiveItem = () => {
                     <img
                         className="most-expensive item-pic"
                         src={pictureUrl2}
-                        alt="Broken Image"
+                        alt="Broken"
                         onClick={() => handleAnswer(2)}
                         style={{
                             opacity: blurPic2? 0.7 : 1,
@@ -314,7 +314,7 @@ const MostExpensiveItem = () => {
                     <img
                         className="most-expensive item-pic"
                         src={pictureUrl3}
-                        alt="Broken Image"
+                        alt="Broken"
                         onClick={() => handleAnswer(3)}
                         style={{
                             opacity: blurPic3? 0.7 : 1,
@@ -328,7 +328,7 @@ const MostExpensiveItem = () => {
                     <img
                         className="most-expensive item-pic"
                         src={pictureUrl4}
-                        alt="Broken Image"
+                        alt="Broken"
                         onClick={() => handleAnswer(4)}
                         style={{
                             opacity: blurPic4? 0.7 : 1,
