@@ -31,7 +31,9 @@ const SinglePlayer = () => {
 
     useEffect(() =>{
         if(onlyOnce){
-            initializeLobby();
+            initializeLobby().catch(() => {
+                Location.reload();
+            });
             setOnlyOnce(false);
         }
     }, [onlyOnce])
