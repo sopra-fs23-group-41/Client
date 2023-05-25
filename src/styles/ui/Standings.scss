@@ -7,7 +7,7 @@
     margin: 0 auto 10px auto;
     width: 20em;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     display: grid;
     align-items: center;
     background: lighten(floralwhite, 5);
@@ -21,17 +21,17 @@
   &.username {
     font-family: "Staatliches", cursive;
     font-weight: 500;
-    color: #97ABFF;
+    color: darkblue;
   }
 
   &.roundscore{
     font-family: "Staatliches", cursive;
-    color: #32f132;
+    color: darkturquoise;
   }
 
   &.totalscore{
     font-family: "Staatliches", cursive;
-    color: #dc0000;
+    color: darkblue;
   }
 
 }
@@ -45,6 +45,6 @@
   font-size: 33px;
   margin-left: auto;
   margin-right: auto;
-  color: #f3ddad;
+  color: gold;
   font-family: "Staatliches", cursive;
 }
