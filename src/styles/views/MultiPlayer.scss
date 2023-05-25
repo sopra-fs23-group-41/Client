@@ -129,6 +129,7 @@ body
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 20px 20px rgba(0, 0, 0, .4);
+    overflow-y: auto;
   }
   &.user-list {
     list-style: georgian;
