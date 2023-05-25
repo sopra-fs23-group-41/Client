@@ -157,7 +157,7 @@ const AppRouter = () => {
                 </Route>
 
                 <Route exact path="/">
-                    <Redirect to="/login"/>
+                    <Redirect to="/landing"/>
                 </Route>
 
                 <Route exact path="/registration">
@@ -171,5 +171,3 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
-
-//router
