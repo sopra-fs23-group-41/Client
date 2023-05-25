@@ -34,7 +34,7 @@ const MultiPlayer = () => {
 
     useEffect(() =>{
         if(onlyOnce){
-            initializeLobby;
+            initializeLobby();
             setOnlyOnce(false);
         }
     }, [onlyOnce])
