@@ -188,9 +188,6 @@ const MultiPlayer = () => {
                                 <div className="list-choice-title">Players</div>
                                 <div className="list-choice-objects">
                                     <label>
-                                        <input value="1" type="radio" name="players" onClick={() => updateNrOfPlayer("1")}/> <span>1</span>
-                                    </label>
-                                    <label>
                                         <input value="2" type="radio" name="players" onClick={() => updateNrOfPlayer("2")}/> <span>2</span>
                                     </label>
                                     <label>
