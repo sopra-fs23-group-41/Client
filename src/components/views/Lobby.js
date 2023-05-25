@@ -32,7 +32,8 @@ const Lobby = () => {
         try{
             await api.post('lobbies/'+gameId +'/begin')
         }catch(error){
-            alert(error.response.data.message)
+            await startGame();
+            Location.reload()
         }
     }
     const closeLobby = async () => {

@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
+import {api} from 'helpers/api';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
@@ -144,13 +144,12 @@ const MostExpensiveItem = () => {
                     }
 
                 } catch (error) {
-                    alert(`Something went wrong while fetching the game: \n${handleError(error)}`);
+                    await hasEveryoneAnswered();
+                    Location.reload();
                 }
             }
-            hasEveryoneAnswered(gameId).catch((error) => {
-                console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("An error occurred while executing the fetchData function! See the console for details.");
+            hasEveryoneAnswered(gameId).catch(() => {
+                Location.reload();
             });
         }, 1000);
         return () => clearInterval(interval);

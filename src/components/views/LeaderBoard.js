@@ -1,6 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-//import {useHistory} from 'react-router-dom';
+import {api} from 'helpers/api';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/MultiPlayer.scss";
 import "styles/views/GTPGame.scss";
@@ -67,15 +66,12 @@ const LeaderBoard = () => {
                 playerSort(temporaryPlayers);
                 setPlayers(temporaryPlayers);
             } catch (error) {
-                console.error(`Something went wrong while fetching the players in leaderboard: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the players in leaderboard! See the console for details.");
+               await fetchPlayers();
+               Location.reload();
             }
         };
-        fetchPlayers().catch((error) => {
-            console.error(`An error occurred while executing the fetchData function: \n${handleError(error)}`);
-            console.error("Details:", error);
-            alert("An error occurred while executing the fetchData function! See the console for details.");
+        fetchPlayers().catch(() => {
+            Location.reload();
         });
     }, [gameId]);
 
