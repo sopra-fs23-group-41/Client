@@ -10,6 +10,7 @@ const LobbySingle = () => {
     const history = useHistory();
     const gameId = localStorage.getItem('gameId');
     const isGm = localStorage.getItem('isGm');
+    const playerId = localStorage.getItem('playerId')
 
     localStorage.setItem('streak', '0')
     localStorage.setItem('currentRound', '1');
