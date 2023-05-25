@@ -1,6 +1,5 @@
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {GameGuard} from "components/routing/routeProtectors/GameGuard";
-//import GameRouter from "components/routing/routers/GameRouter";
 import Login from "components/views/Login";
 import Registration from "../../views/Registration";
 import Landing from "../../views/Landing"
@@ -23,7 +22,6 @@ import LobbySingle from "../../views/LobbySingle";
 import GameLoadingBuffer from "../../views/GameLoadingBuffer";
 import MostExpensiveItem from "../../views/MostExpensiveItem";
 import DelayBuffer from "../../views/DelayBuffer";
-
 import {LoginGuard} from "../routeProtectors/LoginGuard";
 import DelayBufferAfterLobby from "../../views/DelayBufferAfterLobby";
 
@@ -37,12 +35,6 @@ const AppRouter = () => {
                         <Login/>
                     </LoginGuard>
                 </Route>
-
-                {/*<Route path="/game">
-                    <GameGuard>
-                        <GameRouter base="/game"/>
-                    </GameGuard>
-                </Route>*/}
 
                 <Route exact path="/profilepage/:id">
                     <GameGuard>
