@@ -9,7 +9,7 @@ import logo from '../pictures/Logo.jpg';
 const LobbySingle = () => {
     const history = useHistory();
     const gameId = localStorage.getItem('gameId');
-    const isGm = localStorage.getItem('isGm');
+    const playerId = localStorage.getItem('playerId')
 
     localStorage.setItem('streak', '0')
     localStorage.setItem('currentRound', '1');
@@ -30,10 +30,8 @@ const LobbySingle = () => {
     }
     const closeLobby = async () => {
         history.push('landing')
-        await api.post('lobbies/'+gameId+'/end')
+        await api.post('lobbies/'+gameId + '/' + playerId+'/end')
     }
-
-
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -44,7 +42,6 @@ const LobbySingle = () => {
                     setRounds(response.data.rounds);
                     localStorage.setItem('rounds', response.data.rounds)
                     setCategory(response.data.category);
-
 
                     if (rounds !== null) {
                         localStorage.setItem('rounds', rounds.toString());
@@ -104,21 +101,16 @@ const LobbySingle = () => {
                     <div>
                     <button className="lobby button"
                             onClick={closeLobby}
-                            disabled={!(isGm === 'true')}
                     >Close Lobby</button>
                     </div>
                     <div>
                     <button className="lobby button"
                             onClick={startGame}
-                            disabled={!(isGm === 'true')}
                     >Start Game</button>
                     </div>
                 </div>
 
                 {activateLoading && <div className="loading ring">Loading
-                    <span></span>
-                </div>}
-                {!(isGm === 'true') && <div className="loading ring">Waiting
                     <span></span>
                 </div>}
             </div>
