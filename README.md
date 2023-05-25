@@ -25,25 +25,63 @@ Start the client by running the following command in the terminal:
     ```
 
 ## Illustrations
-First a user needs to register, where the username, name and password have to be typed in. After registering a user is on the main menu. From there on the possibilities are almost endless.<br>
-One great option would be to start a new multiplayer game, to play with friends. On the multiplayer page the user is considered the Game Master and can therefore choose the settings of the game: game type, number of rounds, category of products and number of players. After choosing your preferred settings, you land on the game lobby. With the pin code given there, any registered user can join. The Game Master can start the game, once the lobby is full.
-<br>The user experience is completely different, depending on the game modes. So here’s a short explanation for each one:
-
-**Guess The Price**<br>
-One item is displayed, and the players have to guess the correct, corresponding price out of four given options.
-<br><br>**Higher or Lower**<br>
-The players have to guess whether the price of the article at the right, is higher or lower than the price of the article on the left. The price of the item to the left is shown to get an idea.
-<br><br>**Most Expensive Item**<br>
-Four items with the corresponding brand are shown and the player has to figure out which one is the most expensive item. 
-*image of one round in GTP, MEI, HoL & MIU* 
-
-In between the rounds the current leaderboard is displayed.
-*image of leaderboard*
-
-After the game has ended, the winner(s) is highlighted and the users can either leave the lobby or look at the items, that were displayed during the game, and potentially buy them.
-*end game screen & view items*
-
-Users can also take a look on their profile, via the menu. On the profile page you can change your credentials and even have the possibility to choose between ten cool avatars, to reflect your personality in the game! *image of profile & possible avatars*
+Illustrations for the Mix It Up game mode:
+<h3 align="center">
+  <br>
+  <a href="https://github.com/sopra-fs23-group-41"><img src="/src/components/pictures/Landing.png" alt="Landing"></a>
+  <br>
+  Landing - Main menu of the app.
+  <br>
+</h3>
+<h3 align="center">
+  <br>
+  <a href="https://github.com/sopra-fs23-group-41"><img src="/src/components/pictures/Settings.png" alt="Settings"></a>
+  <br>
+  Settings - Select settings of the game you want to play.
+  <br>
+</h3>
+<h3 align="center">
+  <br>
+  <a href="https://github.com/sopra-fs23-group-41"><img src="/src/components/pictures/Lobby.png" alt="Lobby"></a>
+  <br>
+  Lobby - In the lobby you can see the players, settings & pincode to join.
+  <br>
+</h3>
+<h3 align="center">
+  <br>
+  <a href="https://github.com/sopra-fs23-group-41"><img src="/src/components/pictures/GTP.png" alt="GTP"></a>
+  <br>
+  Guess The Price - Guess the correct price for the provided article.
+  <br>
+</h3>
+<h3 align="center">
+  <br>
+  <a href="https://github.com/sopra-fs23-group-41"><img src="/src/components/pictures/Leaderboard.png" alt="Leaderboard"></a>
+  <br>
+  Leaderboard - Current ranking according to points gained.
+  <br>
+</h3>
+<h3 align="center">
+  <br>
+  <a href="https://github.com/sopra-fs23-group-41"><img src="/src/components/pictures/MEI.png" alt="MEI"></a>
+  <br>
+  Most Expensive Item - Guess which of the four articles is the most expensive. 
+  <br>
+</h3>
+<h3 align="center">
+  <br>
+  <a href="https://github.com/sopra-fs23-group-41"><img src="/src/components/pictures/HoL.png" alt="HoL"></a>
+  <br>
+  Higher or Lower - Guess if the price of the article on the right is higher or lower to the one to the left.
+  <br>
+</h3>
+<h3 align="center">
+  <br>
+  <a href="https://github.com/sopra-fs23-group-41"><img src="/src/components/pictures/EOG.png" alt="EOG"></a>
+  <br>
+  End of the Game - Final rankings of the game with the winner highlighted.
+  <br>
+</h3>
 
 ## Roadmap
 + Version of Guess The Price, where players have to type in a price
